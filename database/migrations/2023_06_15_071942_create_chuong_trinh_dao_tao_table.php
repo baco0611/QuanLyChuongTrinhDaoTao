@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('chuong_trinh_dao_tao', function (Blueprint $table) {
             $table->id('idChuongTrinh');
-            $table->string('phienBan', 500);
+            $table->string('phienBan', 500)->nullable();
             $table->string('tenTiengViet', 500);
-            $table->string('tenTiengAnh', 500);
+            $table->string('tenTiengAnh', 500)->nullable();
             $table->string('tringDoDaoTao', 500);
             $table->string('maNganhDaoTao', 500);
             $table->string('tenNganhDaoTao', 500);
@@ -32,11 +32,11 @@ return new class extends Migration
             $table->string('khaNangNangCaoTrinhhDo', 500);
             $table->string('chuongTrinhThamKhao', 500);
             $table->string('mucTieuTongQuat', 500);
-            $table->string('nguoiTao', 500);
-            $table->dateTime('ngayTao');
-            $table->dateTime('ngayThayDoi');
-            $table->integer('buocHienTai');
-            $table->string('trangThai');
+            $table->string('nguoiTao', 500)->nullable();
+            $table->dateTime('ngayTao')->nullable();
+            $table->dateTime('ngayThayDoi')->nullable();
+            $table->integer('buocHienTai')->nullable();
+            $table->string('trangThai')->nullable();
         });
     }
 
