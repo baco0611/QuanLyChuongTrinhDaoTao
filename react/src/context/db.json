@@ -1,0 +1,55 @@
+{
+    "mainList": {
+        "data": [
+            {
+                "maChuongTrinhDaoTao": "KH1729381",
+                "tenNganhDaoTao": "Công Nghệ Thông Tin CLC",
+                "maNganhDaoTao": "TIN7480728",
+                "trangThai": "DA_DUYET",
+                "id": 1,
+                "stt": 1,
+                "nguoiTao": "Trần Thanh Lương",
+                "created_at": "06-11-2017",
+                "updated_at": "12-03-2018"
+            },
+            {
+                "maChuongTrinhDaoTao": "KH1729381",
+                "tenNganhDaoTao": "Công Nghệ Thông Tin",
+                "maNganhDaoTao": "TIN7420394",
+                "trangThai": "DA_DUYET",
+                "id": 2,
+                "stt": 2,
+                "nguoiTao": "Trần Nguyên Phong",
+                "created_at": "30-09-2019",
+                "updated_at": "30-12-2019"
+            },
+            {
+                "maChuongTrinhDaoTao": "KH1729381",
+                "tenNganhDaoTao": "Kiến trúc (Đặc thù)",
+                "maNganhDaoTao": "KTR7102938",
+                "trangThai": "DA_NOP",
+                "id": 3,
+                "stt": 3,
+                "nguoiTao": "Nguyễn Phong Cảnh",
+                "created_at": "11-02-2019",
+                "updated_at": "22-07-2019"
+            },
+            {
+                "maChuongTrinhDaoTao": "KH1729381",
+                "tenNganhDaoTao": "Kiến trúc (KIS)",
+                "maNganhDaoTao": "KTR7726172",
+                "trangThai": "DANG_BIEN_SOAN",
+                "id": 4,
+                "stt": 4,
+                "nguoiTao": "Thái Nhật Trường",
+                "created_at": "19-04-2023",
+                "updated_at": "20-07-2023"
+            }
+        ] 
+    },
+    "sectionA-1": {
+        "data": [
+            
+        ]
+    }
+}

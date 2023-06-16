@@ -1,5 +1,19 @@
-import { render } from 'preact'
-import { App } from './app'
-import './index.css'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { RouterProvider } from 'react-router-dom'
+import router from './router'
+import StateContext from './context/ContextProvider'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import './style.scss'
 
-render(<App />, document.getElementById('app'))
+const queryClient = new QueryClient();
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  // <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <StateContext>
+        <RouterProvider router={router}/>
+      </StateContext>
+    </QueryClientProvider>
+  // </React.StrictMode>,
+)
