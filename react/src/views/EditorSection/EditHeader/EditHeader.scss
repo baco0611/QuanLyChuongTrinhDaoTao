@@ -1,21 +1,30 @@
 @import '../../../variable.scss';
 
 #edit-header {
-    padding: 50px 0;
-    position: sticky;
-    top: 0;
     width: 100vw;
-    background-color: white;
 }
 
 .edit-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    z-index: 15;
+    margin-top: 85px;
+
+    // &.translate &-main {
+    //     padding-bottom: 0px !important;
+    // }
+
     &-main {
-        width: max(1000px, 80%);
-        margin: 0 auto;
+        width: max(700px, 80%);
+        margin: 25px auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
         position: relative;
+        padding: 25px 0;
 
         .line {
             width: 100%;
@@ -42,6 +51,35 @@
         &.active {
             color: white;
             background: $primary-color;
+        }
+    }
+
+    &-content {
+        padding-top: 150px;
+        padding-bottom: 15px;
+        border-bottom: 1.5px solid #C7C5C5;
+        h1 {
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 35px;
+            color: $primary-color;
+            text-transform: uppercase;
+        }
+
+        span {
+            color: $highlight-color;
+        }
+    }
+
+    &-version {
+        margin-left: 20px;
+        color: $primary-color !important;
+        font-weight: 400;
+        font-size: 13px;
+        text-transform: lowercase;
+
+        &:hover {
+            color: $highlight-color !important;
         }
     }
 }

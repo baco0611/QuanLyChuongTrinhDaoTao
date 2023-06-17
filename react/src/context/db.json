@@ -47,9 +47,165 @@
             }
         ] 
     },
-    "sectionA-1": {
-        "data": [
-            
-        ]
-    }
+    "sectionHeader": [
+        {
+            "id": 1,
+            "data": [
+                {
+                    "tenNganhDaoTao": "Công nghệ thông tin",
+                    "maChuongTrinhDaoTao": "KH1729381",
+                    "phienBan": "v1"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "data": [
+                {
+                    "tenNganhDaoTao": "Công nghệ thông tin",
+                    "maChuongTrinhDaoTao": "KH1729381",
+                    "phienBan": "v1"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "data": [
+                {
+                    "tenNganhDaoTao": "Công nghệ thông tin",
+                    "maChuongTrinhDaoTao": "KH1729381",
+                    "phienBan": "v1"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "data": [
+                {
+                    "tenNganhDaoTao": "Công nghệ thông tin",
+                    "maChuongTrinhDaoTao": "KH1729381",
+                    "phienBan": "v1"
+                }
+            ]
+        }
+    ],
+    "sectionA": [
+        {
+            "id": 1,
+            "data": [
+                {
+                    "id":"1",
+                    "tenTiengViet":"Công nghệ thông tin",
+                    "tenTiengAnh":"",
+                    "trinhDoDaoTao":"Đại học",
+                    "maNganhDaoTao":"",
+                    "tenNganhDaoTao":"",
+                    "khoaQuanLyChuongTrinh":"",
+                    "doiTuongTuyenSinh":"Theo quy định của Bộ Giáo dục và Đào tạo",
+                    "thoiGianDaoTao":"",
+                    "loaiHinhDaoTao":"",
+                    "soTinChiYeuCauTichLuy":"",
+                    "dieuKienTotNghiep":"- Tích lũy đủ: 120/150 tín chỉ;\n- Điểm TBCTL toàn khóa: từ 2,00 trở lên;\n- Thỏa mãn một số yêu cầu về kết quả họctập đối với nhóm học phần thuộc ngành đàotạo chính;\n- Tích lũy đủ số tín chỉ cần thiết cho mỗikhối kiến thức;\n- Có chứng chỉ GDQPAN;\n- Hoàn thành các học phần GDTC;\n- Có chứng chỉ ứng dụng CNTT cơ bản;\n- Đạt trình độ ngoại ngữ B1.",
+                    "vanBangTotNghiep":"",
+                    "khaNangNangCaoTrinhDo":"",
+                    "chuongTrinhThamKhao":""
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "data": [
+                {
+                    "id":"2",
+                    "tenTiengViet":"",
+                    "tenTiengAnh":"",
+                    "trinhDoDaoTao":"Đại học",
+                    "maNganhDaoTao":"",
+                    "tenNganhDaoTao":"",
+                    "khoaQuanLyChuongTrinh":"",
+                    "doiTuongTuyenSinh":"Theo quy định của Bộ Giáo dục và Đào tạo",
+                    "thoiGianDaoTao":"",
+                    "loaiHinhDaoTao":"",
+                    "soTinChiYeuCauTichLuy":"",
+                    "dieuKienTotNghiep":"- Tích lũy đủ: 120/150 tín chỉ;\n- Điểm TBCTL toàn khóa: từ 2,00 trở lên;\n- Thỏa mãn một số yêu cầu về kết quả họctập đối với nhóm học phần thuộc ngành đàotạo chính;\n- Tích lũy đủ số tín chỉ cần thiết cho mỗikhối kiến thức;\n- Có chứng chỉ GDQPAN;\n- Hoàn thành các học phần GDTC;\n- Có chứng chỉ ứng dụng CNTT cơ bản;\n- Đạt trình độ ngoại ngữ B1.",
+                    "vanBangTotNghiep":"",
+                    "khaNangNangCaoTrinhDo":"",
+                    "chuongTrinhThamKhao":""
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "data": [
+                {
+                    "id":"3",
+                    "tenTiengViet":"",
+                    "tenTiengAnh":"",
+                    "trinhDoDaoTao":"Đại học",
+                    "maNganhDaoTao":"",
+                    "tenNganhDaoTao":"",
+                    "khoaQuanLyChuongTrinh":"",
+                    "doiTuongTuyenSinh":"Theo quy định của Bộ Giáo dục và Đào tạo",
+                    "thoiGianDaoTao":"",
+                    "loaiHinhDaoTao":"",
+                    "soTinChiYeuCauTichLuy":"",
+                    "dieuKienTotNghiep":"- Tích lũy đủ: 120/150 tín chỉ;\n- Điểm TBCTL toàn khóa: từ 2,00 trở lên;\n- Thỏa mãn một số yêu cầu về kết quả họctập đối với nhóm học phần thuộc ngành đàotạo chính;\n- Tích lũy đủ số tín chỉ cần thiết cho mỗikhối kiến thức;\n- Có chứng chỉ GDQPAN;\n- Hoàn thành các học phần GDTC;\n- Có chứng chỉ ứng dụng CNTT cơ bản;\n- Đạt trình độ ngoại ngữ B1.",
+                    "vanBangTotNghiep":"",
+                    "khaNangNangCaoTrinhDo":"",
+                    "chuongTrinhThamKhao":""
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "data": [
+                {
+                    "id":"4",
+                    "tenTiengViet":"",
+                    "tenTiengAnh":"",
+                    "trinhDoDaoTao":"Đại học",
+                    "maNganhDaoTao":"",
+                    "tenNganhDaoTao":"",
+                    "khoaQuanLyChuongTrinh":"",
+                    "doiTuongTuyenSinh":"Theo quy định của Bộ Giáo dục và Đào tạo",
+                    "thoiGianDaoTao":"",
+                    "loaiHinhDaoTao":"",
+                    "soTinChiYeuCauTichLuy":"",
+                    "dieuKienTotNghiep":"- Tích lũy đủ: 120/150 tín chỉ;\n- Điểm TBCTL toàn khóa: từ 2,00 trở lên;\n- Thỏa mãn một số yêu cầu về kết quả họctập đối với nhóm học phần thuộc ngành đàotạo chính;\n- Tích lũy đủ số tín chỉ cần thiết cho mỗikhối kiến thức;\n- Có chứng chỉ GDQPAN;\n- Hoàn thành các học phần GDTC;\n- Có chứng chỉ ứng dụng CNTT cơ bản;\n- Đạt trình độ ngoại ngữ B1.",
+                    "vanBangTotNghiep":"",
+                    "khaNangNangCaoTrinhDo":"",
+                    "chuongTrinhThamKhao":""
+                }
+            ]
+        }
+    ],
+    "sectionA-ChuyenNganh": [
+        {
+            "id": 1,
+            "data": []
+        },
+        {
+            "id": 2,
+            "data": []
+        },
+        {
+            "id": 3,
+            "data": []
+        },
+        {
+            "id": 4,
+            "data": []
+        }
+    ],
+    "sectionB": [
+        {
+            "id": 1,
+            "data": [
+                {
+                    "id": 1,
+                    "mucTieuTongQuat": ""
+                }
+            ]
+        }
+    ]
 }

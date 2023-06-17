@@ -1,31 +1,49 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import './EditFooter.scss'
+import { useContext } from 'react'
+import { UserContext } from '../../../context/ContextProvider'
 
-function EditFooter() {
+function EditFooter({currentSection}) {
+
+    const { sectionList} = useContext(UserContext)
+    const { id } = useParams()
+
     return (
         <footer id='edit-footer'>
             <div className='edit-footer wrapper'>
                 <div>
                     <Link to={'/list'}>
-                        <button>
+                        <button
+                            onClick={() => setCurrentSection(0)}
+                        >
                             <i className='ti-back-left'></i>
                             <span>Danh sách chính</span>
                         </button>
                     </Link>
                 </div>
                 <div>
-                    <Link to={'/list'}>
-                        <button>
-                            <i className='ti-arrow-circle-left'></i>
-                            <span>Lùi lại</span>
-                        </button>
-                    </Link>
-                    <Link to={'/list'}>
-                        <button>
-                            <span>Tiếp theo</span>
-                            <i className='ti-arrow-circle-right'></i>
-                        </button>
-                    </Link>
+                    {
+                        currentSection != 0 &&
+                        <Link to={`/edit/section${sectionList[currentSection-1]}/${id}`}>
+                            <button
+                                onClick={() => {}}
+                            >
+                                <i className='ti-arrow-circle-left'></i>
+                                <span>Lùi lại</span>
+                            </button>
+                        </Link>
+                    }
+                    {
+                        currentSection < sectionList.length - 1 &&
+                        <Link to={`/edit/section${sectionList[currentSection+1]}/${id}`}>
+                            <button
+                                onClick={() => {}}
+                            >
+                                <span>Tiếp theo</span>
+                                <i className='ti-arrow-circle-right'></i>
+                            </button>
+                        </Link>
+                    }
                     <Link to={'/list'}>
                         <button>
                             <i className='ti-eye'></i>

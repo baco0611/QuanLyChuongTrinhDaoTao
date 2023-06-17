@@ -1,10 +1,9 @@
 @import '../../variable.scss';
 
 #list-section {
-    min-height: 100vh;
-
+    padding: 150px 0;
     header {
-        padding: 75px 0;
+        padding-bottom: 75px;
 
         h1 {
             text-align: center;

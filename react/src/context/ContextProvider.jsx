@@ -7,10 +7,7 @@ const UserContext = createContext({
     setToken:() => {},
     apiURL: null,
     fakeApi: null,
-    currentId: null,
-    currentSection: null,
-    setCurrentId: () => {},
-    setCurrentSection: () => {}
+    sectionList: null
 })
 
 function StateContext({ children }) {
@@ -37,8 +34,7 @@ function StateContext({ children }) {
     const fakeApi = "http://localhost:3001"
 
     // Handle current editing
-    const [currentId, setCurrentId] = useState(null)
-    const [currentSection, setCurrentSection] = useState('A')
+    const sectionList = ['A', 'B', 'C', 'D', 'E', 'G', 'H']
 
     return (
         <UserContext.Provider value={{
@@ -48,10 +44,7 @@ function StateContext({ children }) {
                 setToken,
                 apiURL,
                 fakeApi,
-                currentId,
-                currentSection,
-                setCurrentId,
-                setCurrentSection
+                sectionList
             }
         }>
             {children}

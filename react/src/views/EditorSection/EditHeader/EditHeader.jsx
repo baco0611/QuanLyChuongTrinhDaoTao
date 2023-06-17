@@ -1,37 +1,99 @@
 import './EditHeader.scss'
 import clsx from 'clsx'
-import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from 'react-query'
+import axios from 'axios'
+import Loader from '../../../components/Loader/Loader'
 import { UserContext } from '../../../context/ContextProvider'
 
-function EditHeader() {
+function EditHeader({ currentSection }) {
 
-    const sectionName = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
-    const { currentSection, setCurrentSection, currentId } = useContext(UserContext)
-    console.log(currentSection, currentId)
+    const { id } = useParams()
+    const { sectionList, fakeApi, apiURL } = useContext(UserContext)
+    const navigate = useNavigate()
+    const [ navHeight, setNavHeight ] = useState(0)
+
+    useEffect(() => {
+        const handleChangeNav = () => {
+            if(window.scrollY <= 100) {
+                setNavHeight(-window.scrollY)
+            } else {
+                setNavHeight(-100)
+            }
+        }
+
+        window.addEventListener('scroll', handleChangeNav)
+
+        return () => {
+            window.removeEventListener('scroll', handleChangeNav)
+        }
+    }, [])
+
+    const fecthAPI = (id) => {
+        // const editHeaderApi = `${apiURL}/mainList`
+        const editHeaderApi = `${fakeApi}/sectionHeader/${id}`
+        return async () => {
+            const result = await axios.get(editHeaderApi) 
+                .then(response => {
+                    const restData = response.data
+                    return restData.data[0]
+                })
+                .catch(error => {
+                    console.log(error)
+                    navigate('/error')
+                })
+            return result
+        }
+    }
+
+    const { data , isLoading, isError} = useQuery(`sectionHeader-${id}`, fecthAPI(id),{
+        cacheTime: Infinity,
+        refetchOnWindowFocus: false,
+    })
+
+    if(isLoading)
+        return <Loader/>
+
+    if(isError)
+        navigate('/error')
 
     return (
         <header id='edit-header'>
-            <div className='edit-header-main'>
-                {
-                    sectionName.map((element, index) => {
-                        return (
-                            <Link 
-                                to={`/edit/section${element}/${currentId}`} 
-                                key={index}
-                                onClick={() => setCurrentSection(element)}
-                            >
-                                <div className={clsx(
-                                    'edit-header-element',
-                                    {
-                                        'active': element === currentSection
-                                    }
-                                )}>{element}</div>
-                            </Link>
-                        )
-                    })
-                }
-                <div className='line'></div>
+            <div 
+                className='edit-header'
+                style={{
+                    transform: `translateY(${navHeight}px)`
+                }}
+
+            >
+                <div className='edit-header-main'>
+                    {
+                        sectionList.map((element, index) => {
+                            return (
+                                <Link 
+                                    to={`/edit/section${element}/${id}`} 
+                                    key={index}
+                                    onClick={() => setCurrentSection(index)}
+                                >
+                                    <div className={clsx(
+                                        'edit-header-element',
+                                        {
+                                            'active': index === currentSection
+                                        }
+                                    )}>{element}</div>
+                                </Link>
+                            )
+                        })
+                    }
+                    <div className='line'></div>
+                </div>
+            </div>
+
+            <div className="edit-header-content wrapper">
+                <h1>CHƯƠNG TRÌNH ĐÀO TẠO ĐẠI HỌC NGÀNH <span>{data.tenNganhDaoTao}</span></h1>
+                <h1>MÃ CHƯƠNG TRÌNH ĐÀO TẠO: <span>{data.maChuongTrinhDaoTao}</span></h1>
+                <h1>PHIÊN BẢN: <span>{data.phienBan}</span> <span className='edit-header-version cursorPointer'>thay đổi phiên bản</span></h1>
             </div>
         </header>
     )

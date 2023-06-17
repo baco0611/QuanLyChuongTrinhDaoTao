@@ -18,7 +18,7 @@
         min-width: 150px;
         border-radius: 50px;
         border: none;
-        background-color: $button-color;
+        background-color: $gray-color;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -29,6 +29,11 @@
 
         i {
             font-size: 18px;
+        }
+
+        &:hover {
+            background-color: white;
+            color: $primary-color;
         }
     }
 
