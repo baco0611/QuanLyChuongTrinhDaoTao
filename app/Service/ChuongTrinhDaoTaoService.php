@@ -52,12 +52,4 @@ class ChuongTrinhDaoTaoService
     ->get();
     return $result;
    }
-   public function getItemFirst () 
-   {
-    $result= DB::table('chuong_trinh_dao_tao')
-    ->take(1)
-    ->get();
-    return $result;
-   }
-
 }

@@ -23,7 +23,7 @@ class ChuongTrinhDaoTaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index1()
+    public function index()
     {
        $ctdtService = new ChuongTrinhDaoTaoService();
         $listCTDT = $ctdtService->getList();
@@ -31,17 +31,6 @@ class ChuongTrinhDaoTaoController extends Controller
             'mainList'=>$listCTDT
         ], HttpResponse::HTTP_OK);
     }
-    public function index2()
-    {
-        $ctdtService = new ChuongTrinhDaoTaoService();
-        $itemHeader =  $ctdtService->getItemFirst();
-        $itemResource = SectionHeaderResource::collection($itemHeader);
-        return response()->json([
-            'id'=>1,
-           'data'=> $itemResource
-        ], HttpResponse::HTTP_OK);
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -76,7 +65,7 @@ class ChuongTrinhDaoTaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show1($id)
     {
         $ctdtService = new ChuongTrinhDaoTaoService();
         $item = $ctdtService->getCTDT($id);
@@ -84,6 +73,16 @@ class ChuongTrinhDaoTaoController extends Controller
         return response()->json([
             'id'=>intval($id),
             'data'=> $itemResource
+        ], HttpResponse::HTTP_OK);
+    }
+    public function show2($id)
+    {
+        $ctdtService = new ChuongTrinhDaoTaoService();
+        $itemHeader =  $ctdtService->getCTDT($id);
+        $itemResource = SectionHeaderResource::collection($itemHeader);
+        return response()->json([
+            'id'=>intval($id),
+           'data'=> $itemResource
         ], HttpResponse::HTTP_OK);
     }
 
