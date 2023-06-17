@@ -20,12 +20,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-#ChuongTrinhDaoTao
-Route::post('update_chuongTrinhDaoTao', [ChuongTrinhDaoTaoController::class,'store'])->name('ctdt.store');
+#ChuongTrinhDaoTao SectionA
+Route::post('update_sectionA', [ChuongTrinhDaoTaoController::class,'store'])->name('ctdt.store');
 Route::get('mainList', [ChuongTrinhDaoTaoController::class, 'index'])->name('ctdt.index');
-Route::get('sectionA/{id}', [ChuongTrinhDaoTaoController::class, 'show1'])->name('ctdt.show1');
-Route::get('sectionHeader/{id}', [ChuongTrinhDaoTaoController::class, 'show2'])->name('ctdt.show2');
-Route::post('insertCTDT', [ChuongTrinhDaoTaoController::class,'store'])->name('insertCtdt.store');
-
+Route::get('sectionA/{id}', [ChuongTrinhDaoTaoController::class, 'showCTDT'])->name('ctdt.showCTDT');
+Route::get('sectionHeader/{id}', [ChuongTrinhDaoTaoController::class, 'showHeader'])->name('ctdt.showHeader');
+Route::post('insertCTDT', [ChuongTrinhDaoTaoController::class,'storeCTDT'])->name('insertCtdt.storeCTDT');
+#mucTieuTongQuat SectionB
+Route::post('update_sectionB', [ChuongTrinhDaoTaoController::class,'storeMTTQ'])->name('insertCtdt.storeMTTQ');
+Route::get('sectionB/{id}', [ChuongTrinhDaoTaoController::class, 'showMTTQ'])->name('ctdt.showMTTQ');
 #ChuyenNganhDaoTao
 Route::post('chuyenNganhDaoTao', [ChuyenNganhDaoTaoController::class,'store'])->name('cndt.store');

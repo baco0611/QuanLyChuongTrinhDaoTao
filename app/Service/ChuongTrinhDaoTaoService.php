@@ -45,6 +45,18 @@ class ChuongTrinhDaoTaoService
 
         return $result;
    }
+   public function updateMTTQ (Request $request) 
+   {
+     DB::table('chuong_trinh_dao_tao')
+        ->where('idChuongTrinh', $request['id'])
+        ->update([
+            "mucTieuTongQuat" => $request['mucTieuTongQuat']
+        ]);
+        $result= DB::table('chuong_trinh_dao_tao')
+        ->where('idChuongTrinh', $request['id'])
+        ->get();
+        return $result;
+   }
    public function getCTDT ($id) 
    {
     $result= DB::table('chuong_trinh_dao_tao')

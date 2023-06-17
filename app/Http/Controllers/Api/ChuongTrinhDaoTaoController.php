@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ChuongTrinhDaoTaoResource;
-use App\Http\Resources\SectionHeaderResource;
+use App\Http\Resources\SectionAHeader_Resource;
+use App\Http\Resources\SectionB_Resource;
 use App\Models\ChuongTrinhDaoTao;
 use App\Service\ChuongTrinhDaoTaoService;
 use Carbon\Carbon;
@@ -37,10 +38,8 @@ class ChuongTrinhDaoTaoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeCTDT(Request $request)
     {
-        $data = $request->all();
-        $idChuongTrinh = $request['id'];
         $ctdtService = new ChuongTrinhDaoTaoService();
         $item = $ctdtService->updateCTDT($request);
         $itemResource = ChuongTrinhDaoTaoResource::collection($item);
@@ -58,14 +57,22 @@ class ChuongTrinhDaoTaoController extends Controller
 //      'data'=>$id
 //  ], HttpResponse::HTTP_OK);
     }
-
+    public function storeMTTQ(Request $request)
+    {
+        $ctdtService = new ChuongTrinhDaoTaoService();
+        $item = $ctdtService->updateMTTQ($request);
+        $itemResource = SectionB_Resource::collection($item);
+        return response()->json([
+            'data'=>$itemResource
+        ], HttpResponse::HTTP_OK);
+    }
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show1($id)
+    public function showCTDT($id)
     {
         $ctdtService = new ChuongTrinhDaoTaoService();
         $item = $ctdtService->getCTDT($id);
@@ -75,11 +82,20 @@ class ChuongTrinhDaoTaoController extends Controller
             'data'=> $itemResource
         ], HttpResponse::HTTP_OK);
     }
-    public function show2($id)
+    public function showMTTQ($id)
+    {
+        $ctdtService = new ChuongTrinhDaoTaoService();
+        $item = $ctdtService->getCTDT($id);
+        $itemResource = SectionB_Resource::collection($item);
+        return response()->json([
+            'data'=> $itemResource
+        ], HttpResponse::HTTP_OK);
+    }
+    public function showHeader($id)
     {
         $ctdtService = new ChuongTrinhDaoTaoService();
         $itemHeader =  $ctdtService->getCTDT($id);
-        $itemResource = SectionHeaderResource::collection($itemHeader);
+        $itemResource =SectionAHeader_Resource::collection($itemHeader);
         return response()->json([
             'id'=>intval($id),
            'data'=> $itemResource
