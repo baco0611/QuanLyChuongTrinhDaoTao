@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('matran_chuandaura_muctieu', function (Blueprint $table) {
             $table->id('idMaTran');
+            $table->timestamps();
             $table->foreignId('idChuanDauRa');
             $table->foreign('idChuanDauRa')->references('idChuanDauRa')->on('chuan_dau_ra');
             $table->foreignId('idMucTieu');

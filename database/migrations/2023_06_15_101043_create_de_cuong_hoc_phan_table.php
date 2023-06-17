@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('de_cuong_hoc_phan', function (Blueprint $table) {
             $table->id('idDeCuongHocPhan');
-            $table->foreignId('idHocPhan');
-            $table->foreign('idHocPhan')->references('idHocPhan')->on('hoc_phan');
             $table->integer('phienBan');
             $table->integer('lyThuyet');
             $table->integer('baiTap');
             $table->integer('thaoLuan');
             $table->integer('thucHanh');
             $table->integer('thucTap');
+            $table->timestamps();
+            $table->foreignId('idHocPhan');
+            $table->foreign('idHocPhan')->references('idHocPhan')->on('hoc_phan');
         });
     }
 

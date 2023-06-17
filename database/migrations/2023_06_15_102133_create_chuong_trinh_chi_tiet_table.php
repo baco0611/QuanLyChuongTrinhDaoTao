@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('hocKy');
             $table->string('khoiKienThuc', 500);
             $table->string('chiTietKhoiKienThuc', 500);
+            $table->timestamps();
             $table->foreignId('idChuyenNganh');
             $table->foreign('idChuyenNganh')->references('idChuyenNganh')->on('chuyen_nganh_dao_tao');
             $table->foreignId('idChuongTrinh');

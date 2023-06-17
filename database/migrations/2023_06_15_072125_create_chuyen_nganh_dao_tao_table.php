@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('chuyen_nganh_dao_tao', function (Blueprint $table) {
             $table->id('idChuyenNganh');
             $table->string('tenChuyenNganh', 500);
+            $table->timestamps();
             $table->foreignId('idChuongTrinh');
             $table->foreign('idChuongTrinh')->references('idChuongTrinh')->on('chuong_trinh_dao_tao');
         });

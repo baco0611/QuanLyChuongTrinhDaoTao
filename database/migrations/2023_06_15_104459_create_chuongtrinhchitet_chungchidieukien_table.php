@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('chuongtrinhchitet_chungchidieukien', function (Blueprint $table) {
+            $table->timestamps();
             $table->foreignId('idChuongTrinh');
             $table->foreign('idChuongTrinh')->references('idChuongTrinh')->on('chuong_trinh_dao_tao');
             $table->foreignId('idChungChi');

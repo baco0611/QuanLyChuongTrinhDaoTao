@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('loaiChuanDauRa', 500);
             $table->string('loaiChuanDauRaChiTiet', 500);
             $table->integer('trinhDoNangLuc');
+            $table->timestamps();
             $table->foreignId('idChuongTrinh');
             $table->foreign('idChuongTrinh')->references('idChuongTrinh')->on('chuong_trinh_dao_tao');
         });

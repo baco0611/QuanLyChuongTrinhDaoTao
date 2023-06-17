@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('danh_muc_chung_chi_dieu_kien', function (Blueprint $table) {
             $table->id('idChungChi');
             $table->string('tenChungChi', 500);
+            $table->timestamps();
         });
     }
 
