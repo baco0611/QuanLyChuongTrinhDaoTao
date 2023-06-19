@@ -74,7 +74,6 @@ function EditHeader({ currentSection }) {
                                 <Link 
                                     to={`/edit/section${element}/${id}`} 
                                     key={index}
-                                    onClick={() => setCurrentSection(index)}
                                 >
                                     <div className={clsx(
                                         'edit-header-element',

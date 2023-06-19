@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 #ChuongTrinhDaoTao
-Route::post('update_chuongTrinhDaoTao', [ChuongTrinhDaoTaoController::class,'store'])->name('ctdt.store');
+Route::post('update_sectionA', [ChuongTrinhDaoTaoController::class,'store'])->name('ctdt.store');
 Route::get('mainList', [ChuongTrinhDaoTaoController::class, 'index1'])->name('ctdt.index');
 Route::get('sectionA/{id}', [ChuongTrinhDaoTaoController::class, 'show'])->name('ctdt.show');
 Route::get('sectionHeader', [ChuongTrinhDaoTaoController::class, 'index2'])->name('ctdt.index');

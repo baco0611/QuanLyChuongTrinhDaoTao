@@ -1,0 +1,74 @@
+@import '../../../variable.scss';
+
+.section-C {
+    &-details {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: justify;
+        color: $primary-color;
+    }
+
+    &-main {
+        padding-top: 20px;
+    }
+
+    &-block {
+        margin-bottom: 50px;
+        h1 {
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 27px;
+            color: $primary-color;
+            text-transform: uppercase;
+        }
+    }
+}
+
+#section-C-containt {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .element {
+        display: grid;
+        grid-template-columns: calc((100% - 140px) * 0.15) calc((100% - 140px) * 0.85) 40px;
+        height: 50px;
+        column-gap: 50px;
+        border-bottom: 1.5px solid $button-color;
+
+        h4, label, input {
+            font-size: 18px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        input {
+            height: 85%;
+            border: none;
+            background-color: $gray-color;
+            padding: 0 25px;
+        }
+
+        button {
+            height: 40px;
+            width: 40px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $primary-color;
+            border-radius: 10px;
+
+            &.minus {
+                background-color: $highlight-color;
+            }
+
+            i {
+                color: white;
+                font-size: 22px;
+            }
+        }
+    }
+}

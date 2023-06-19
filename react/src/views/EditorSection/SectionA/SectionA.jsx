@@ -43,8 +43,8 @@ function SectionA() {
     })
 
     const fecthAPI = (id) => {
-        // const sectionAValueApi = `${apiURL}/mainList`
-        const sectionAValueApi = `${fakeApi}/sectionA/${id}`
+        const sectionAValueApi = `${apiURL}/sectionA/${id}`
+        // const sectionAValueApi = `${fakeApi}/sectionA/${id}`
         // const sectionAChuyenNganhApi = `${apiURL}/mainList`
         const sectionAChuyenNganhApi = `${fakeApi}/sectionA-ChuyenNganh/${id}`
         return async () => {
@@ -333,7 +333,7 @@ function SectionA() {
                             <textarea
                                 type="text"
                                 name="dieuKienTotNghiep"
-                                value={sectionAValue.dieuKienTotNghiep}
+                                value={sectionAValue.dieuKienTotNghiep.replaceAll('\\n', '\n')}
                                 onChange={handleChangeValue}
                                 rows={20}
                             />
@@ -387,7 +387,7 @@ function SectionA() {
                             <textarea
                                 type="text"
                                 name="khaNangNangCaoTrinhDo"
-                                value={sectionAValue.khaNangNangCaoTrinhDo}
+                                value={sectionAValue.khaNangNangCaoTrinhDo.replace('\\n', '\n-')}
                                 onChange={handleChangeTextArea}
                                 rows={20}
                             />
