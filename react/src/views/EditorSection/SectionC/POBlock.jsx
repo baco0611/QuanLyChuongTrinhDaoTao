@@ -1,8 +1,15 @@
 import POElement from "./POElement"
 
-function POBlock({ data, title, type }) {
+function POBlock({ data, title, type, setState }) {
+
+    const POType = {
+        KIEN_THUC: 1,
+        KY_NANG: 2,
+        THAI_DO: 3
+    }
+
     return (
-        <div className="section-C-block">
+        <div className="section-C-block" id={type}>
             <h1>{title}</h1>
             <div id="section-C-containt">
                 <header className="element">
@@ -19,7 +26,9 @@ function POBlock({ data, title, type }) {
                                 key={index}
                                 item={item}
                                 type={type}
+                                typeIndex={POType[type]}
                                 index={index}
+                                setState={setState}
                             />
                         )
                     })

@@ -75,12 +75,15 @@ function EditHeader({ currentSection }) {
                                     to={`/edit/section${element}/${id}`} 
                                     key={index}
                                 >
-                                    <div className={clsx(
-                                        'edit-header-element',
-                                        {
-                                            'active': index === currentSection
-                                        }
-                                    )}>{element}</div>
+                                    <div 
+                                        className={clsx(
+                                            'edit-header-element',
+                                            {
+                                                'active': index === currentSection
+                                            }
+                                        )}
+                                        onClick={() => index!=currentSection ? updateDatabase(currentSection) : () => {}}
+                                    >{element}</div>
                                 </Link>
                             )
                         })

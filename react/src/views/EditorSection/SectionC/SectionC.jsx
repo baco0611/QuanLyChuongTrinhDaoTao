@@ -59,7 +59,7 @@ function SectionC() {
 
     if(isError)
         navigate('/error')
-
+    
     return(
         <>
             <EditHeader currentSection={2}/>
@@ -74,16 +74,19 @@ function SectionC() {
                             title = {'1. KIẾN THỨC'}
                             data = {sectionCKienThuc}
                             type = {'KIEN_THUC'}
+                            setState = {setSectionCKienThuc}
                         />
                         <POBlock
                             title = {'2. KỸ NĂNG'}
                             data = {sectionCKyNang}
                             type = {'KY_NANG'}
+                            setState = {setSectionCKyNang}
                         />
                         <POBlock
                             title = {'3.THÁI ĐỘ'}
                             data = {sectionCThaiDo}
                             type = {'THAI_DO'}
+                            setState = {setSectionCThaiDo}
                         />
                     </div>
                 </div>

@@ -18,15 +18,15 @@ function SectionA() {
         id,
         tenTiengViet: '',
         tenTiengAnh: '',
-        trinhDoDaoTao: 'Đại học',
+        trinhDoDaoTao: '',
         maNganhDaoTao: '',
         tenNganhDaoTao: '',
         khoaQuanLyChuongTrinh: '',
-        doiTuongTuyenSinh: 'Theo quy định của Bộ Giáo dục và Đào tạo',
+        doiTuongTuyenSinh: '',
         thoiGianDaoTao: '',
         loaiHinhDaoTao: '',
         soTinChiYeuCauTichLuy: '',
-        dieuKienTotNghiep: `- Tích lũy đủ: 120/150 tín chỉ;\n- Điểm TBCTL toàn khóa: từ 2,00 trở lên;\n- Thỏa mãn một số yêu cầu về kết quả họctập đối với nhóm học phần thuộc ngành đàotạo chính;\n- Tích lũy đủ số tín chỉ cần thiết cho mỗikhối kiến thức;\n- Có chứng chỉ GDQPAN;\n- Hoàn thành các học phần GDTC;\n- Có chứng chỉ ứng dụng CNTT cơ bản;\n- Đạt trình độ ngoại ngữ B1.`,
+        dieuKienTotNghiep: '',
         vanBangTotNghiep: '',
         khaNangNangCaoTrinhDo: '',
         chuongTrinhThamKhao: '',
@@ -125,9 +125,7 @@ function SectionA() {
 
     return (
         <>
-            <EditHeader
-                currentSection={0}
-            />
+            <EditHeader currentSection={0} />
             <div id="section-A" className="section">
                 <div className="section-header wrapper">
                     <h1>A. THÔNG TIN TỔNG QUÁT</h1>
@@ -431,9 +429,7 @@ function SectionA() {
                     </div>
                 </div>
             </div>
-            <EditFooter
-                currentSection={0}
-            />
+            <EditFooter currentSection={0}/>
         </>
     )
 }
