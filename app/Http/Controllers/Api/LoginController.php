@@ -3,19 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ChuyenNganhDaoTaoResource;
-use App\Models\ChuyenNganhDaoTao;
-use App\Service\ChuyenNganhDaoTaoService;
+use App\Http\Resources\GiangVienResource;
+use App\Http\Resources\QuyenResource;
+use App\Models\GiangVien;
+use App\Service\GiangVienService;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response as HttpResponse;
 
-class ChuyenNganhDaoTaoController extends Controller
+class LoginController extends Controller
 {
-    protected $cndt;
-    public function __construct(ChuyenNganhDaoTao $cndt) 
-    {
-        $this->cndt=$cndt;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -34,16 +31,29 @@ class ChuyenNganhDaoTaoController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request['tenChuyenNganh'];
-        $id = $request['id'];
-        foreach($data as $val) {
-            $cndt = new ChuyenNganhDaoTao();
-            $cndt->tenChuyenNganh = $val;
-            $cndt->idChuongTrinh=   intval($id);
-            $cndt->save();
-        }
+        $request['MatKhau']= md5($request['MatKhau']);
+        $data = $request->all();
+        $user = new GiangVien();
+        $user->fill($data);
+        $user->save();
     }
-
+    public function login(Request $request)
+    {
+        $passwork= md5($request['MatKhau']);
+        $mgv=$request['MaGiangVien'];
+        $giangVien = new GiangVienService();
+        $gv= $giangVien->check($passwork, $mgv);
+        if (Empty(json_decode($gv))) {
+            return response()->json([
+                'status' =>HttpResponse::HTTP_UNAUTHORIZED
+            ]);
+        }
+        $user =GiangVienResource::collection($gv);
+        return response()->json([
+            'giangVien'=>$user,
+            'status' =>HttpResponse::HTTP_OK
+        ]);
+    }
     /**
      * Display the specified resource.
      *

@@ -33,6 +33,10 @@ class ChuongTrinhDaoTaoResource extends JsonResource
                 "khaNangNangCaoTrinhDo"=>strval($this->khaNangNangCaoTrinhDo),
                 "viTriViecLamSauTotNghiep"=>strval($this->viTriViecLamSauTotNghiep),
                 "chuongTrinhThamKhao"=>strval($this->chuongTrinhThamKhao),
-        ];
+                "mucTieuTongQuat"=>strval($this->mucTieuTongQuat),
+                "nguoiPhuTrach"=>strval($this->nguoiPhuTrach),
+                "trangThai"=>strval($this->trangThai)
+        
+            ];
     }
 }

@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chuyen_nganh_dao_tao', function (Blueprint $table) {
+        Schema::create('ChuyenNganhDaoTao', function (Blueprint $table) {
             $table->id('idChuyenNganh');
             $table->string('tenChuyenNganh', 500);
-            $table->timestamps();
             $table->foreignId('idChuongTrinh');
-            $table->foreign('idChuongTrinh')->references('idChuongTrinh')->on('chuong_trinh_dao_tao');
+            $table->foreign('idChuongTrinh')->references('idChuongTrinh')->on('ChuongTrinhDaoTao');
+            $table->timestamps();
         });
     }
 

@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chuong_trinh_chi_tiet', function (Blueprint $table) {
+        Schema::create('ChuongTrinhChiTiet', function (Blueprint $table) {
             $table->id('idChuongTrinhChiTiet');
-            $table->foreignId('idDeCuongHocPhan');
-            $table->foreign('idDeCuongHocPhan')->references('idDeCuongHocPhan')->on('de_cuong_hoc_phan');
+            $table->foreignId('DeCuongHocPhanId');
+            $table->foreign('DeCuongHocPhanId')->references('Id')->on('DeCuongHocPhan');
             $table->boolean('batBuoc');
             $table->boolean('thayThe');
             $table->string('tienQuyet', 50);
@@ -27,9 +27,9 @@ return new class extends Migration
             $table->string('chiTietKhoiKienThuc', 500);
             $table->timestamps();
             $table->foreignId('idChuyenNganh');
-            $table->foreign('idChuyenNganh')->references('idChuyenNganh')->on('chuyen_nganh_dao_tao');
+            $table->foreign('idChuyenNganh')->references('idChuyenNganh')->on('ChuyenNganhDaoTao');
             $table->foreignId('idChuongTrinh');
-            $table->foreign('idChuongTrinh')->references('idChuongTrinh')->on('chuong_trinh_dao_tao');
+            $table->foreign('idChuongTrinh')->references('idChuongTrinh')->on('ChuongTrinhDaoTao');
         });
     }
 

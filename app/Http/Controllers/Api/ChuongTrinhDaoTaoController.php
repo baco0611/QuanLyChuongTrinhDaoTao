@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ChuongTrinhDaoTaoResource;
+use App\Http\Resources\ListCTDTResource;
 use App\Http\Resources\SectionAHeader_Resource;
 use App\Http\Resources\SectionB_Resource;
 use App\Models\ChuongTrinhDaoTao;
@@ -29,7 +30,7 @@ class ChuongTrinhDaoTaoController extends Controller
        $ctdtService = new ChuongTrinhDaoTaoService();
         $listCTDT = $ctdtService->getList();
         return response()->json([
-            'mainList'=>$listCTDT
+            'data'=>ListCTDTResource::collection($listCTDT)
         ], HttpResponse::HTTP_OK);
     }
     /**
@@ -38,7 +39,7 @@ class ChuongTrinhDaoTaoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeCTDT(Request $request)
+    public function storeUpdate(Request $request)
     {
         $ctdtService = new ChuongTrinhDaoTaoService();
         $item = $ctdtService->updateCTDT($request);
@@ -47,16 +48,18 @@ class ChuongTrinhDaoTaoController extends Controller
             'id'=>intval($request['id']),
             'data'=> $itemResource
         ], HttpResponse::HTTP_OK);
-
-//     $data = $request->all();
-//     $ctdt = new ChuongTrinhDaoTao();
-//     $ctdt->fill($data);
-//     $ctdt->save();
-//     $id = $ctdt->id;
-//     return response()->json([
-//      'data'=>$id
-//  ], HttpResponse::HTTP_OK);
     }
+    public function storeCreate(Request $request)//tao mot chuong trinh dao tao moi
+    {
+        $data = $request->all();
+        $ctdt = new ChuongTrinhDaoTao();
+        $ctdt->fill($data);
+        $ctdt->save();
+        return response()->json([
+            'id'=>$ctdt->id
+        ], HttpResponse::HTTP_OK);
+    }
+
     public function storeMTTQ(Request $request)
     {
         $ctdtService = new ChuongTrinhDaoTaoService();
@@ -82,6 +85,7 @@ class ChuongTrinhDaoTaoController extends Controller
             'data'=> $itemResource
         ], HttpResponse::HTTP_OK);
     }
+    
     public function showMTTQ($id)
     {
         $ctdtService = new ChuongTrinhDaoTaoService();

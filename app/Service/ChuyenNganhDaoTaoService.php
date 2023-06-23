@@ -8,7 +8,7 @@ class ChuyenNganhDaoTaoService
 {
     public function getIdChuongTrinh($maChuongTrinhDaoTao)
     {
-        $result= DB::table('chuong_trinh_dao_tao')
+        $result= DB::table('ChuongTrinhDaoTao')
         ->select('*')
         ->where('maChuongTrinhDaoTao', $maChuongTrinhDaoTao)
         ->get();

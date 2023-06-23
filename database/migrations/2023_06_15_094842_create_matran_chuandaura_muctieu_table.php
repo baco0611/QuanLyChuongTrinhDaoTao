@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('matran_chuandaura_muctieu', function (Blueprint $table) {
+        Schema::create('MaTran_ChuanDauRa_MucTieu', function (Blueprint $table) {
             $table->id('idMaTran');
             $table->timestamps();
             $table->foreignId('idChuanDauRa');
-            $table->foreign('idChuanDauRa')->references('idChuanDauRa')->on('chuan_dau_ra');
+            $table->foreign('idChuanDauRa')->references('idChuanDauRa')->on('ChuanDauRa');
             $table->foreignId('idMucTieu');
-            $table->foreign('idMucTieu')->references('idMucTieu')->on('muc_tieu_cu_the');
+            $table->foreign('idMucTieu')->references('idMucTieu')->on('MucTieuCuThe');
             $table->foreignId('idChuongTrinh');
-            $table->foreign('idChuongTrinh')->references('idChuongTrinh')->on('chuong_trinh_dao_tao');
+            $table->foreign('idChuongTrinh')->references('idChuongTrinh')->on('ChuongTrinhDaoTao');
         });
     }
 

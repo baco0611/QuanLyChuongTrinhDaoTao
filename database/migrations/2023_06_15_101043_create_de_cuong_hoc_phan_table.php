@@ -13,17 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('de_cuong_hoc_phan', function (Blueprint $table) {
-            $table->id('idDeCuongHocPhan');
-            $table->integer('phienBan');
-            $table->integer('lyThuyet');
-            $table->integer('baiTap');
-            $table->integer('thaoLuan');
-            $table->integer('thucHanh');
-            $table->integer('thucTap');
+        Schema::create('DeCuongHocPhan', function (Blueprint $table) {
+            $table->id('Id');
+            $table->integer('PhienBan')->nullable();
+            $table->integer('LyThuyet')->nullable();
+            $table->integer('BaiTap')->nullable();
+            $table->integer('ThaoLuan')->nullable();
+            $table->integer('ThucHanh')->nullable();
+            $table->integer('ThucTap')->nullable();
+            $table->integer('KiemTraGiuaKi')->nullable();
+            $table->foreignId('HocPhanId')->nullable();
+            $table->foreign('HocPhanId')->references('Id')->on('HocPhan');
             $table->timestamps();
-            $table->foreignId('idHocPhan');
-            $table->foreign('idHocPhan')->references('idHocPhan')->on('hoc_phan');
         });
     }
 

@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('DanhMucChungChiDieuKien', function (Blueprint $table) {
-            $table->id('idChungChi');
-            $table->string('tenChungChi', 500);
+        Schema::create('phan_quyen', function (Blueprint $table) {
+            $table->id('idPhanQuyen');
+            $table->string('MaGiangVien', 50);
+            $table->foreign('MaGiangVien') ->references('MaGiangVien')->on('GiangVien');
+            $table->string('Pemission', 500);
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('danh_muc_chung_chi_dieu_kien');
+        Schema::dropIfExists('phan_quyen');
     }
 };

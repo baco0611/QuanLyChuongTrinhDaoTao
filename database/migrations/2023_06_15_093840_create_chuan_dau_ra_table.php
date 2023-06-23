@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chuan_dau_ra', function (Blueprint $table) {
+        Schema::create('ChuanDauRa', function (Blueprint $table) {
             $table->id('idChuanDauRa');
             $table->string('kiHieu', 500);
             $table->text('noiDung');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('trinhDoNangLuc');
             $table->timestamps();
             $table->foreignId('idChuongTrinh');
-            $table->foreign('idChuongTrinh')->references('idChuongTrinh')->on('chuong_trinh_dao_tao');
+            $table->foreign('idChuongTrinh')->references('idChuongTrinh')->on('ChuongTrinhDaoTao');
         });
     }
 
