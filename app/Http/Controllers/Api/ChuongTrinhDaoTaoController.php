@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ChuongTrinhDaoTaoResource;
-use App\Http\Resources\SectionHeaderResource;
+use App\Http\Resources\ListCTDTResource;
+use App\Http\Resources\SectionAHeader_Resource;
+use App\Http\Resources\SectionB_Resource;
 use App\Models\ChuongTrinhDaoTao;
 use App\Service\ChuongTrinhDaoTaoService;
 use Carbon\Carbon;
@@ -23,35 +25,22 @@ class ChuongTrinhDaoTaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index1()
+    public function index()
     {
        $ctdtService = new ChuongTrinhDaoTaoService();
         $listCTDT = $ctdtService->getList();
         return response()->json([
-            'mainList'=>$listCTDT
+            'data'=>ListCTDTResource::collection($listCTDT)
         ], HttpResponse::HTTP_OK);
     }
-    public function index2()
-    {
-        $ctdtService = new ChuongTrinhDaoTaoService();
-        $itemHeader =  $ctdtService->getItemFirst();
-        $itemResource = SectionHeaderResource::collection($itemHeader);
-        return response()->json([
-            'id'=>1,
-           'data'=> $itemResource
-        ], HttpResponse::HTTP_OK);
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeUpdate(Request $request)
     {
-        $data = $request->all();
-        $idChuongTrinh = $request['id'];
         $ctdtService = new ChuongTrinhDaoTaoService();
         $item = $ctdtService->updateCTDT($request);
         $itemResource = ChuongTrinhDaoTaoResource::collection($item);
@@ -59,24 +48,34 @@ class ChuongTrinhDaoTaoController extends Controller
             'id'=>intval($request['id']),
             'data'=> $itemResource
         ], HttpResponse::HTTP_OK);
-
-//     $data = $request->all();
-//     $ctdt = new ChuongTrinhDaoTao();
-//     $ctdt->fill($data);
-//     $ctdt->save();
-//     $id = $ctdt->id;
-//     return response()->json([
-//      'data'=>$id
-//  ], HttpResponse::HTTP_OK);
+    }
+    public function storeCreate(Request $request)//tao mot chuong trinh dao tao moi
+    {
+        $data = $request->all();
+        $ctdt = new ChuongTrinhDaoTao();
+        $ctdt->fill($data);
+        $ctdt->save();
+        return response()->json([
+            'id'=>$ctdt->id
+        ], HttpResponse::HTTP_OK);
     }
 
+    public function storeMTTQ(Request $request)
+    {
+        $ctdtService = new ChuongTrinhDaoTaoService();
+        $item = $ctdtService->updateMTTQ($request);
+        $itemResource = SectionB_Resource::collection($item);
+        return response()->json([
+            'data'=>$itemResource
+        ], HttpResponse::HTTP_OK);
+    }
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showCTDT($id)
     {
         $ctdtService = new ChuongTrinhDaoTaoService();
         $item = $ctdtService->getCTDT($id);
@@ -84,6 +83,26 @@ class ChuongTrinhDaoTaoController extends Controller
         return response()->json([
             'id'=>intval($id),
             'data'=> $itemResource
+        ], HttpResponse::HTTP_OK);
+    }
+    
+    public function showMTTQ($id)
+    {
+        $ctdtService = new ChuongTrinhDaoTaoService();
+        $item = $ctdtService->getCTDT($id);
+        $itemResource = SectionB_Resource::collection($item);
+        return response()->json([
+            'data'=> $itemResource
+        ], HttpResponse::HTTP_OK);
+    }
+    public function showHeader($id)
+    {
+        $ctdtService = new ChuongTrinhDaoTaoService();
+        $itemHeader =  $ctdtService->getCTDT($id);
+        $itemResource =SectionAHeader_Resource::collection($itemHeader);
+        return response()->json([
+            'id'=>intval($id),
+           'data'=> $itemResource
         ], HttpResponse::HTTP_OK);
     }
 

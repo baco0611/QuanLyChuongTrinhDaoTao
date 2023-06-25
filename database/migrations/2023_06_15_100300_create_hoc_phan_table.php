@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hoc_phan', function (Blueprint $table) {
-            $table->id('idHocPhan');
-            $table->string('tenHocPhan', 500);
-            $table->string('tenTiengAnh', 500);
-            $table->string('maHocPhan', 50)->unique();
-            $table->integer('soTinChi');
-            $table->string('donViPhuTrach', 50);
-            $table->string('trangThaiHocPhan', 50);
+        Schema::create('HocPhan', function (Blueprint $table) {
+            $table->id('Id');
+            $table->string('TenHocPhan', 250);
+            $table->string('TenTiengAnh', 250)->nullable();
+            $table->string('MaHocPhan', 50)->unique();
+            $table->integer('SoTinChi');
+            $table->string('DonViPhuTrach', 50)->nullable();
+            $table->string('TrangThaiHocPhan', 50);
+            $table->string('CreatedBy', 50)->nullable();
+            $table->string('ModifiedBy', 50)->nullable();
             $table->timestamps();
         });
     }

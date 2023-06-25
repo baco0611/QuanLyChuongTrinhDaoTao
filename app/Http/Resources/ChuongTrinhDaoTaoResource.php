@@ -6,12 +6,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ChuongTrinhDaoTaoResource extends JsonResource
 {
+    
     /**
      * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
+    
     public function toArray($request)
     {
         return [
@@ -31,6 +33,10 @@ class ChuongTrinhDaoTaoResource extends JsonResource
                 "khaNangNangCaoTrinhDo"=>strval($this->khaNangNangCaoTrinhDo),
                 "viTriViecLamSauTotNghiep"=>strval($this->viTriViecLamSauTotNghiep),
                 "chuongTrinhThamKhao"=>strval($this->chuongTrinhThamKhao),
-        ];
+                "mucTieuTongQuat"=>strval($this->mucTieuTongQuat),
+                "nguoiPhuTrach"=>strval($this->nguoiPhuTrach),
+                "trangThai"=>strval($this->trangThai)
+        
+            ];
     }
 }

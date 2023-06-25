@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chuong_trinh_dao_tao', function (Blueprint $table) {
+        Schema::create('ChuongTrinhDaoTao', function (Blueprint $table) {
             $table->id('idChuongTrinh');
             $table->string('maChuongTrinhDaoTao', 500)->unique();
             $table->string('phienBan', 500)->nullable();
@@ -33,7 +33,8 @@ return new class extends Migration
             $table->string('khaNangNangCaoTrinhDo', 500)->nullable();
             $table->string('chuongTrinhThamKhao', 500)->nullable();
             $table->string('mucTieuTongQuat', 500)->nullable();
-            $table->string('nguoiTao', 500)->nullable();
+            $table->string('nguoiPhuTrach', 50);
+            $table->foreign('nguoiPhuTrach')->references('MaGiangVien')->on('GiangVien');
             $table->timestamps();
             $table->integer('buocHienTai')->nullable();
             $table->string('trangThai')->nullable();

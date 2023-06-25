@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class GiangVienFindResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     */
+    public function toArray($request)
+    {
+        $hoTen =$this->HoDem ." ". $this->Ten;
+        return [
+            'HoTen'=>$hoTen,
+            'MaGiangVien'=>$this->MaGiangVien
+        ];
+    }
+}

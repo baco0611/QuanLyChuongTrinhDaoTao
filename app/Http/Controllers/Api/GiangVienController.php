@@ -3,19 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ChuyenNganhDaoTaoResource;
-use App\Models\ChuyenNganhDaoTao;
-use App\Service\ChuyenNganhDaoTaoService;
+use App\Http\Resources\GiangVienFindResource;
+use App\Service\GiangVienService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class ChuyenNganhDaoTaoController extends Controller
+class GiangVienController extends Controller
 {
-    protected $cndt;
-    public function __construct(ChuyenNganhDaoTao $cndt) 
-    {
-        $this->cndt=$cndt;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +16,7 @@ class ChuyenNganhDaoTaoController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -34,14 +27,7 @@ class ChuyenNganhDaoTaoController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request['tenChuyenNganh'];
-        $id = $request['id'];
-        foreach($data as $val) {
-            $cndt = new ChuyenNganhDaoTao();
-            $cndt->tenChuyenNganh = $val;
-            $cndt->idChuongTrinh=   intval($id);
-            $cndt->save();
-        }
+        //
     }
 
     /**
@@ -50,9 +36,14 @@ class ChuyenNganhDaoTaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function storeFind(Request $request)
     {
-        //
+        $gvService = new GiangVienService();
+        $gv = $gvService->getGiangVien($request['key']);
+        $gvResource = GiangVienFindResource::collection($gv);
+        return response()->json([
+            'data' =>$gvResource
+        ]);
     }
 
     /**
