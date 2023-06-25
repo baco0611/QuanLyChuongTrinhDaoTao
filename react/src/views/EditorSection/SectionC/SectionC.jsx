@@ -22,8 +22,8 @@ function SectionC() {
     const [ deleteElement, setDeleteElement ] = useState([])
 
     const fecthAPI = (id) => {
-        // const sectionBValueApi = `${apiURL}/mainList`
-        const sectionCValueApi = `${fakeApi}/sectionC/${id}`
+        const sectionCValueApi = `${apiURL}/sectionC/${id}`
+        // const sectionCValueApi = `${fakeApi}/sectionC/${id}`
         return async () => {
             await axios.get(sectionCValueApi) 
                 .then(response => {
@@ -205,7 +205,7 @@ function SectionC() {
                     <h1>C. MỤC TIÊU CỤ THỂ</h1>
                 </div>
                 <div className="section-C wrapper">
-                    <p className="section-C-details">Tối đa 05 mục tiêu cụ thể cho mỗi phần về kiến thức, kỹ năng và thái độ của sinh viên sau khi tốt nghiệp, PO = Program Objectives.<br/>Sinh viên sau khi tốt nghiệp có các kiến thức, kỹ năng và thái độ:</p>
+                    <p className="section-C-details">Tối đa 05 mục tiêu cụ thể cho mỗi phần về kiến thức, kỹ năng và thái độ của sinh viên sau khi tốt nghiệp, PO = Program Objectives.<br/>Sinh viên sau khi tốt nghiệp có các kiến thức, kỹ năng và thái độ được thể hiện như bên dưới.<br/><span style={{fontWeight: 600, fontSize: '14px'}}>Lưu ý: Dữ liệu chỉ được lưu lại khi bấm nút lưu hoặc nút hoàn tất. Khi đã xóa một mục tiêu cụ thể thì dữ liệu về mục tiêu đó ở ma trận mục tiêu - chuẩn đầu ra sẽ bị xóa. Vì vậy, hãy cẩn trọng trước khi lưu lại những thao tác đó!</span></p>
                     <div className="section-C-main">
                         <DragDropContext onDragEnd={handleDragEnd}>
                             <POBlock

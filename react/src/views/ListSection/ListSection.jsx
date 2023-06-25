@@ -13,8 +13,8 @@ function ListSection () {
     const navigate = useNavigate()
 
     const fecthAPI = () => {
-        // const mainListApi = `${apiURL}/mainList`
-        const mainListApi = `${fakeApi}/mainList`
+        const mainListApi = `${apiURL}/mainList`
+        // const mainListApi = `${fakeApi}/mainList`
         return async () => {
             const result = await axios.get(mainListApi) 
                 .then(response => {

@@ -46,7 +46,7 @@ function SectionA() {
         const sectionAValueApi = `${apiURL}/sectionA/${id}`
         // const sectionAValueApi = `${fakeApi}/sectionA/${id}`
         // const sectionAChuyenNganhApi = `${apiURL}/mainList`
-        const sectionAChuyenNganhApi = `${fakeApi}/sectionA-ChuyenNganh/${id}`
+        const sectionAChuyenNganhApi = `${fakeApi}/sectionA-ChuyenNganh`
         return async () => {
             await axios.get(sectionAValueApi) 
                 .then(response => {

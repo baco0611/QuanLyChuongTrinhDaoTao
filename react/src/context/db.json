@@ -179,24 +179,10 @@
             ]
         }
     ],
-    "sectionA-ChuyenNganh": [
-        {
-            "id": 1,
-            "data": []
-        },
-        {
-            "id": 2,
-            "data": []
-        },
-        {
-            "id": 3,
-            "data": []
-        },
-        {
-            "id": 4,
-            "data": []
-        }
-    ],
+    "sectionA-ChuyenNganh": {
+        "id": 10005,
+        "data": []
+    },
     "sectionB": [
         {
             "id": 1,

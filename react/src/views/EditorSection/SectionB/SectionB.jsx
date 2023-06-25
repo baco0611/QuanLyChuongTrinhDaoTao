@@ -23,13 +23,13 @@ function SectionB() {
     })
 
     const fecthAPI = (id) => {
-        // const sectionBValueApi = `${apiURL}/mainList`
-        const sectionBValueApi = `${fakeApi}/sectionB/${id}`
+        const sectionBValueApi = `${apiURL}/sectionB/${id}`
+        // const sectionBValueApi = `${fakeApi}/sectionB/${id}`
         return async () => {
             await axios.get(sectionBValueApi) 
                 .then(response => {
                     const restData = response.data
-                    if(restData.data[0])
+                    if(restData.data[0]) 
                         setSectionBValue(restData.data[0])
                 })
                 .catch(error => {
@@ -64,6 +64,8 @@ function SectionB() {
                 [e.target.name]: value.join(' ')
             })
     }
+
+    console.log(sectionBValue.mucTieuTongQuat.replace('\\n', '\n'))
 
 
     return(

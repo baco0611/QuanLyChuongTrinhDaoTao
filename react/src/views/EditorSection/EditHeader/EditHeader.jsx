@@ -32,8 +32,8 @@ function EditHeader({ currentSection }) {
     }, [])
 
     const fecthAPI = (id) => {
-        // const editHeaderApi = `${apiURL}/mainList`
-        const editHeaderApi = `${fakeApi}/sectionHeader/${id}`
+        const editHeaderApi = `${apiURL}/sectionHeader/${id}`
+        // const editHeaderApi = `${fakeApi}/sectionHeader/${id}`
         return async () => {
             const result = await axios.get(editHeaderApi) 
                 .then(response => {
@@ -83,7 +83,16 @@ function EditHeader({ currentSection }) {
                                                 'active': index === currentSection
                                             }
                                         )}
-                                        onClick={() => index!=currentSection ? handleUpdateDatabase({ currentSection: sectionList[currentSection], currentId: id }) : () => {}}
+                                        onClick={(e) => index!=currentSection 
+                                            ? handleUpdateDatabase({ 
+                                                thisE: e, 
+                                                currentSection: sectionList[currentSection], 
+                                                currentId: id, 
+                                                api: apiURL,
+                                                path: `/edit/section${element}/${id}`
+                                            }) 
+                                            : () => {}
+                                        }
                                     >{element}</div>
                                 </Link>
                             )

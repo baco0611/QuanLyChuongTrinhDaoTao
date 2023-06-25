@@ -15,7 +15,7 @@ function ListElement({ data }) {
             </td>
             <td style={{width: '250px'}}>
                 <Link to={`/edit/sectionA/${data.id}`}>
-                    {data.maNganhDaoTao}
+                    {data.tenChuongTrinhDaoTao}
                 </Link>
             </td>
             <td className='text-left' style={{width: '300px'}}>
@@ -30,7 +30,7 @@ function ListElement({ data }) {
             </td>
             <td style={{width: '180px'}}>
                 <Link to={`/edit/sectionA/${data.id}`}>
-                    {data.nguoiTao}
+                    {data.nguoiPhuTrach}
                 </Link>
             </td>
             <td style={{width: '180px'}}>
