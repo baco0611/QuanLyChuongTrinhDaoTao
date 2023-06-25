@@ -125,7 +125,10 @@ function SectionA() {
 
     return (
         <>
-            <EditHeader currentSection={0} />
+            <EditHeader 
+                currentSection={0} 
+                currentId={id}
+            />
             <div id="section-A" className="section">
                 <div className="section-header wrapper">
                     <h1>A. THÔNG TIN TỔNG QUÁT</h1>
@@ -429,7 +432,10 @@ function SectionA() {
                     </div>
                 </div>
             </div>
-            <EditFooter currentSection={0}/>
+            <EditFooter 
+                currentSection={0} 
+                currentId={id}
+            />
         </>
     )
 }

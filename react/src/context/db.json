@@ -243,59 +243,163 @@
                     "kiHieu":"PO - 1.1",
                     "noiDung":"Mục tiêu 1.1",
                     "loaiMucTieu":"KIEN_THUC",
-                    "id": 1
+                    "id": 1,
+                    "idCTDT": 1
                 },
                 {
                     "kiHieu":"PO - 1.2",
                     "noiDung":"Mục tiêu 1.2",
                     "loaiMucTieu":"KIEN_THUC",
-                    "id": 2
+                    "id": 2,
+                    "idCTDT": 1
                 },
                 {
                     "kiHieu":"PO - 1.3",
                     "noiDung":"Mục tiêu 1.3",
                     "loaiMucTieu":"KIEN_THUC",
-                    "id": 3
+                    "id": 3,
+                    "idCTDT": 1
                 },
                 {
                     "kiHieu":"PO - 3.1",
                     "noiDung":"Mục tiêu 3.1",
                     "loaiMucTieu":"THAI_DO",
-                    "id": 4
+                    "id": 4,
+                    "idCTDT": 1
                 },
                 {
                     "kiHieu":"PO - 3.2",
                     "noiDung":"Mục tiêu 3.2",
                     "loaiMucTieu":"THAI_DO",
-                    "id": 5
+                    "id": 5,
+                    "idCTDT": 1
                 },
                 {
                     "kiHieu":"PO - 3.3",
                     "noiDung":"Mục tiêu 3.3",
                     "loaiMucTieu":"THAI_DO",
-                    "id": 6
+                    "id": 6,
+                    "idCTDT": 1
                 },
                 {
                     "kiHieu":"PO - 2.1",
                     "noiDung":"Mục tiêu 2.1",
                     "loaiMucTieu":"KY_NANG",
-                    "id": 7
+                    "id": 7,
+                    "idCTDT": 1
                 },
                 {
                     "kiHieu":"PO - 2.2",
                     "noiDung":"Mục tiêu 2.2",
                     "loaiMucTieu":"KY_NANG",
-                    "id": 8
+                    "id": 8,
+                    "idCTDT": 1
                 },
                 {
                     "kiHieu":"PO - 2.3",
                     "noiDung":"Mục tiêu 2.3",
                     "loaiMucTieu":"KY_NANG",
-                    "id": 9
+                    "id": 9,
+                    "idCTDT": 1
                 }
             ]
         }
     ],
+    "sectionC-update": {
+        "data": [
+            {
+                "kiHieu":"PO - 1.1",
+                "noiDung":"Mục tiêu 1.1",
+                "loaiMucTieu":"KIEN_THUC",
+                "id": 1,
+                "idCTDT": 1
+            },
+            {
+                "kiHieu":"PO - 1.2",
+                "noiDung":"Mục tiêu 1.2",
+                "loaiMucTieu":"KIEN_THUC",
+                "id": 2,
+                "idCTDT": 1
+            },
+            {
+                "kiHieu":"PO - 1.3",
+                "noiDung":"Mục tiêu 1.3",
+                "loaiMucTieu":"KIEN_THUC",
+                "id": 3,
+                "idCTDT": 1
+            },
+            {
+                "kiHieu":"PO - 3.1",
+                "noiDung":"Mục tiêu 3.1",
+                "loaiMucTieu":"THAI_DO",
+                "id": 4,
+                "idCTDT": 1
+            },
+            {
+                "kiHieu":"PO - 3.2",
+                "noiDung":"Mục tiêu 3.2",
+                "loaiMucTieu":"THAI_DO",
+                "id": 5,
+                "idCTDT": 1
+            },
+            {
+                "kiHieu":"PO - 3.3",
+                "noiDung":"Mục tiêu 3.3",
+                "loaiMucTieu":"THAI_DO",
+                "id": 6,
+                "idCTDT": 1
+            },
+            {
+                "kiHieu":"PO - 2.1",
+                "noiDung":"Mục tiêu 2.1",
+                "loaiMucTieu":"KY_NANG",
+                "id": 7,
+                "idCTDT": 1
+            },
+            {
+                "kiHieu":"PO - 2.2",
+                "noiDung":"Mục tiêu 2.2",
+                "loaiMucTieu":"KY_NANG",
+                "id": 8,
+                "idCTDT": 1
+            },
+            {
+                "kiHieu":"PO - 2.3",
+                "noiDung":"Mục tiêu 2.3",
+                "loaiMucTieu":"KY_NANG",
+                "id": 9,
+                "idCTDT": 1
+            }
+        ]
+    },
+    "sectionC-delete": {
+        "deleteData": [
+            {
+                "id": 2,
+                "idCTDT": 1
+            },
+            {
+                "id": 6,
+                "idCTDT": 1
+            }
+        ]
+    },
+    "sectionC-create": {
+        "data": [
+            {
+                "kiHieu":"PO - 2.3",
+                "noiDung":"Mục tiêu 2.3",
+                "loaiMucTieu":"KY_NANG",
+                "idCTDT": 1
+            },
+            {
+                "kiHieu":"PO - 1.3",
+                "noiDung":"Mục tiêu 1.3",
+                "loaiMucTieu":"KIEN_THUC",
+                "idCTDT": 1
+            }
+        ]
+    },
     "sectionD": [
         {
             "id": 1,

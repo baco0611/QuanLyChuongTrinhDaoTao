@@ -6,6 +6,7 @@ import { useQuery } from 'react-query'
 import axios from 'axios'
 import Loader from '../../../components/Loader/Loader'
 import { UserContext } from '../../../context/ContextProvider'
+import { handleUpdateDatabase } from '../Database/HandleAction'
 
 function EditHeader({ currentSection }) {
 
@@ -82,7 +83,7 @@ function EditHeader({ currentSection }) {
                                                 'active': index === currentSection
                                             }
                                         )}
-                                        onClick={() => index!=currentSection ? updateDatabase(currentSection) : () => {}}
+                                        onClick={() => index!=currentSection ? handleUpdateDatabase({ currentSection: sectionList[currentSection], currentId: id }) : () => {}}
                                     >{element}</div>
                                 </Link>
                             )
