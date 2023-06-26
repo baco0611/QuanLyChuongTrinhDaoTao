@@ -9,7 +9,7 @@ import { useQuery } from "react-query"
 import axios from "axios"
 import POBlock from "./POBlock"
 import { DragDropContext } from 'react-beautiful-dnd' 
-import { handleChangeData, handleSplitSection } from "../Database/HandleAction"
+import { handleChangeDataC, handleSplitSectionC } from "../Database/HandleActionSectionC"
 
 function SectionC() {
 
@@ -23,7 +23,7 @@ function SectionC() {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-      }, [])
+    }, [])
 
     const fecthAPI = (id) => {
         const sectionCValueApi = `${apiURL}/sectionC/${id}`
@@ -33,7 +33,7 @@ function SectionC() {
                 .then(response => {
                     const restData = response.data
                     if(restData.data)
-                        handleSplitSection({ 
+                        handleSplitSectionC({ 
                             data: restData.data,
                             setSectionCKienThuc,
                             setSectionCKyNang,
@@ -79,11 +79,11 @@ function SectionC() {
                 const index = source.index
                 switch(type) {
                     case 'KIEN_THUC':
-                        return handleChangeData([...list.slice(0, index), ...list.slice(index + 1)], type, 1, id)
+                        return handleChangeDataC([...list.slice(0, index), ...list.slice(index + 1)], type, 1, id)
                     case 'KY_NANG':
-                        return handleChangeData([...list.slice(0, index), ...list.slice(index + 1)], type, 2, id)
+                        return handleChangeDataC([...list.slice(0, index), ...list.slice(index + 1)], type, 2, id)
                     case 'THAI_DO':
-                        return handleChangeData([...list.slice(0, index), ...list.slice(index + 1)], type, 3, id)
+                        return handleChangeDataC([...list.slice(0, index), ...list.slice(index + 1)], type, 3, id)
                 }
 
                 return list
@@ -94,11 +94,11 @@ function SectionC() {
                 const index = destination.index
                 switch(type) {
                     case 'KIEN_THUC':
-                        return handleChangeData([...list.slice(0, index), data, ...list.slice(index)], type, 1, id)
+                        return handleChangeDataC([...list.slice(0, index), data, ...list.slice(index)], type, 1, id)
                     case 'KY_NANG':
-                        return handleChangeData([...list.slice(0, index), data, ...list.slice(index)], type, 2, id)
+                        return handleChangeDataC([...list.slice(0, index), data, ...list.slice(index)], type, 2, id)
                     case 'THAI_DO':
-                        return handleChangeData([...list.slice(0, index), data, ...list.slice(index)], type, 3, id)
+                        return handleChangeDataC([...list.slice(0, index), data, ...list.slice(index)], type, 3, id)
                 }
             }
 
@@ -120,7 +120,7 @@ function SectionC() {
                         break
                 }
 
-                setState(handleChangeData(list, source.droppableId, typeIndex, id))
+                setState(handleChangeDataC(list, source.droppableId, typeIndex, id))
             }
 
             // If The drag is in 1 PO block

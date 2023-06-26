@@ -1,6 +1,6 @@
 import { Draggable, Droppable } from "react-beautiful-dnd"
 import POElement from "./POElement"
-import { handleClickAdd } from "../Database/HandleAction"
+import { handleClickAddC } from "../Database/HandleActionSectionC"
 
 function POBlock({ data, title, type, setState, setDelete, idCTDT }) {
     
@@ -32,7 +32,7 @@ function POBlock({ data, title, type, setState, setDelete, idCTDT }) {
                             {
                                 data.length < 5 &&
                                 <button
-                                    onClick={() => handleClickAdd({ setState, idCTDT, type, typeIndex: POType[type] })}
+                                    onClick={() => handleClickAddC({ setState, idCTDT, type, typeIndex: POType[type] })}
                                 >
                                     <i className="iconoir-add-square"></i>
                                 </button>

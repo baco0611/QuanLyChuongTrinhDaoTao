@@ -6,7 +6,7 @@ import { useQuery } from 'react-query'
 import axios from 'axios'
 import Loader from '../../../components/Loader/Loader'
 import { UserContext } from '../../../context/ContextProvider'
-import { handleUpdateDatabase } from '../Database/HandleAction'
+import { handleUpdateDatabase } from '../Database/HandleUpdateDatabase'
 
 function EditHeader({ currentSection }) {
 

@@ -61,14 +61,15 @@ const handleUpdateSectionC = (id, api) => {
     var check = true
     console.log(deleteElement, createElement, updateElement)
 
-    // debugger
-    if(createElement.length <= 0) console.log('CREATE_SECTIONC')
-    else postData(api, '/create_sectionC', { data: createElement }, 'CREATE_SECIONC')
     
     // debugger
     if(deleteElement.length <= 0) console.log('DELETE_SECTIONC')
     else deleteData(api, '/delete_sectionC', { deleteData: deleteElement }, 'DELETE_SECTIONC')
     
+    // debugger
+    if(createElement.length <= 0) console.log('CREATE_SECTIONC')
+    else postData(api, '/create_sectionC', { data: createElement }, 'CREATE_SECIONC')
+
     // debugger
     if(updateElement.length <= 0) console.log('UPDATE_SECTIONC')
     else postData(api, '/update_sectionC', { data: updateElement }, 'UPDATE_SECTIONC')
@@ -93,63 +94,7 @@ const handleUpdateDatabase = ({ currentSection, currentId, api, thisE }) => {
     console.log(thisE, isSuccess)
 }
 
-
-
-// For SECTION C
-
-const sortCondition = (a, b) => a.kiHieu < b.kiHieu ? -1 : 1
-
-const handleSplitSection = ({ data, setSectionCKienThuc, setSectionCKyNang, setSectionCThaiDo }) => {
-    const idctdt = data[0].idCTDT
-
-    const KIEN_THUC = data.filter(item => item.loaiMucTieu === 'KIEN_THUC')
-    KIEN_THUC.sort(sortCondition)
-    setSectionCKienThuc(handleChangeData(KIEN_THUC, 'KIEN_THUC', 1, idctdt))
-
-    const KY_NANG = data.filter(item => item.loaiMucTieu === 'KY_NANG')
-    KY_NANG.sort(sortCondition)
-    setSectionCKyNang(handleChangeData(KY_NANG, 'KY_NANG', 2, idctdt))
-
-    const THAI_DO = data.filter(item => item.loaiMucTieu === 'THAI_DO')
-    THAI_DO.sort(sortCondition)
-    setSectionCThaiDo(handleChangeData(THAI_DO, 'THAI_DO', 3, idctdt))
-}
-
-// Handle changing value in an input element
-const handleChangeValue = ({ type, setState }) => {
-    const element = document.querySelectorAll(`#${type} input, #${type} textarea`)
-
-    const value = Array.from(element).map((item, index) => {
-        return {
-            // kiHieu: `PO - ${item.getAttribute('data-typeindex')}.${item.getAttribute('data-index')}`,
-            kiHieu: `PO - ${item.getAttribute('data-typeindex')}.${index+1}`,
-            noiDung: item.value,
-            loaiMucTieu: type,
-            id: item.getAttribute('data-id'),
-            idCTDT: item.getAttribute('data-idctdt')
-        }
-    })
-
-    value.sort((a, b) => a.kiHieu < b.kiHieu ? -1 : 1)
-
-    setState(value)
-}
-
-// Handle changing many thing (like drop, ...)
-const handleChangeData = (element, type, typeIndex, idCTDT) => {
-    const value = element.map((item, index) => {
-        return {
-            kiHieu: `PO - ${typeIndex}.${index+1}`,
-            noiDung: item.noiDung,
-            loaiMucTieu: type,
-            id: item.id,
-            idCTDT: idCTDT
-        }
-    })
-
-    value.sort((a, b) => a.kiHieu < b.kiHieu ? -1 : 1)
-    return value
-}
+// For SectionD
 
 function getParent(element, className) {
     while(element.parentElement) {
@@ -159,33 +104,5 @@ function getParent(element, className) {
         element = element.parentElement
     }
 }
-const handleClickDelete = ({ e, setState, data, setDelete, idctdt }) => {
-    const parentElement = getParent(e.target, 'element')
-    const inputElement = parentElement.querySelector('input, textarea')
-    const dataset = inputElement.dataset
-    
-    const list = [...data]
-    const deleteElement = list[dataset.index - 1]
-    list.splice(dataset.index - 1, 1)
-    setState(handleChangeData(list, dataset.type, dataset.typeindex, idctdt))
-    setDelete(prev => [...prev, deleteElement])
-}
 
-const handleClickAdd = ({ setState, idCTDT, type, typeIndex }) => {
-    setState(prev => {
-        const list =
-        [
-            ...prev,
-            {
-                kiHieu: '',
-                loaiMucTieu: '',
-                noiDung: '',
-                id: '',
-                idCTDT: Number.parseInt(idCTDT)
-            }
-        ]
-        return handleChangeData(list, type, typeIndex, idCTDT)
-    })
-}
-
-export { handleChangeValue, handleUpdateDatabase, handleSplitSection, handleClickDelete, handleChangeData, handleClickAdd }
+export { handleUpdateDatabase, getParent}

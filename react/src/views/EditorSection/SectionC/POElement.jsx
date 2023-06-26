@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { handleChangeValue, handleClickDelete } from "../Database/HandleAction"
+import { handleChangeValueC, handleClickDeleteC } from "../Database/HandleActionSectionC"
 
 function POElement({ item, type, index, typeIndex, setState, provided, data, setDelete }) {
 
@@ -22,7 +22,7 @@ function POElement({ item, type, index, typeIndex, setState, provided, data, set
                 data-type={type}
                 data-index={index+1}
                 data-id={item.id}
-                onChange={() => handleChangeValue({ type, setState })}
+                onChange={() => handleChangeValueC({ type, setState })}
                 data-idctdt={id}
                 onInput={(e) => {
                     e.target.style.height = 'auto'
@@ -31,7 +31,7 @@ function POElement({ item, type, index, typeIndex, setState, provided, data, set
             />
             <button 
                 className="minus"
-                onClick={(e) => {handleClickDelete({ e, setState, data: sourceData, setDelete, idctdt: Number.parseInt(id) })}}
+                onClick={(e) => {handleClickDeleteC({ e, setState, data: sourceData, setDelete, idctdt: Number.parseInt(id) })}}
             >
                 <i className="iconoir-minus-square"></i>
             </button>

@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import './EditFooter.scss'
 import { useContext } from 'react'
 import { UserContext } from '../../../context/ContextProvider'
-import { handleUpdateDatabase } from '../Database/HandleAction'
+import { handleUpdateDatabase } from '../Database/HandleUpdateDatabase'
 
 function EditFooter({currentSection}) {
 

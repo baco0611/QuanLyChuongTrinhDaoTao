@@ -1,0 +1,26 @@
+@import '../../../variable.scss';
+
+.section-D {
+    &-details {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: justify;
+        color: $primary-color;
+    }
+
+    &-main {
+        padding-top: 20px;
+    }
+
+    &-block {
+        margin-bottom: 50px;
+        h1 {
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 27px;
+            color: $primary-color;
+            text-transform: uppercase;
+        }
+    }
+}

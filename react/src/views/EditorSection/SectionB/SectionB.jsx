@@ -69,9 +69,6 @@ function SectionB() {
             })
     }
 
-    console.log(sectionBValue.mucTieuTongQuat.replace('\\n', '\n'))
-
-
     return(
         <>
             <EditHeader
