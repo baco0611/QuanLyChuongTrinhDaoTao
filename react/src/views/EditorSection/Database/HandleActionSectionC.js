@@ -58,7 +58,7 @@ const handleChangeDataC = (element, type, typeIndex, idCTDT) => {
 
 const handleClickDeleteC = ({ e, setState, data, setDelete, idctdt }) => {
     const parentElement = getParent(e.target, 'element')
-    const inputElement = parentElement.querySelector('input, textarea')
+    const inputElement = parentElement.querySelector('textarea')
     const dataset = inputElement.dataset
     
     const list = [...data]

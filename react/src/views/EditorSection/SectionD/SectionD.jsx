@@ -4,11 +4,11 @@ import { UserContext } from "../../../context/ContextProvider"
 import './SectionD.scss'
 import EditHeader from "../EditHeader/EditHeader"
 import EditFooter from "../EditFooter/EditFooter"
-import PLOBlock from "./PLOBlock"
 import { useQuery } from "react-query"
 import Loader from "../../../components/Loader/Loader"
 import axios from "axios"
 import { handleSplitSectionD } from "../Database/HandleActionSectionD"
+import PLOSection from "./PLOSection.jsx"
 
 function SectionD() {
 
@@ -17,43 +17,53 @@ function SectionD() {
     const navigate = useNavigate()
     const [ sectionDKienThucDHH, setSectionDKienThucDHH ] = useState({
         typeDetail: 'KIEN_THUC_DAI_HOC_HUE',
-        data: []
+        data: [],
+        max: 2
     })
     const [ sectionDKienThucDHKH, setSectionDKienThucDHKH ] = useState({
         typeDetail: 'KIEN_THUC_DAI_HOC_KHOA_HOC',
-        data: []
+        data: [],
+        max: 2
     })
     const [ sectionDKienThucLV, setSectionDKienThucLV ] = useState({
         typeDetail: 'KIEN_THUC_LINH_VUC',
-        data: []
+        data: [],
+        max: 1
     })
     const [ sectionDKienThucNN, setSectionDKienThucNN ] = useState({
         typeDetail: 'KIEN_THUC_NHOM_NGANH',
-        data: []
+        data: [],
+        max: 1
     })
     const [ sectionDKienThucN, setSectionDKienThucN ] = useState({
         typeDetail: 'KIEN_THUC_NGANH',
-        data: []
+        data: [],
+        max: 5
     })
     const [ sectionDKyNangCM, setSectionDKyNangCM ] = useState({
         typeDetail: 'KY_NANG_CHUYEN_MON',
-        data: []
+        data: [],
+        max: 5
     })
     const [ sectionDKyNangMem, setSectionDKyNangMem ] = useState({
         typeDetail: 'KY_NANG_MEM',
-        data: []
+        data: [],
+        max: 3
     })
     const [ sectionDThaiDoCN, setSectionDThaiDoCN ] = useState({
         typeDetail: 'THAI_DO_CA_NHAN',
-        data: []
+        data: [],
+        max: 2
     })
     const [ sectionDThaiDoNN, setSectionDThaiDoNN ] = useState({
         typeDetail: 'THAI_DO_NGHE_NGHIEP',
-        data: []
+        data: [],
+        max: 2
     })
     const [ sectionDThaiDoXH, setSectionDThaiDoXH ] = useState({
         typeDetail: 'THAI_DO_XA_HOI',
-        data: []
+        data: [],
+        max: 2
     })
     const [ deleteElement, setDeleteElement ] = useState([])
 
@@ -129,65 +139,85 @@ function SectionD() {
                 <div className="section-D wrapper">
                     <p className="section-D-details">Viết theo từng chuẩn đầu ra, bao gồm các chủ đề chuẩn đầu ra và trình độ năng lực (TĐNL – tham khảo thêm tài liệu và thang trình độ năng lực kèm theo) mà chuẩn đầu ra yêu cầu khi sinh viên tốt nghiệp, PLO = Program Learning Outcomes.<br/><span style={{fontWeight: 600, fontSize: '14px'}}>Lưu ý: Dữ liệu chỉ được lưu lại khi bấm nút lưu hoặc nút hoàn tất. Khi đã xóa một mục tiêu cụ thể thì dữ liệu về mục tiêu đó ở ma trận mục tiêu - chuẩn đầu ra sẽ bị xóa. Vì vậy, hãy cẩn trọng trước khi lưu lại những thao tác đó!</span></p>
                     <div className="section-D-main">
-                        <PLOBlock
-                            title = {'1. CHUẨN VỀ KIẾN THỨC'}
-                            type = {'KIEN_THUC'}
-                            idCTDT = {id}
-                            data = {{
-                                    sectionDKienThucDHH,
-                                    sectionDKienThucDHKH,
-                                    sectionDKienThucLV,
-                                    sectionDKienThucN,
-                                    sectionDKienThucNN
-                                }
-                            }
-                            setState = {
-                                {
-                                    setSectionDKienThucDHH,
-                                    setSectionDKienThucDHKH,
-                                    setSectionDKienThucLV,
-                                    setSectionDKienThucN,
-                                    setSectionDKienThucNN
-                                }
-                            }
-                            setDelete = {setDeleteElement}
-                        />
-                        <PLOBlock
-                            title = {'2. CHUẨN VỀ KỸ NĂNG'}
-                            type = {'KY_NANG'}
-                            idCTDT = {id}
-                            data = {{
-                                    sectionDKyNangCM,
-                                    sectionDKyNangMem
-                                }
-                            }
-                            setState = {
-                                {
-                                    setSectionDKyNangCM,
-                                    setSectionDKyNangMem
-                                }
-                            }
-                            setDelete = {setDeleteElement}
-                        />
-                        <PLOBlock
-                            title = {'3. CHUẨN VỀ THÁI ĐỘ'}
-                            type = {'THAI_DO'}
-                            idCTDT = {id}
-                            data = {{
-                                    sectionDThaiDoNN,
-                                    sectionDThaiDoCN,
-                                    sectionDThaiDoXH
-                                }
-                            }
-                            setState = {
-                                {
-                                    setSectionDThaiDoCN,
-                                    setSectionDThaiDoNN,
-                                    setSectionDThaiDoXH
-                                }
-                            }
-                            setDelete = {setDeleteElement}
-                        />
+                        <div className="section-D-block" id="KIEN_THUC">
+                            <h1>1. CHUẨN VỀ KIẾN THỨC</h1>
+                            <PLOSection
+                                type={'KIEN_THUC'}
+                                idCTDT={id}
+                                data={sectionDKienThucDHH}
+                                setState={setSectionDKienThucDHH}
+                                setDelete={setDeleteElement}
+                            />
+                            <PLOSection
+                                type={'KIEN_THUC'}
+                                idCTDT={id}
+                                data={sectionDKienThucDHKH}
+                                setState={setSectionDKienThucDHKH}
+                                setDelete={setDeleteElement}
+                            />
+                            <PLOSection
+                                type={'KIEN_THUC'}
+                                idCTDT={id}
+                                data={sectionDKienThucLV}
+                                setState={setSectionDKienThucLV}
+                                setDelete={setDeleteElement}
+                            />
+                            <PLOSection
+                                type={'KIEN_THUC'}
+                                idCTDT={id}
+                                data={sectionDKienThucNN}
+                                setState={setSectionDKienThucNN}
+                                setDelete={setDeleteElement}
+                            />
+                            <PLOSection
+                                type={'KIEN_THUC'}
+                                idCTDT={id}
+                                data={sectionDKienThucN}
+                                setState={setSectionDKienThucN}
+                                setDelete={setDeleteElement}
+                            />
+                        </div>
+                        <div className="section-D-block" id="KY_NANG">
+                            <h1>2. CHUẨN VỀ KỸ NĂNG</h1>
+                            <PLOSection
+                                type={'KY_NANG'}
+                                idCTDT={id}
+                                data={sectionDKyNangCM}
+                                setState={setSectionDKyNangCM}
+                                setDelete={setDeleteElement}
+                            />
+                            <PLOSection
+                                type={'KY_NANG'}
+                                idCTDT={id}
+                                data={sectionDKyNangMem}
+                                setState={setSectionDKyNangMem}
+                                setDelete={setDeleteElement}
+                            />
+                        </div>
+                        <div className="section-D-block" id="THAI_DO">
+                            <h1>3. CHUẨN VỀ THÁI ĐỘ</h1>
+                            <PLOSection
+                                type={'THAI_DO'}
+                                idCTDT={id}
+                                data={sectionDThaiDoCN}
+                                setState={setSectionDThaiDoCN}
+                                setDelete={setDeleteElement}
+                            />
+                            <PLOSection
+                                type={'THAI_DO'}
+                                idCTDT={id}
+                                data={sectionDThaiDoNN}
+                                setState={setSectionDThaiDoNN}
+                                setDelete={setDeleteElement}
+                            />
+                            <PLOSection
+                                type={'THAI_DO'}
+                                idCTDT={id}
+                                data={sectionDThaiDoXH}
+                                setState={setSectionDThaiDoXH}
+                                setDelete={setDeleteElement}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

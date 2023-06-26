@@ -1,7 +1,74 @@
-function PLOSection() {
-  return (
-    <div>PLOSection</div>
-  )
+import { handleClickAddD } from "../Database/HandleActionSectionD"
+import PLOElement from "./PLOElement"
+
+function PLOSection({ type, idCTDT, data, setState, setDelete }) {
+
+    const PLOSectionTitle = {
+        KIEN_THUC_DAI_HOC_HUE: '1.1. Kiến thức chung trong toàn Đại học Huế (tối đa 2 chuẩn đầu ra)',
+        KIEN_THUC_DAI_HOC_KHOA_HOC: '1.2. Kiến thức chung trong trường Đại học Khoa Học (tối đa 2 chuẩn đầu ra)',
+        KIEN_THUC_LINH_VUC: '1.3. Kiến thức chung theo lĩnh vực (tối đa 1 chuẩn đầu ra)',
+        KIEN_THUC_NHOM_NGANH: '1.4. Kiến thức chung của nhóm ngành (tối đa 1 chuẩn đầu ra)',
+        KIEN_THUC_NGANH: '1.5. Kiến thức của ngành (tối đa 5 chuẩn đầu ra)',
+        KY_NANG_CHUYEN_MON: '2.1. Kỹ năng chuyên môn (tối đa 5 chuẩn đầu ra)',
+        KY_NANG_MEM: '2.2. Kỹ năng mềm (tối đa 3 chuẩn đầu ra)',
+        THAI_DO_CA_NHAN: '3.1. Phẩm chất, đạo đức và thái độ của cá nhân (tối đa 2 chuẩn đầu ra)',
+        THAI_DO_NGHE_NGHIEP: '3.2. Phẩm chất, đạo đức và thái độ đối với nghề nghiệp (tối đa 2 chuẩn đầu ra)',
+        THAI_DO_XA_HOI: '3.3. Phẩm chất, đạo đức và thái độ đối với xã hội (tối đa 2 chuẩn đầu ra)'
+    }
+
+    const PLOtypeIndex = {
+        KIEN_THUC_DAI_HOC_HUE: '1.1',
+        KIEN_THUC_DAI_HOC_KHOA_HOC: '1.2',
+        KIEN_THUC_LINH_VUC: '1.3',
+        KIEN_THUC_NHOM_NGANH: '1.4',
+        KIEN_THUC_NGANH: '1.5',
+        KY_NANG_CHUYEN_MON: '2.1',
+        KY_NANG_MEM: '2.2',
+        THAI_DO_CA_NHAN: '3.1',
+        THAI_DO_NGHE_NGHIEP: '3.2',
+        THAI_DO_XA_HOI: '3.3'
+    }
+
+    return (
+        <div id={data.typeDetail} className="section-D-section">
+            <h2>{PLOSectionTitle[data.typeDetail]}</h2>
+            <div className="section-D-containt">
+                <header className="element">
+                    <h4>Kí hiệu</h4>
+                    <h4>Chủ đề chuẩn đầu ra</h4>
+                    <h4 className="element-question">
+                        Thang đánh giá năng lực 
+                        <i className="iconoir-help-circle cursorPointer"/>
+                    </h4>
+                    {
+                        data.data.length < data.max &&
+                        <button
+                            onClick={() => handleClickAddD({ setState, idCTDT, type, typeDetail: data.typeDetail, typeIndex: PLOtypeIndex[data.typeDetail] })}
+                        >
+                            <i className="iconoir-add-square"></i>
+                        </button>
+                    }
+                </header>
+                {
+                    data.data.map((item, index) => {
+                        return (
+                            <PLOElement 
+                                item={item}
+                                key={index}
+                                type={type}
+                                typeDetail={data.typeDetail}
+                                typeIndex={PLOtypeIndex[data.typeDetail]}
+                                setState={setState}
+                                data={data.data}
+                                setDelete={setDelete}
+                                index={index}
+                            />
+                        )
+                    })
+                }
+            </div>
+        </div>
+    )
 }
 
 export default PLOSection

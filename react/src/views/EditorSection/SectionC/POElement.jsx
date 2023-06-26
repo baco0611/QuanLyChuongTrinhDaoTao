@@ -24,6 +24,7 @@ function POElement({ item, type, index, typeIndex, setState, provided, data, set
                 data-id={item.id}
                 onChange={() => handleChangeValueC({ type, setState })}
                 data-idctdt={id}
+                autoComplete="off"
                 onInput={(e) => {
                     e.target.style.height = 'auto'
                     e.target.style.height = `${e.target.scrollHeight}px`

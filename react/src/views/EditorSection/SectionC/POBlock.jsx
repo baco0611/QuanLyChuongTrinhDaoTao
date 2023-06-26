@@ -25,7 +25,7 @@ function POBlock({ data, title, type, setState, setDelete, idCTDT }) {
                     {...provided.droppableProps}
                 >
                     <h1>{title}</h1>
-                    <div id="section-C-containt">
+                    <div className="section-C-containt">
                         <header className="element">
                             <h4>Kí hiệu</h4>
                             <h4>Chủ đề mục tiêu cụ thể</h4>

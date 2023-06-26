@@ -1,3 +1,5 @@
+import { getParent } from "./HandleUpdateDatabase"
+
 const sortCondition = (a, b) => a.kiHieu < b.kiHieu ? -1 : 1
 
 const handleSplitSectionD = ({ 
@@ -19,7 +21,7 @@ const handleSplitSectionD = ({
     const KY_NANG = data.filter(item => item.loaiChuanDauRa === 'KY_NANG')
     const THAI_DO = data.filter(item => item.loaiChuanDauRa === 'THAI_DO')
 
-    console.log(KIEN_THUC, KY_NANG, THAI_DO)
+    // console.log(KIEN_THUC, KY_NANG, THAI_DO)
 
     const KIEN_THUC_DHH = KIEN_THUC.filter(item => item.loaiChuanDauRaChiTiet === 'KIEN_THUC_DAI_HOC_HUE')
     KIEN_THUC_DHH.sort(sortCondition)
@@ -92,20 +94,95 @@ const handleSplitSectionD = ({
     }})
 }
 
+// Handle changing value in an input element
+const handleChangeValueD = ({ typeDetail, setState }) => {
+    const element = document.querySelectorAll(`#${typeDetail} div.element`)
+
+    const value = Array.from(element).map((item, index) => {
+        const textarea = item.querySelector('textarea')
+        const input = item.querySelector('input')
+        
+        return {
+            kiHieu: `PLO - ${textarea.getAttribute('data-typeindex')}.${index+1}`,
+            noiDung: textarea.value,
+            loaiChuanDauRa: textarea.getAttribute('data-type'),
+            loaiChuanDauRaChiTiet: textarea.getAttribute('data-typedetail'),
+            trinhDoNangLuc: input.value != '0' ? input.value : '',
+            id: textarea.getAttribute('data-id'),
+            idCTDT: textarea.getAttribute('data-idCTDT')
+        }
+    })
+
+    value.sort((a, b) => a.kiHieu < b.kiHieu ? -1 : 1)
+
+    setState(prev => {
+        return {
+            ...prev,
+            data: value
+        }
+    })
+}
+
+// Handle changing many thing (like drop, ...)
 const handleChangeDataD = (element, type, typeDetail, typeIndex, idCTDT) => {
     const value = element.map((item, index) => {
         return {
-            kiHieu: `PO - ${typeIndex}.${index+1}`,
+            kiHieu: `PLO - ${typeIndex}.${index+1}`,
             noiDung: item.noiDung,
             loaiChuanDauRa: type,
             loaiChuanDauRaChiTiet: typeDetail,
             id: item.id,
             idCTDT: idCTDT,
-            trinhDoNangLuc: item.trinhDoNangLuc
+            trinhDoNangLuc: item.trinhDoNangLuc != '0' ? item.trinhDoNangLuc : ''
         }
     })
+
+    value.sort((a, b) => a.kiHieu < b.kiHieu ? -1 : 1)
 
     return value
 }
 
-export { handleSplitSectionD }
+const handleClickAddD = ({ setState, idCTDT, type, typeDetail, typeIndex }) => {
+    setState(prev => {
+
+        var stateData = [
+            ...prev.data,
+            {
+                id: '',
+                idCTDT: idCTDT,
+                kiHieu: '',
+                noiDung: '',
+                loaiChuanDauRa: '',
+                loaiChuanDauRaChiTiet: '',
+                trinhDoNangLuc: ''
+            }
+        ]
+
+        stateData = handleChangeDataD(stateData, type, typeDetail, typeIndex, idCTDT)
+
+        const value = {
+            ...prev,
+            data: stateData
+        }
+        return value
+    })
+}
+
+const handleClickDeleteD = ({  e, setState, data , setDelete, idctdt }) => {
+    const parentElement = getParent(e.target, 'element')
+    const inputElement = parentElement.querySelector('textarea')
+    const dataset = inputElement.dataset
+
+    const list = [...data]
+    const deleteElement = list[dataset.index - 1]
+    list.splice(dataset.index - 1, 1)
+    setState(prev => {
+        return {
+            ...prev,
+            data: handleChangeDataD(list, dataset.type, dataset.typedetail, dataset.typeindex, idctdt)
+        }
+    })
+    setDelete(prev => [...prev, deleteElement])
+}
+
+export { handleSplitSectionD, handleChangeValueD, handleClickAddD, handleClickDeleteD }

@@ -10,7 +10,7 @@
     }
 
     &-main {
-        padding-top: 20px;
+        padding-top: 40px;
     }
 
     &-block {
@@ -21,6 +21,80 @@
             line-height: 27px;
             color: $primary-color;
             text-transform: uppercase;
+        }
+    }
+
+    &-section {
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 24px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    }
+}
+
+.section-D-containt {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 35px;
+
+    .element {
+        display: grid;
+        grid-template-columns: calc((100% - 120px) * 0.12) calc((100% - 120px) * 0.58) calc((100% - 120px) * 0.3) 40px;
+        min-height: 50px;
+        padding-bottom: 10px;
+        column-gap: 40px;
+        border-bottom: 1.5px solid $button-color;
+        align-items: center;
+
+        &-question {
+            i {
+                font-size: 25px;
+            }
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h4, label, input, textarea, span{
+            font-size: 18px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        input, textarea, span {
+            min-height: 90%;
+            border: none;
+            background-color: $gray-color;
+            padding: 10px 25px;
+            // padding-top: 15px;
+            resize: none;
+            display: block;
+            overflow: hidden;
+        }
+
+        button {
+            height: 100%;
+            width: 40px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $primary-color;
+            border-radius: 10px;
+
+            &.minus {
+                background-color: $highlight-color;
+            }
+
+            i {
+                color: white;
+                font-size: 22px;
+            }
         }
     }
 }
