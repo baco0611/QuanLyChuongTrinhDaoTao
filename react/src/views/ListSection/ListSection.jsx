@@ -12,6 +12,10 @@ function ListSection () {
     const { apiURL, fakeApi } = useContext(UserContext); 
     const navigate = useNavigate()
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
     const fecthAPI = () => {
         const mainListApi = `${apiURL}/mainList`
         // const mainListApi = `${fakeApi}/mainList`

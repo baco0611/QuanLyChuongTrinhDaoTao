@@ -33,22 +33,28 @@
     .element {
         display: grid;
         grid-template-columns: calc((100% - 140px) * 0.15) calc((100% - 140px) * 0.85) 40px;
-        height: 50px;
+        min-height: 50px;
+        padding-bottom: 10px;
         column-gap: 50px;
         border-bottom: 1.5px solid $button-color;
 
-        h4, label, input {
+        h4, label, input, textarea, span{
             font-size: 18px;
             height: 100%;
             display: flex;
             align-items: center;
         }
 
-        input {
-            height: 85%;
+        input, textarea, span {
+            min-height: 90%;
+            // height: auto;
             border: none;
             background-color: $gray-color;
-            padding: 0 25px;
+            padding: 10px 25px;
+            //
+            resize: none;
+            display: block;
+            overflow: hidden;
         }
 
         button {

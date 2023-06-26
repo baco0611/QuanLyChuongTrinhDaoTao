@@ -22,6 +22,10 @@ function SectionB() {
         localStorage.setItem(`sectionB-${id}`, JSON.stringify(sectionBValue))
     })
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
     const fecthAPI = (id) => {
         const sectionBValueApi = `${apiURL}/sectionB/${id}`
         // const sectionBValueApi = `${fakeApi}/sectionB/${id}`
@@ -86,6 +90,7 @@ function SectionB() {
                         value={sectionBValue.mucTieuTongQuat}
                         onChange={handleChangeTextArea}
                         rows={20}
+                        autoComplete="off"
                     />
                 </div>
             </div>

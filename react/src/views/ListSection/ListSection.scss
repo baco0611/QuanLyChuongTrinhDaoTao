@@ -38,11 +38,17 @@
         td a {
             color: inherit;
             font-size: inherit;
+            line-height: 18px;
+            display: block;
         }
 
         .text-left {
             text-align: left;
             padding-left: 15px;
+        }
+
+        td {
+            padding: 5px 5px;
         }
     }
 }

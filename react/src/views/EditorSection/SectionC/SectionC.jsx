@@ -21,6 +21,10 @@ function SectionC() {
     const [ sectionCThaiDo, setSectionCThaiDo ] = useState([])
     const [ deleteElement, setDeleteElement ] = useState([])
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
     const fecthAPI = (id) => {
         const sectionCValueApi = `${apiURL}/sectionC/${id}`
         // const sectionCValueApi = `${fakeApi}/sectionC/${id}`

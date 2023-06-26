@@ -14,6 +14,10 @@ function SectionA() {
     const { apiURL, fakeApi } = useContext(UserContext)
     const navigate = useNavigate()
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
     const [ sectionAValue, setSectionAValue ] = useState({
         id,
         tenTiengViet: '',
@@ -144,6 +148,7 @@ function SectionA() {
                                 name="tenTiengViet"
                                 value={sectionAValue.tenTiengViet}
                                 onChange={handleChangeValue}
+                                autoComplete="off"
                             />
                         </div>
                     </div>
@@ -157,6 +162,7 @@ function SectionA() {
                                 name="tenTiengAnh"
                                 value={sectionAValue.tenTiengAnh}
                                 onChange={handleChangeValue}
+                                autoComplete="off"
                             />
                         </div>
                     </div>
@@ -170,6 +176,7 @@ function SectionA() {
                                 name="trinhDoDaoTao"
                                 value={sectionAValue.trinhDoDaoTao}
                                 onChange={handleChangeValue}
+                                autoComplete="off"
                             />
                         </div>
                     </div>
@@ -183,6 +190,7 @@ function SectionA() {
                                 name="maNganhDaoTao"
                                 value={sectionAValue.maNganhDaoTao}
                                 onChange={handleChangeValue}
+                                autoComplete="off"
                             />
                         </div>
                     </div>
@@ -196,6 +204,7 @@ function SectionA() {
                                 name="tenNganhDaoTao"
                                 value={sectionAValue.tenNganhDaoTao}
                                 onChange={handleChangeValue}
+                                autoComplete="off"
                             />
                         </div>
                     </div>
@@ -209,6 +218,7 @@ function SectionA() {
                                 name="khoaQuanLyChuongTrinh"
                                 value={sectionAValue.khoaQuanLyChuongTrinh}
                                 onChange={handleChangeValue}
+                                autoComplete="off"
                             />
                         </div>
                     </div>
@@ -222,6 +232,7 @@ function SectionA() {
                                 name="doiTuongTuyenSinh"
                                 value={sectionAValue.doiTuongTuyenSinh}
                                 onChange={handleChangeValue}
+                                autoComplete="off"
                             />
                         </div>
                     </div>
@@ -235,6 +246,7 @@ function SectionA() {
                                 name="thoiGianDaoTao"
                                 value={sectionAValue.thoiGianDaoTao}
                                 onChange={handleChangeNumberValue}
+                                autoComplete="off"
                                 style={{
                                     width: '120px',
                                     marginRight: '15px',
@@ -271,6 +283,7 @@ function SectionA() {
                                 name="soTinChiYeuCauTichLuy"
                                 value={sectionAValue.soTinChiYeuCauTichLuy}
                                 onChange={handleChangeNumberValue}
+                                autoComplete="off"
                                 style={{
                                     width: '120px',
                                     marginRight: '15px',
@@ -337,6 +350,7 @@ function SectionA() {
                                 value={sectionAValue.dieuKienTotNghiep.replaceAll('\\n', '\n')}
                                 onChange={handleChangeValue}
                                 rows={20}
+                                autoComplete="off"
                             />
                         </div>
                     </div>
@@ -373,6 +387,7 @@ function SectionA() {
                                 value={sectionAValue.khoaQuanLyChuongTrinh}
                                 onChange={handleChangeTextArea}
                                 rows={20}
+                                autoComplete="off"
                             />
                         </div>
                     </div>
@@ -391,6 +406,7 @@ function SectionA() {
                                 value={sectionAValue.khaNangNangCaoTrinhDo.replace('\\n', '\n-')}
                                 onChange={handleChangeTextArea}
                                 rows={20}
+                                autoComplete="off"
                             />
                         </div>
                     </div>
@@ -409,6 +425,7 @@ function SectionA() {
                                 value={sectionAValue.chuongTrinhThamKhao}
                                 onChange={handleChangeValue}
                                 rows={20}
+                                autoComplete="off"
                             />
                         </div>
                     </div>
@@ -427,6 +444,7 @@ function SectionA() {
                                 value={sectionAChuyenNganh.chuyenNganh.join('\n')}
                                 onChange={handleChangeChuyenNganh}
                                 rows={20}
+                                autoComplete="off"
                             />
                         </div>
                     </div>

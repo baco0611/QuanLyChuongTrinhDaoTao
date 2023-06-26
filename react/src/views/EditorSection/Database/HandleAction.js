@@ -117,7 +117,7 @@ const handleSplitSection = ({ data, setSectionCKienThuc, setSectionCKyNang, setS
 
 // Handle changing value in an input element
 const handleChangeValue = ({ type, setState }) => {
-    const element = document.querySelectorAll(`#${type} input`)
+    const element = document.querySelectorAll(`#${type} input, #${type} textarea`)
 
     const value = Array.from(element).map((item, index) => {
         return {
@@ -161,7 +161,7 @@ function getParent(element, className) {
 }
 const handleClickDelete = ({ e, setState, data, setDelete, idctdt }) => {
     const parentElement = getParent(e.target, 'element')
-    const inputElement = parentElement.querySelector('input')
+    const inputElement = parentElement.querySelector('input, textarea')
     const dataset = inputElement.dataset
     
     const list = [...data]

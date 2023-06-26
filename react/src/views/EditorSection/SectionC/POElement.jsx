@@ -14,7 +14,7 @@ function POElement({ item, type, index, typeIndex, setState, provided, data, set
             ref={provided.innerRef}
         >
             <label htmlFor={`${type}-${index}`}>{item.kiHieu}</label>
-            <input 
+            <textarea 
                 id={`${type}-${index}`}
                 placeholder="Mục tiêu cụ thể"
                 value={item.noiDung}    
@@ -24,6 +24,10 @@ function POElement({ item, type, index, typeIndex, setState, provided, data, set
                 data-id={item.id}
                 onChange={() => handleChangeValue({ type, setState })}
                 data-idctdt={id}
+                onInput={(e) => {
+                    e.target.style.height = 'auto'
+                    e.target.style.height = `${e.target.scrollHeight}px`
+                }}
             />
             <button 
                 className="minus"
