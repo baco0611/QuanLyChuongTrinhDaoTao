@@ -16,7 +16,7 @@ class MucTieuCuTheService
     public function update($val)  {
         DB::table('MucTieuCuThe')
         ->where('idMucTieu', $val['id'])
-        ->where('idCTDT', $val['idCTDT'])
+        ->where('idChuongTrinh', $val['idCTDT'])
         ->update([
             "kiHieu"=>$val['kiHieu'],
             "noiDung"=>$val['noiDung'],
@@ -26,7 +26,7 @@ class MucTieuCuTheService
     public function delete($val)  {
         DB::table('MucTieuCuThe')
         ->where('idMucTieu', $val['id'])
-        ->where('idCTDT', $val['idCTDT'])
+        ->where('idChuongTrinh', $val['idCTDT'])
         ->delete();
     }
 }

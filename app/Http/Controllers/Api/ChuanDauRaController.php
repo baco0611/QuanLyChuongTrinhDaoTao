@@ -31,12 +31,13 @@ class ChuanDauRaController extends Controller
     public function storeCreate(Request $request)
     {
         $data = $request['data'];
+        $idChuongTrinh =$request['idCTDT'];
         if (empty($data)) {
             return response()->json([
+                'idCTDT'=>intval($idChuongTrinh),
                 'data' => []
             ]);
         }
-       $idChuongTrinh =$data[0]['idCTDT'];
        foreach($data as $val) {
            $cdt = new ChuanDauRa();
            $cdt->kiHieu = $val['kiHieu'];
@@ -59,12 +60,13 @@ class ChuanDauRaController extends Controller
     public function storeUpdate(Request $request)
     {
        $data = $request['data'];
+       $idChuongTrinh =$request['idCTDT'];
        if (empty($data)) {
         return response()->json([
+            'idCTDT'=>intval($idChuongTrinh),
             'data' => []
         ]);
     }
-       $idChuongTrinh =$data[0]['idCTDT'];
        $CDRService = new ChuanDauRaService();
        foreach($data as $val) {
         $CDRService->update($val);
@@ -119,15 +121,12 @@ class ChuanDauRaController extends Controller
     public function destroy(Request $request)
     {
         $data = $request['deleteData'];
-        if (empty($data)) {
-            return response()->json([
-                'status' => HttpResponse::HTTP_OK
-            ]);
-        }
-        $idChuongTrinh =$data[0]['idCTDT'];
+        $idChuongTrinh =$request['idCTDT'];
         $CDRService = new ChuanDauRaService();
-        foreach($data as $val) {
-            $CDRService->delete($val);
+        if (!empty($data)){
+            foreach($data as $val) {
+                $CDRService->delete($val);
+            }
         }
         $listItem = $CDRService->getList($idChuongTrinh);
         $listCDR =  ChuanDauRaUpdateReSource::collection($listItem);

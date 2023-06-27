@@ -31,12 +31,13 @@ class MucTieuCuTheController extends Controller
     public function storeCreate(Request $request)
     {
       $data = $request['data'];
+      $idChuongTrinh =$request['idCTDT'];
        if (empty($data)) {
         return response()->json([
+            'idCTDT'=>intval($idChuongTrinh),
             'data' => []
         ]);
     }
-    $idChuongTrinh =$data[0]['idCTDT'];
        foreach($data as $val) {
            $mtct = new MucTieuCuThe();
            $mtct->kiHieu = $val['kiHieu'];
@@ -55,13 +56,14 @@ class MucTieuCuTheController extends Controller
     }
     public function storeUpdate(Request $request)
     {
-       $data = $request['data'];
-       if (empty($data)) {
-        return response()->json([
-            'data' => []
-        ]);
-    }
-       $idChuongTrinh =$data[0]['idCTDT'];
+        $data = $request['data'];
+        $idChuongTrinh =$request['idCTDT'];
+         if (empty($data)) {
+          return response()->json([
+              'idCTDT'=>intval($idChuongTrinh),
+              'data' => []
+          ]);
+      }
        $MTCTService = new MucTieuCuTheService();
        foreach($data as $val) {
         $MTCTService->update($val);
@@ -116,15 +118,12 @@ class MucTieuCuTheController extends Controller
     public function destroy(Request $request)
     {
         $data = $request['deleteData'];
-        if (empty($data)) {
-            return response()->json([
-                'status' => HttpResponse::HTTP_OK
-            ]);
-        }
-        $idChuongTrinh =$data[0]['idCTDT'];
+        $idChuongTrinh =$request['idCTDT'];
         $MTCTService = new MucTieuCuTheService();
-        foreach($data as $val) {
-            $MTCTService->delete($val);
+        if(!empty($data)) {
+            foreach($data as $val) {
+                $MTCTService->delete($val);
+            }
         }
         $listItem = $MTCTService->getList($idChuongTrinh);
         $listMucTieu =  MucTieuCuTheUpdateReSource::collection($listItem);
