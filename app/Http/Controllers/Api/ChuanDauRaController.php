@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\MucTieuCuTheCreateReSource;
-use App\Http\Resources\MucTieuCuTheUpdateReSource;
-use App\Models\MucTieuCuThe;
-use App\Service\MucTieuCuTheService;
+use App\Http\Resources\ChuanDauRaCreateResource;
+use App\Http\Resources\ChuanDauRaUpdateResource;
+use App\Models\ChuanDauRa;
+use App\Service\ChuanDauRaService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 
-class MucTieuCuTheController extends Controller
+class ChuanDauRaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,29 +30,32 @@ class MucTieuCuTheController extends Controller
      */
     public function storeCreate(Request $request)
     {
-      $data = $request['data'];
-       if (empty($data)) {
-        return response()->json([
-            'data' => []
-        ]);
-    }
-    $idChuongTrinh =$data[0]['idCTDT'];
+        $data = $request['data'];
+        if (empty($data)) {
+            return response()->json([
+                'data' => []
+            ]);
+        }
+       $idChuongTrinh =$data[0]['idCTDT'];
        foreach($data as $val) {
-           $mtct = new MucTieuCuThe();
-           $mtct->kiHieu = $val['kiHieu'];
-           $mtct->noiDung= $val['noiDung'];
-           $mtct->loaiMucTieu= $val['loaiMucTieu'];
-           $mtct->idChuongTrinh= intval($val['idCTDT']);
-           $mtct->save();
+           $cdt = new ChuanDauRa();
+           $cdt->kiHieu = $val['kiHieu'];
+           $cdt->noiDung= $val['noiDung'];
+           $cdt->loaiChuanDauRa= $val['loaiChuanDauRa'];
+           $cdt->loaiChuanDauRaChiTiet= $val['loaiChuanDauRaChiTiet'];
+           $cdt->trinhDoNangLuc= $val['trinhDoNangLuc'];
+           $cdt->idChuongTrinh= intval($val['idCTDT']);
+           $cdt->save();
        }
-       $MTCTService = new MucTieuCuTheService();
-       $listItem = $MTCTService->getList($idChuongTrinh);
-       $listMucTieu =  MucTieuCuTheCreateReSource::collection($listItem);
+       $CDRService = new ChuanDauRaService();
+       $listItem = $CDRService->getList($idChuongTrinh);
+       $listCDR = ChuanDauRaCreateResource::collection($listItem);
        return response()->json([
         'idCTDT'=>intval($idChuongTrinh),
-        'data' => $listMucTieu
+        'data' => $listCDR
     ], HttpResponse::HTTP_OK);
     }
+
     public function storeUpdate(Request $request)
     {
        $data = $request['data'];
@@ -62,18 +65,18 @@ class MucTieuCuTheController extends Controller
         ]);
     }
        $idChuongTrinh =$data[0]['idCTDT'];
-       $MTCTService = new MucTieuCuTheService();
+       $CDRService = new ChuanDauRaService();
        foreach($data as $val) {
-        $MTCTService->update($val);
+        $CDRService->update($val);
        }
-       $listItem = $MTCTService->getList($idChuongTrinh);
-       $listMucTieu =  MucTieuCuTheUpdateReSource::collection($listItem);
+       $listItem = $CDRService->getList($idChuongTrinh);
+       $listCDR = ChuanDauRaUpdateResource::collection($listItem);
        return response()->json([
         'idCTDT'=>intval($idChuongTrinh),
-        'data' => $listMucTieu
+        'data' => $listCDR
     ], HttpResponse::HTTP_OK);
     }
-    /**
+/**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -81,17 +84,17 @@ class MucTieuCuTheController extends Controller
      */
     public function show($id)
     {
-        $MTCTService = new MucTieuCuTheService();
-        $listItem = $MTCTService->getList($id);
-        if (empty(json_decode($listItem))) {
+        $CDRService = new ChuanDauRaService();
+        $listItem = $CDRService->getList($id);
+        if (empty(json_decode( $listItem))) {
             return response()->json([
                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-        $listMucTieu =  MucTieuCuTheUpdateReSource::collection($listItem);
+        $listCDR =  ChuanDauRaUpdateReSource::collection($listItem);
         return response()->json([
             'idCTDT'=>intval($id),
-            'data' => $listMucTieu
+            'data' => $listCDR
         ], HttpResponse::HTTP_OK);
     }
 
@@ -122,15 +125,15 @@ class MucTieuCuTheController extends Controller
             ]);
         }
         $idChuongTrinh =$data[0]['idCTDT'];
-        $MTCTService = new MucTieuCuTheService();
+        $CDRService = new ChuanDauRaService();
         foreach($data as $val) {
-            $MTCTService->delete($val);
+            $CDRService->delete($val);
         }
-        $listItem = $MTCTService->getList($idChuongTrinh);
-        $listMucTieu =  MucTieuCuTheUpdateReSource::collection($listItem);
+        $listItem = $CDRService->getList($idChuongTrinh);
+        $listCDR =  ChuanDauRaUpdateReSource::collection($listItem);
          return response()->json([
             'idCTDT'=>intval($idChuongTrinh),
-            'data' => $listMucTieu
+            'data' => $listCDR
         ], HttpResponse::HTTP_OK);
     }
 }

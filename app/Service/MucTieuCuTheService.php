@@ -2,9 +2,8 @@
 
 namespace App\Service;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Node\Stmt\Else_;
+
 
 class MucTieuCuTheService 
 {
@@ -17,6 +16,7 @@ class MucTieuCuTheService
     public function update($val)  {
         DB::table('MucTieuCuThe')
         ->where('idMucTieu', $val['id'])
+        ->where('idCTDT', $val['idCTDT'])
         ->update([
             "kiHieu"=>$val['kiHieu'],
             "noiDung"=>$val['noiDung'],
@@ -26,6 +26,7 @@ class MucTieuCuTheService
     public function delete($val)  {
         DB::table('MucTieuCuThe')
         ->where('idMucTieu', $val['id'])
+        ->where('idCTDT', $val['idCTDT'])
         ->delete();
     }
 }

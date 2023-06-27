@@ -14,6 +14,7 @@ class ListCTDTResource extends JsonResource
      */
     public function toArray($request)
     {
+        $hoTen =$this->HoDem ." ". $this->Ten;
         return[
             'maChuongTrinhDaoTao'=>strval($this->maChuongTrinhDaoTao),
             'tenChuongTrinhDaoTao'=>strval($this->tenChuongTrinhDaoTao),
@@ -21,7 +22,7 @@ class ListCTDTResource extends JsonResource
             'trangThai'=>strval($this->trangThai),
             'id'=>$this->id,
             'stt'=>$this->stt,
-            'nguoiPhuTrach'=>$this->nguoiPhuTrach,
+            'nguoiPhuTrach'=> $hoTen ,
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at
         ];

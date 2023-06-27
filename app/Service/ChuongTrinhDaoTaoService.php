@@ -12,8 +12,9 @@ class ChuongTrinhDaoTaoService
     $result= DB::table('ChuongTrinhDaoTao')
         ->select('maChuongTrinhDaoTao', 'tenTiengViet AS tenChuongTrinhDaoTao', 'tenNganhDaoTao', 
         'trangThai','idChuongTrinh AS id', DB::raw('ROW_NUMBER() OVER(ORDER BY idChuongTrinh) AS stt'),
-        'nguoiPhuTrach',DB::raw('Convert(varchar,created_at,103) AS created_at'), 
-        DB::raw('Convert(varchar,updated_at,103) AS updated_at'))
+        'nguoiPhuTrach',DB::raw('Convert(varchar,ChuongTrinhDaoTao.created_at,103) AS created_at'), 
+        DB::raw('Convert(varchar,ChuongTrinhDaoTao.updated_at,103) AS updated_at'), 'HoDem', 'Ten')
+        ->join('GiangVien','GiangVien.MaGiangVien','=', 'ChuongTrinhDaoTao.nguoiPhuTrach')
         ->paginate(20);
         return $result;
    }
