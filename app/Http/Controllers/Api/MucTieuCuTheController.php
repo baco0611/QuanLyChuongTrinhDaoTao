@@ -30,8 +30,14 @@ class MucTieuCuTheController extends Controller
      */
     public function storeCreate(Request $request)
     {
-       $data = $request['data'];
-       $idChuongTrinh =$data[0]['idCTDT'];
+      $data = $request['data'];
+      $idChuongTrinh =$request['idCTDT'];
+       if (empty($data)) {
+        return response()->json([
+            'idCTDT'=>intval($idChuongTrinh),
+            'data' => []
+        ]);
+    }
        foreach($data as $val) {
            $mtct = new MucTieuCuThe();
            $mtct->kiHieu = $val['kiHieu'];
@@ -50,8 +56,14 @@ class MucTieuCuTheController extends Controller
     }
     public function storeUpdate(Request $request)
     {
-       $data = $request['data'];
-       $idChuongTrinh =$data[0]['idCTDT'];
+        $data = $request['data'];
+        $idChuongTrinh =$request['idCTDT'];
+         if (empty($data)) {
+          return response()->json([
+              'idCTDT'=>intval($idChuongTrinh),
+              'data' => []
+          ]);
+      }
        $MTCTService = new MucTieuCuTheService();
        foreach($data as $val) {
         $MTCTService->update($val);
@@ -73,6 +85,11 @@ class MucTieuCuTheController extends Controller
     {
         $MTCTService = new MucTieuCuTheService();
         $listItem = $MTCTService->getList($id);
+        if (empty(json_decode($listItem))) {
+            return response()->json([
+                'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
         $listMucTieu =  MucTieuCuTheUpdateReSource::collection($listItem);
         return response()->json([
             'idCTDT'=>intval($id),
@@ -101,10 +118,12 @@ class MucTieuCuTheController extends Controller
     public function destroy(Request $request)
     {
         $data = $request['deleteData'];
-        $idChuongTrinh =$data[0]['idCTDT'];
+        $idChuongTrinh =$request['idCTDT'];
         $MTCTService = new MucTieuCuTheService();
-        foreach($data as $val) {
-            $MTCTService->delete($val);
+        if(!empty($data)) {
+            foreach($data as $val) {
+                $MTCTService->delete($val);
+            }
         }
         $listItem = $MTCTService->getList($idChuongTrinh);
         $listMucTieu =  MucTieuCuTheUpdateReSource::collection($listItem);

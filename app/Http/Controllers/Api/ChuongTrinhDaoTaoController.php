@@ -43,6 +43,11 @@ class ChuongTrinhDaoTaoController extends Controller
     {
         $ctdtService = new ChuongTrinhDaoTaoService();
         $item = $ctdtService->updateCTDT($request);
+        if (empty(json_decode($item))) {
+            return response()->json([
+                'status' =>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
         $itemResource = ChuongTrinhDaoTaoResource::collection($item);
         return response()->json([
             'id'=>intval($request['id']),
@@ -79,6 +84,11 @@ class ChuongTrinhDaoTaoController extends Controller
     {
         $ctdtService = new ChuongTrinhDaoTaoService();
         $item = $ctdtService->getCTDT($id);
+        if (empty(json_decode($item))) {
+            return response()->json([
+                'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
         $itemResource = ChuongTrinhDaoTaoResource::collection($item);
         return response()->json([
             'id'=>intval($id),
@@ -90,6 +100,11 @@ class ChuongTrinhDaoTaoController extends Controller
     {
         $ctdtService = new ChuongTrinhDaoTaoService();
         $item = $ctdtService->getCTDT($id);
+        if (empty(json_decode($item))) {
+            return response()->json([
+                'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
         $itemResource = SectionB_Resource::collection($item);
         return response()->json([
             'data'=> $itemResource
@@ -99,6 +114,11 @@ class ChuongTrinhDaoTaoController extends Controller
     {
         $ctdtService = new ChuongTrinhDaoTaoService();
         $itemHeader =  $ctdtService->getCTDT($id);
+        if (empty(json_decode($itemHeader))) {
+            return response()->json([
+                'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
         $itemResource =SectionAHeader_Resource::collection($itemHeader);
         return response()->json([
             'id'=>intval($id),

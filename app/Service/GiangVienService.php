@@ -29,5 +29,6 @@ class GiangVienService
         $result =  DB::select('SELECT * FROM func_find_GiangVien(?)', [$timkiem]);
         return $result;
     }
+
     
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ChuanDauRaController;
 use App\Http\Controllers\Api\ChuongTrinhDaoTaoController;
 use App\Http\Controllers\Api\ChuyenNganhDaoTaoController;
 use App\Http\Controllers\Api\GiangVienController;
@@ -44,4 +45,9 @@ Route::get('sectionA_ChuyenNganh', [ChuyenNganhDaoTaoController::class, 'show'])
 Route::post('create_sectionC', [MucTieuCuTheController::class, 'storeCreate'])->name('createMTCT.storeCreate');
 Route::post('update_sectionC', [MucTieuCuTheController::class, 'storeUpdate'])->name('updateMTCT.storeUpdate');
 Route::delete('delete_sectionC', [MucTieuCuTheController::class, 'destroy'])->name('deleteMTCT.destroy');
-Route::get('sectionC/{id}', [MucTieuCuTheController::class, 'show'])->name('ctdt.show');
+Route::get('sectionC/{id}', [MucTieuCuTheController::class, 'show'])->name('MTCT.show');
+#MucTieuCuThe SectionC 
+Route::post('create_sectionD', [ChuanDauRaController::class, 'storeCreate'])->name('createCDR.storeCreate');
+Route::post('update_sectionD', [ChuanDauRaController::class, 'storeUpdate'])->name('updateCDR.storeUpdate');
+Route::delete('delete_sectionD', [ChuanDauRaController::class, 'destroy'])->name('deleteCDR.destroy');
+Route::get('sectionD/{id}', [ChuanDauRaController::class, 'show'])->name('CDR.show');
