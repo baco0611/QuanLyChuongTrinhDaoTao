@@ -51,9 +51,10 @@
             border: none;
             background-color: $gray-color;
             padding: 10px 25px;
-            resize: none;
+            resize: vertical;
             display: block;
             overflow: hidden;
+            height: auto;
         }
 
         button {

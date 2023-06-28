@@ -21,6 +21,11 @@
             line-height: 27px;
             color: $primary-color;
             text-transform: uppercase;
+            cursor: pointer;
+
+            &:hover {
+                color: $highlight-color;
+            }
         }
     }
 
@@ -71,10 +76,10 @@
             border: none;
             background-color: $gray-color;
             padding: 10px 25px;
-            // padding-top: 15px;
-            resize: none;
+            resize: vertical;
             display: block;
             overflow: hidden;
+            height: auto;
         }
 
         button {

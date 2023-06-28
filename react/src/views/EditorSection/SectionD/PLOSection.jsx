@@ -1,3 +1,4 @@
+import { Droppable } from "react-beautiful-dnd"
 import { handleClickAddD } from "../Database/HandleActionSectionD"
 import PLOElement from "./PLOElement"
 
@@ -30,44 +31,59 @@ function PLOSection({ type, idCTDT, data, setState, setDelete }) {
     }
 
     return (
-        <div id={data.typeDetail} className="section-D-section">
-            <h2>{PLOSectionTitle[data.typeDetail]}</h2>
-            <div className="section-D-containt">
-                <header className="element">
-                    <h4>Kí hiệu</h4>
-                    <h4>Chủ đề chuẩn đầu ra</h4>
-                    <h4 className="element-question">
-                        Thang đánh giá năng lực 
-                        <i className="iconoir-help-circle cursorPointer"/>
-                    </h4>
-                    {
-                        data.data.length < data.max &&
-                        <button
-                            onClick={() => handleClickAddD({ setState, idCTDT, type, typeDetail: data.typeDetail, typeIndex: PLOtypeIndex[data.typeDetail] })}
-                        >
-                            <i className="iconoir-add-square"></i>
-                        </button>
-                    }
-                </header>
-                {
-                    data.data.map((item, index) => {
-                        return (
-                            <PLOElement 
-                                item={item}
-                                key={index}
-                                type={type}
-                                typeDetail={data.typeDetail}
-                                typeIndex={PLOtypeIndex[data.typeDetail]}
-                                setState={setState}
-                                data={data.data}
-                                setDelete={setDelete}
-                                index={index}
-                            />
-                        )
-                    })
-                }
-            </div>
-        </div>
+        <Droppable
+            droppableId={`${data.typeDetail}`}
+            type="PLO"
+        >
+        {
+            provider => (
+                <div 
+                    id={data.typeDetail} 
+                    className="section-D-section"
+                    ref={provider.innerRef}
+                    {...provider.droppableProps}
+                >
+                    <h2>{PLOSectionTitle[data.typeDetail]}</h2>
+                    <div className="section-D-containt">
+                        <header className="element">
+                            <h4>Kí hiệu</h4>
+                            <h4>Chủ đề chuẩn đầu ra</h4>
+                            <h4 className="element-question">
+                                Thang đánh giá năng lực 
+                                <i className="iconoir-help-circle cursorPointer"/>
+                            </h4>
+                            {
+                                data.data.length < data.max &&
+                                <button
+                                    onClick={() => handleClickAddD({ setState, idCTDT, type, typeDetail: data.typeDetail, typeIndex: PLOtypeIndex[data.typeDetail] })}
+                                >
+                                    <i className="iconoir-add-square"></i>
+                                </button>
+                            }
+                        </header>
+                        {
+                            data.data.map((item, index) => {
+                                return (
+                                    <PLOElement 
+                                        item={item}
+                                        key={index}
+                                        type={type}
+                                        typeDetail={data.typeDetail}
+                                        typeIndex={PLOtypeIndex[data.typeDetail]}
+                                        setState={setState}
+                                        data={data.data}
+                                        setDelete={setDelete}
+                                        index={index}
+                                    />
+                                )
+                            })
+                        }
+                    </div>
+                    {provider.placeholder}
+                </div>
+            )
+        }
+        </Droppable>
     )
 }
 

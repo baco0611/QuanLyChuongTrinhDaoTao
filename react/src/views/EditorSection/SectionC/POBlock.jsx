@@ -41,27 +41,18 @@ function POBlock({ data, title, type, setState, setDelete, idCTDT }) {
                         {
                             data.map((item, index) => {
                                 return (
-                                    <Draggable 
-                                        draggableId={`drag-${type}-${index}`}
-                                        index={index}
+                                    <POElement
                                         key={index}
-                                    >
-                                    {
-                                        provided => (
-                                            <POElement
-                                                item={item}
-                                                type={type}
-                                                typeIndex={POType[type]}
-                                                index={index}
-                                                setState={setState}
-                                                provided={provided}
-                                                innerRef={provided.innerRef}
-                                                data={data}
-                                                setDelete={setDelete}
-                                            />
-                                        )
-                                    }
-                                    </Draggable>
+                                        item={item}
+                                        type={type}
+                                        typeIndex={POType[type]}
+                                        index={index}
+                                        setState={setState}
+                                        provided={provided}
+                                        innerRef={provided.innerRef}
+                                        data={data}
+                                        setDelete={setDelete}
+                                    />
                                 )
                             })
                         }

@@ -1,6 +1,6 @@
 // For SECTION C
 
-import { getParent } from "./HandleUpdateDatabase"
+import { deleteData, getParent, postData } from "./HandleUpdateDatabase"
 
 const sortCondition = (a, b) => a.kiHieu < b.kiHieu ? -1 : 1
 
@@ -85,4 +85,32 @@ const handleClickAddC = ({ setState, idCTDT, type, typeIndex }) => {
     })
 }
 
-export { handleChangeDataC, handleClickAddC, handleClickDeleteC, handleChangeValueC, handleSplitSectionC }
+const handleUpdateSectionC = (id, api) => {
+    const sectionCElement = JSON.parse(localStorage.getItem(`sectionC-${id}`))
+    const sectionCDelete = JSON.parse(localStorage.getItem(`sectionC-delete-${id}`))
+
+    const deleteElement = sectionCDelete.filter(item => item.id != '').map(item => {return {id: item.id, idCTDT: item.idCTDT}})
+    const createElement = sectionCElement.filter(item => item.id == '').map(item => {return {kiHieu:item.kiHieu, noiDung: item.noiDung, loaiMucTieu: item.loaiMucTieu, idCTDT: item.idCTDT}})
+    const updateElement = sectionCElement.filter(item => item.id != '')
+
+    // debugger
+    if(deleteElement.length <= 0) console.log('DELETE_SECTIONC')
+    else deleteData(api, '/delete_sectionC', { idCTDT: id, deleteData: deleteElement }, 'DELETE_SECTIONC')
+    
+    // debugger
+    if(createElement.length <= 0) console.log('CREATE_SECTIONC')
+    else postData(api, '/create_sectionC', { idCTDT: id, data: createElement }, 'CREATE_SECIONC')
+
+    // debugger
+    if(updateElement.length <= 0) console.log('UPDATE_SECTIONC')
+    else postData(api, '/update_sectionC', { idCTDT: id, data: updateElement }, 'UPDATE_SECTIONC')
+}
+
+export { 
+    handleChangeDataC, 
+    handleClickAddC, 
+    handleClickDeleteC, 
+    handleChangeValueC, 
+    handleSplitSectionC, 
+    handleUpdateSectionC 
+}

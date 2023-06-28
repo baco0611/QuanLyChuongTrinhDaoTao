@@ -185,4 +185,4 @@ const handleClickDeleteD = ({  e, setState, data , setDelete, idctdt }) => {
     setDelete(prev => [...prev, deleteElement])
 }
 
-export { handleSplitSectionD, handleChangeValueD, handleClickAddD, handleClickDeleteD }
+export { handleSplitSectionD, handleChangeValueD, handleClickAddD, handleClickDeleteD, handleChangeDataD }
