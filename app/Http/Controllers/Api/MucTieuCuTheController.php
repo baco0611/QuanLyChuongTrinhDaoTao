@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\MucTieuCuTheCreateReSource;
 use App\Http\Resources\MucTieuCuTheUpdateReSource;
 use App\Models\MucTieuCuThe;
+use App\Service\ChuongTrinhDaoTaoService;
 use App\Service\MucTieuCuTheService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
@@ -84,10 +85,18 @@ class MucTieuCuTheController extends Controller
     public function show($id)
     {
         $MTCTService = new MucTieuCuTheService();
+        $ctdt = new ChuongTrinhDaoTaoService();
+        $itemCTDT = $ctdt->getCTDT($id);
         $listItem = $MTCTService->getList($id);
-        if (empty(json_decode($listItem))) {
+        if (empty(json_decode($itemCTDT))) {
             return response()->json([
                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        if (!empty(json_decode($itemCTDT)) && empty(json_decode($listItem))) {
+            return response()->json([
+                'idCTDT'=>intval($id),
+                'data' => []
             ]);
         }
         $listMucTieu =  MucTieuCuTheUpdateReSource::collection($listItem);

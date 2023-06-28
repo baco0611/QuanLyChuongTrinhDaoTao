@@ -7,6 +7,7 @@ use App\Http\Resources\ChuanDauRaCreateResource;
 use App\Http\Resources\ChuanDauRaUpdateResource;
 use App\Models\ChuanDauRa;
 use App\Service\ChuanDauRaService;
+use App\Service\ChuongTrinhDaoTaoService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 
@@ -87,10 +88,18 @@ class ChuanDauRaController extends Controller
     public function show($id)
     {
         $CDRService = new ChuanDauRaService();
+        $ctdt = new ChuongTrinhDaoTaoService();
+        $itemCTDT = $ctdt->getCTDT($id);
         $listItem = $CDRService->getList($id);
-        if (empty(json_decode( $listItem))) {
+        if (empty(json_decode($itemCTDT))) {
             return response()->json([
                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        if (!empty(json_decode($itemCTDT)) && empty(json_decode($listItem))) {
+            return response()->json([
+                'idCTDT'=>intval($id),
+                'data' => []
             ]);
         }
         $listCDR =  ChuanDauRaUpdateReSource::collection($listItem);
