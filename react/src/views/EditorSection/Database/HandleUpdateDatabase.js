@@ -2,6 +2,7 @@ import axios from "axios"
 import { handleUpdateSectionC } from "./HandleActionSectionC"
 import { handleUpdateSectionA } from "./HandelActionSectionA"
 import { handleUpdateSectionB } from "./HandelActionSectionB"
+import { handleUpdateSectionD } from "./HandleActionSectionD"
 
 const postData = async (api, url, payload, completeMessage, errorMessage) => {
     const apiURL = api + url
@@ -47,9 +48,11 @@ const handleUpdateDatabase = ({ currentSection, currentId, api, thisE }) => {
         case 'C':
             isSuccess = isSuccess && handleUpdateSectionC(currentId, api)
             break
+        case 'D':
+            handleUpdateSectionD(currentId, api)
     }
 
-    console.log(thisE, isSuccess)
+    // console.log(thisE, isSuccess)
 }
 
 function getParent(element, className) {

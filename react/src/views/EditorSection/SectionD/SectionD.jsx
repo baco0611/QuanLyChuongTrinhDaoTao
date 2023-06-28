@@ -92,8 +92,8 @@ function SectionD() {
     })
 
     const fecthAPI = (id) => {
-        // const sectionDValueApi = `${apiURL}/sectionD/${id}`
-        const sectionDValueApi = `${fakeApi}/sectionD/${id}`
+        const sectionDValueApi = `${apiURL}/sectionD/${id}`
+        // const sectionDValueApi = `${fakeApi}/sectionD/${id}`
         return async () => {
             await axios.get(sectionDValueApi) 
                 .then(response => {
@@ -110,7 +110,8 @@ function SectionD() {
                             setSectionDKyNangMem,
                             setSectionDThaiDoCN,
                             setSectionDThaiDoNN,
-                            setSectionDThaiDoXH
+                            setSectionDThaiDoXH,
+                            idCTDT: id
                         })
                 })
                 .catch(error => {

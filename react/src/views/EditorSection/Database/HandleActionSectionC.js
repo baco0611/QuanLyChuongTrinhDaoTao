@@ -89,8 +89,20 @@ const handleUpdateSectionC = (id, api) => {
     const sectionCElement = JSON.parse(localStorage.getItem(`sectionC-${id}`))
     const sectionCDelete = JSON.parse(localStorage.getItem(`sectionC-delete-${id}`))
 
-    const deleteElement = sectionCDelete.filter(item => item.id != '').map(item => {return {id: item.id, idCTDT: item.idCTDT}})
-    const createElement = sectionCElement.filter(item => item.id == '').map(item => {return {kiHieu:item.kiHieu, noiDung: item.noiDung, loaiMucTieu: item.loaiMucTieu, idCTDT: item.idCTDT}})
+    const deleteElement = sectionCDelete.filter(item => item.id != '').map(item => {
+        return {
+            id: item.id, 
+            idCTDT: item.idCTDT
+        }
+    })
+    const createElement = sectionCElement.filter(item => item.id == '').map(item => {
+        return {
+                kiHieu:item.kiHieu, 
+                noiDung: item.noiDung, 
+                loaiMucTieu: item.loaiMucTieu, 
+                idCTDT: item.idCTDT
+            }
+        })
     const updateElement = sectionCElement.filter(item => item.id != '')
 
     // debugger
