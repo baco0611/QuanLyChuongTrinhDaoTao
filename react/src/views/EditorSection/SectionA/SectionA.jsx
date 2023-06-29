@@ -34,6 +34,7 @@ function SectionA() {
         vanBangTotNghiep: '',
         khaNangNangCaoTrinhDo: '',
         chuongTrinhThamKhao: '',
+        viTriViecLamSauTotNghiep: ''
     })
 
     const [ sectionAChuyenNganh, setSectionAChuyenNganh ] = useState({
@@ -105,18 +106,18 @@ function SectionA() {
             })
     }
 
-    const handleChangeTextArea = e => {
-        const value = e.target.value.split(' ')
+    const handleChangeTextArea = (e, max) => {
+        const value = e.target.value
 
-        if(value.length > 40)
+        if(value.length > max)
             setSectionAValue({
                 ...sectionAValue,
-                [e.target.name]: value.slice(0, 40).join(' ')
+                [e.target.name]: value.slice(0, max)
             })
         else
             setSectionAValue({
                 ...sectionAValue,
-                [e.target.name]: value.join(' ')
+                [e.target.name]: value
             })
     }
 
@@ -348,7 +349,7 @@ function SectionA() {
                                 type="text"
                                 name="dieuKienTotNghiep"
                                 value={sectionAValue.dieuKienTotNghiep.replaceAll('\\n', '\n')}
-                                onChange={handleChangeValue}
+                                onChange={ e => handleChangeTextArea(e, 1500)}
                                 rows={20}
                                 autoComplete="off"
                             />
@@ -377,15 +378,15 @@ function SectionA() {
                             <h4>14. Vị trí làm việc sau khi tốt nghiệp</h4>
                             <ul>
                                 <li>Mỗi ý được viết trên một dòng duy nhất</li>
-                                <li>Viết tối đa 40 từ</li>
+                                <li>Viết tối đa 4000 kí tự</li>
                             </ul>
                         </div>
                         <div>
                             <textarea
                                 type="text"
-                                name="khoaQuanLyChuongTrinh"
-                                value={sectionAValue.khoaQuanLyChuongTrinh}
-                                onChange={handleChangeTextArea}
+                                name="viTriViecLamSauTotNghiep"
+                                value={sectionAValue.viTriViecLamSauTotNghiep}
+                                onChange={ e => handleChangeTextArea(e, 1500)}
                                 rows={20}
                                 autoComplete="off"
                             />
@@ -396,15 +397,15 @@ function SectionA() {
                             <h4>15. Khả năng nâng cao trình độ</h4>
                             <ul>
                                 <li>Mỗi ý được viết trên một dòng duy nhất</li>
-                                <li>Viết tối đa 40 từ</li>
+                                <li>Viết tối đa 200 kí tự</li>
                             </ul>
                         </div>
                         <div>
                             <textarea
                                 type="text"
                                 name="khaNangNangCaoTrinhDo"
-                                value={sectionAValue.khaNangNangCaoTrinhDo.replace('\\n', '\n-')}
-                                onChange={handleChangeTextArea}
+                                value={sectionAValue.khaNangNangCaoTrinhDo.replace('\\n', '\n')}
+                                onChange={e => handleChangeTextArea(e, 200)}
                                 rows={20}
                                 autoComplete="off"
                             />
@@ -416,6 +417,7 @@ function SectionA() {
                             <ul>
                                 <li>Mỗi ý được viết trên một dòng duy nhất</li>
                                 <li>Liệt kê ít nhất 3 chương trình chuẩn đã tham chiếu khi xây dựng chuẩn đầu ra</li>
+                                <li>Không quá 1500 kí tự</li>
                             </ul>
                         </div>
                         <div>
@@ -423,7 +425,7 @@ function SectionA() {
                                 type="text"
                                 name="chuongTrinhThamKhao"
                                 value={sectionAValue.chuongTrinhThamKhao}
-                                onChange={handleChangeValue}
+                                onChange={ e => handleChangeTextArea(e, 1500)}
                                 rows={20}
                                 autoComplete="off"
                             />

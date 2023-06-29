@@ -1,11 +1,21 @@
 import { useParams } from "react-router-dom"
 import { handleChangeValueC, handleClickDeleteC } from "../Database/HandleActionSectionC"
 import { Draggable } from "react-beautiful-dnd"
+import { useEffect } from "react"
 
 function POElement({ item, type, index, typeIndex, setState, data, setDelete }) {
 
     const { id } = useParams()
     const sourceData = data
+
+    useEffect(() => {
+        const elements = document.querySelectorAll('textarea')
+
+        elements.forEach(item => {
+            item.style.height = 'auto'
+            item.style.height = `${item.scrollHeight}px`
+        })
+    })
 
     return (
         <Draggable 
@@ -32,10 +42,10 @@ function POElement({ item, type, index, typeIndex, setState, data, setDelete }) 
                         onChange={() => handleChangeValueC({ type, setState })}
                         data-idctdt={id}
                         autoComplete="off"
-                        onInput={(e) => {
-                            e.target.style.height = 'auto'
-                            e.target.style.height = `${e.target.scrollHeight}px`
-                        }}
+                        // onInput={(e) => {
+                        //     e.target.style.height = 'auto'
+                        //     e.target.style.height = `${e.target.scrollHeight}px`
+                        // }}
                     />
                     <button 
                         className="minus"

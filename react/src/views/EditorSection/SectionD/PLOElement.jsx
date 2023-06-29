@@ -1,10 +1,20 @@
 import { useParams } from "react-router-dom"
 import { handleChangeValueD, handleClickDeleteD } from "../Database/HandleActionSectionD"
 import { Draggable } from "react-beautiful-dnd"
+import { useEffect } from "react"
 
 function PLOElement({ item, type, index, typeDetail, setState, setDelete, data, typeIndex }) {
     const { id } = useParams()
     const sourceData = data
+
+    useEffect(() => {
+        const elements = document.querySelectorAll('textarea')
+
+        elements.forEach(item => {
+            item.style.height = 'auto'
+            item.style.height = `${item.scrollHeight}px`
+        })
+    })
 
     return (
         <Draggable
