@@ -1,0 +1,247 @@
+{
+    "sectionA-ChuyenNganh": {
+        "id": 10005,
+        "data": []
+    },
+    "sectionD": [
+        {
+            "id": 10005,
+            "data": [
+                {
+                    "id": 1,
+                    "kiHieu": "PLO - 1.1.1",
+                    "noiDung": "Chuẩn PLO - 1.1.1",
+                    "loaiChuanDauRa": "KIEN_THUC",
+                    "loaiChuanDauRaChiTiet": "KIEN_THUC_DAI_HOC_HUE",
+                    "trinhDoNangLuc": 4,
+                    "idCTDT": 10005
+                },
+                {
+                    "id": 2,
+                    "kiHieu": "PLO - 1.1.2",
+                    "noiDung": "Chuẩn PLO - 1.1.2",
+                    "loaiChuanDauRa": "KIEN_THUC",
+                    "loaiChuanDauRaChiTiet": "KIEN_THUC_DAI_HOC_HUE",
+                    "trinhDoNangLuc": 3,
+                    "idCTDT": 10005
+                },
+                {
+                    "id": 3,
+                    "kiHieu": "PLO - 1.2.1",
+                    "noiDung": "Chuẩn PLO - 1.2.1",
+                    "loaiChuanDauRa": "KIEN_THUC",
+                    "loaiChuanDauRaChiTiet": "KIEN_THUC_DAI_HOC_KHOA_HOC",
+                    "trinhDoNangLuc": 4,
+                    "idCTDT": 10005
+                },
+                {
+                    "id": 4,
+                    "kiHieu": "PLO - 1.3.1",
+                    "noiDung": "Chuẩn PLO - 1.3.1",
+                    "loaiChuanDauRa": "KIEN_THUC",
+                    "loaiChuanDauRaChiTiet": "KIEN_THUC_LINH_VUC",
+                    "trinhDoNangLuc": 2,
+                    "idCTDT": 10005
+                },
+                {
+                    "id": 5,
+                    "kiHieu": "PLO - 1.4.1",
+                    "noiDung": "Chuẩn PLO - 1.4.1",
+                    "loaiChuanDauRa": "KIEN_THUC",
+                    "loaiChuanDauRaChiTiet": "KIEN_THUC_NHOM_NGANH",
+                    "trinhDoNangLuc": 4,
+                    "idCTDT": 10005
+                },
+                {
+                    "id": 6,
+                    "kiHieu": "PLO - 1.5.1",
+                    "noiDung": "Chuẩn PLO - 1.5.1",
+                    "loaiChuanDauRa": "KIEN_THUC",
+                    "loaiChuanDauRaChiTiet": "KIEN_THUC_NGANH",
+                    "trinhDoNangLuc": 4,
+                    "idCTDT": 10005
+                },
+                {
+                    "id": 7,
+                    "kiHieu": "PLO - 2.1.1",
+                    "noiDung": "Chuẩn PLO - 2.1.1",
+                    "loaiChuanDauRa": "KY_NANG",
+                    "loaiChuanDauRaChiTiet": "KY_NANG_CHUYEN_MON",
+                    "trinhDoNangLuc": 4,
+                    "idCTDT": 10005
+                },
+                {
+                    "id": 8,
+                    "kiHieu": "PLO - 2.2.1",
+                    "noiDung": "Chuẩn PLO - 2.2.1",
+                    "loaiChuanDauRa": "KY_NANG",
+                    "loaiChuanDauRaChiTiet": "KY_NANG_MEM",
+                    "trinhDoNangLuc": 4,
+                    "idCTDT": 10005
+                },
+                {
+                    "id": 9,
+                    "kiHieu": "PLO - 3.1.1",
+                    "noiDung": "Chuẩn PLO - 3.1.1",
+                    "loaiChuanDauRa": "THAI_DO",
+                    "loaiChuanDauRaChiTiet": "THAI_DO_CA_NHAN",
+                    "trinhDoNangLuc": 4,
+                    "idCTDT": 10005
+                },
+                {
+                    "id": 10,
+                    "kiHieu": "PLO - 3.2.1",
+                    "noiDung": "Chuẩn PLO - 3.2.1",
+                    "loaiChuanDauRa": "THAI_DO",
+                    "loaiChuanDauRaChiTiet": "THAI_DO_NGHE_NGHIEP",
+                    "trinhDoNangLuc": 4,
+                    "idCTDT": 10005
+                },
+                {
+                    "id": 11,
+                    "kiHieu": "PLO - 3.3.1",
+                    "noiDung": "Chuẩn PLO - 3.3.1",
+                    "loaiChuanDauRa": "THAI_DO",
+                    "loaiChuanDauRaChiTiet": "THAI_DO_XA_HOI",
+                    "trinhDoNangLuc": 4,
+                    "idCTDT": 10005
+                }
+            ]
+        }
+    ],
+    "sectionD-update": {
+        "data": [
+            {
+                "id": 1,
+                "kiHieu": "PLO - 1.1.1",
+                "noiDung": "Chuẩn PLO - 1.1.1",
+                "loaiChuanDauRa": "KIEN_THUC",
+                "loaiChuanDauRaChiTiet": "KIEN_THUC_DAI_HOC_HUE",
+                "trinhDoNangLuc": 4,
+                "idCTDT": 10005
+            },
+            {
+                "id": 2,
+                "kiHieu": "PLO - 1.1.2",
+                "noiDung": "Chuẩn PLO - 1.1.2",
+                "loaiChuanDauRa": "KIEN_THUC",
+                "loaiChuanDauRaChiTiet": "KIEN_THUC_DAI_HOC_HUE",
+                "trinhDoNangLuc": 3,
+                "idCTDT": 10005
+            },
+            {
+                "id": 3,
+                "kiHieu": "PLO - 1.2.1",
+                "noiDung": "Chuẩn PLO - 1.2.1",
+                "loaiChuanDauRa": "KIEN_THUC",
+                "loaiChuanDauRaChiTiet": "KIEN_THUC_DAI_HOC_KHOA_HOC",
+                "trinhDoNangLuc": 4,
+                "idCTDT": 10005
+            },
+            {
+                "id": 4,
+                "kiHieu": "PLO - 1.3.1",
+                "noiDung": "Chuẩn PLO - 1.3.1",
+                "loaiChuanDauRa": "KIEN_THUC",
+                "loaiChuanDauRaChiTiet": "KIEN_THUC_LINH_VUC",
+                "trinhDoNangLuc": 2,
+                "idCTDT": 10005
+            },
+            {
+                "id": 5,
+                "kiHieu": "PLO - 1.4.1",
+                "noiDung": "Chuẩn PLO - 1.4.1",
+                "loaiChuanDauRa": "KIEN_THUC",
+                "loaiChuanDauRaChiTiet": "KIEN_THUC_NHOM_NGANH",
+                "trinhDoNangLuc": 4,
+                "idCTDT": 10005
+            },
+            {
+                "id": 6,
+                "kiHieu": "PLO - 1.5.1",
+                "noiDung": "Chuẩn PLO - 1.5.1",
+                "loaiChuanDauRa": "KIEN_THUC",
+                "loaiChuanDauRaChiTiet": "KIEN_THUC_NGANH",
+                "trinhDoNangLuc": 4,
+                "idCTDT": 10005
+            },
+            {
+                "id": 7,
+                "kiHieu": "PLO - 2.1.1",
+                "noiDung": "Chuẩn PLO - 2.1.1",
+                "loaiChuanDauRa": "KY_NANG",
+                "loaiChuanDauRaChiTiet": "KY_NANG_CHUYEN_MON",
+                "trinhDoNangLuc": 4,
+                "idCTDT": 10005
+            },
+            {
+                "id": 8,
+                "kiHieu": "PLO - 2.2.1",
+                "noiDung": "Chuẩn PLO - 2.2.1",
+                "loaiChuanDauRa": "KY_NANG",
+                "loaiChuanDauRaChiTiet": "KY_NANG_MEM",
+                "trinhDoNangLuc": 4,
+                "idCTDT": 10005
+            },
+            {
+                "id": 9,
+                "kiHieu": "PLO - 3.1.1",
+                "noiDung": "Chuẩn PLO - 3.1.1",
+                "loaiChuanDauRa": "THAI_DO",
+                "loaiChuanDauRaChiTiet": "THAI_DO_CA_NHAN",
+                "trinhDoNangLuc": 4,
+                "idCTDT": 10005
+            },
+            {
+                "id": 10,
+                "kiHieu": "PLO - 3.2.1",
+                "noiDung": "Chuẩn PLO - 3.2.1",
+                "loaiChuanDauRa": "THAI_DO",
+                "loaiChuanDauRaChiTiet": "THAI_DO_NGHE_NGHIEP",
+                "trinhDoNangLuc": 4,
+                "idCTDT": 10005
+            },
+            {
+                "id": 11,
+                "kiHieu": "PLO - 3.3.1",
+                "noiDung": "Chuẩn PLO - 3.3.1",
+                "loaiChuanDauRa": "THAI_DO",
+                "loaiChuanDauRaChiTiet": "THAI_DO_XA_HOI",
+                "trinhDoNangLuc": 4,
+                "idCTDT": 10005
+            }
+        ]
+    },
+    "sectionD-delete": {
+        "deleteData": [
+            {
+                "id": 1,
+                "idCTDT": 10005
+            },
+            {
+                "id": 2,
+                "idCTDT": 10005
+            }
+        ]
+    },
+    "sectionD-create": {
+        "data": [
+            {
+                "kiHieu": "PLO - 1.1.1",
+                "noiDung": "Chuẩn PLO - 1.1.1",
+                "loaiChuanDauRa": "KIEN_THUC",
+                "loaiChuanDauRaChiTiet": "KIEN_THUC_DAI_HOC_HUE",
+                "trinhDoNangLuc": 4,
+                "idCTDT": 10005
+            },
+            {
+                "kiHieu": "PLO - 1.1.2",
+                "noiDung": "Chuẩn PLO - 1.1.2",
+                "loaiChuanDauRa": "KIEN_THUC",
+                "loaiChuanDauRaChiTiet": "KIEN_THUC_DAI_HOC_HUE",
+                "trinhDoNangLuc": 3,
+                "idCTDT": 10005
+            }
+        ]
+    }
+}

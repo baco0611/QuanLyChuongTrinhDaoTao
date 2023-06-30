@@ -24,7 +24,7 @@ class ChuongTrinhDaoTaoService
      DB::table('ChuongTrinhDaoTao')
         ->where('idChuongTrinh', $request['id'])
         ->update([
-            "phienBan"=>$request['phienBan'],
+            // "phienBan"=>$request['phienBan'],
             "tenTiengViet"=>$request['tenTiengViet'],
             "tenTiengAnh" =>$request['tenTiengAnh'],
             "trinhDoDaoTao"=>$request['trinhDoDaoTao'],

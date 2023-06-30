@@ -25,7 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 #login
 Route::post('user', [LoginController::class,'store'])->name('user.store');//viet api nay de tao mk md5 trong db
 Route::post('login', [LoginController::class,'login'])->name('check.login');
