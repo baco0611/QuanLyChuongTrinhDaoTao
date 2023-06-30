@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ChuyenNganhDaoTaoResource extends JsonResource
+class MaTranChuanDauRaMucTieuResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,8 +15,9 @@ class ChuyenNganhDaoTaoResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'idChuyenNganh' => $this->idChuyenNganh,
-            'tenChuyenNganh'=> $this->tenChuyenNganh 
+            "idMaTran"=>intval($this->idMaTran),
+            "PLO"=>intval($this->idChuanDauRa),
+            "PO"=>intval($this->idMucTieu)
         ];
     }
 }
