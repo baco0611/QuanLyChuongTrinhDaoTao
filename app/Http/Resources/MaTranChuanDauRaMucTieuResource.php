@@ -15,7 +15,7 @@ class MaTranChuanDauRaMucTieuResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "idMaTran"=>intval($this->idMaTran),
+            "id"=>intval($this->idMaTran),
             "PLO"=>intval($this->idChuanDauRa),
             "PO"=>intval($this->idMucTieu)
         ];
