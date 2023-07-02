@@ -33,10 +33,14 @@ class MaTranChuanDauRaMucTieuController extends Controller
     {
         $data = $request['data'];
         $idChuongTrinh = $request['idCTDT'];
+        $MaTranService = new MaTranChuanDauRaMucTieuService();
+        $listItem = $MaTranService->getList($idChuongTrinh);
+        $listMaTran = MaTranChuanDauRaMucTieuResource::collection($listItem);
         if (empty($data)) {
             return response()->json([
                 'idCTDT'=>intval($idChuongTrinh),
-                'data' => []
+                'data' => $listMaTran,
+                'status'=>HttpResponse::HTTP_OK
             ]);
         }
        foreach($data as $val) {
@@ -46,9 +50,6 @@ class MaTranChuanDauRaMucTieuController extends Controller
            $matran->idMucTieu=$val['PO'];
            $matran->save();
        }
-       $MaTranService = new MaTranChuanDauRaMucTieuService();
-       $listItem = $MaTranService->getList($idChuongTrinh);
-       $listMaTran = MaTranChuanDauRaMucTieuResource::collection($listItem);
        return response()->json([
         'idCTDT'=>intval($idChuongTrinh),
         'data' => $listMaTran,
