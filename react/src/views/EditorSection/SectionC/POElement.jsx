@@ -6,7 +6,7 @@ import { useEffect } from "react"
 function POElement({ item, type, index, typeIndex, setState, data, setDelete }) {
 
     const { id } = useParams()
-    const sourceData = data
+    const sourceData = data.data
 
     useEffect(() => {
         const elements = document.querySelectorAll('textarea')
@@ -49,7 +49,7 @@ function POElement({ item, type, index, typeIndex, setState, data, setDelete }) 
                     />
                     <button 
                         className="minus"
-                        onClick={(e) => {handleClickDeleteC({ e, setState, data: sourceData, setDelete, idctdt: Number.parseInt(id) })}}
+                        onClick={(e) => {handleClickDeleteC({ e, setState, setDelete, idctdt: Number.parseInt(id), data: sourceData, type: data.type })}}
                     >
                         <i className="iconoir-minus-square"></i>
                     </button>

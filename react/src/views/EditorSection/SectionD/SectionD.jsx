@@ -21,53 +21,43 @@ function SectionD() {
     const [ isHiddenC, setIsHiddenC ] = useState(true)
     const [ sectionDKienThucDHH, setSectionDKienThucDHH ] = useState({
         typeDetail: 'KIEN_THUC_DAI_HOC_HUE',
-        data: [],
-        max: 2
+        data: []
     })
     const [ sectionDKienThucDHKH, setSectionDKienThucDHKH ] = useState({
         typeDetail: 'KIEN_THUC_DAI_HOC_KHOA_HOC',
-        data: [],
-        max: 2
+        data: []
     })
     const [ sectionDKienThucLV, setSectionDKienThucLV ] = useState({
         typeDetail: 'KIEN_THUC_LINH_VUC',
-        data: [],
-        max: 1
+        data: []
     })
     const [ sectionDKienThucNN, setSectionDKienThucNN ] = useState({
         typeDetail: 'KIEN_THUC_NHOM_NGANH',
-        data: [],
-        max: 1
+        data: []
     })
     const [ sectionDKienThucN, setSectionDKienThucN ] = useState({
         typeDetail: 'KIEN_THUC_NGANH',
-        data: [],
-        max: 5
+        data: []
     })
     const [ sectionDKyNangCM, setSectionDKyNangCM ] = useState({
         typeDetail: 'KY_NANG_CHUYEN_MON',
-        data: [],
-        max: 5
+        data: []
     })
     const [ sectionDKyNangMem, setSectionDKyNangMem ] = useState({
         typeDetail: 'KY_NANG_MEM',
-        data: [],
-        max: 3
+        data: []
     })
     const [ sectionDThaiDoCN, setSectionDThaiDoCN ] = useState({
         typeDetail: 'THAI_DO_CA_NHAN',
-        data: [],
-        max: 2
+        data: []
     })
     const [ sectionDThaiDoNN, setSectionDThaiDoNN ] = useState({
         typeDetail: 'THAI_DO_NGHE_NGHIEP',
-        data: [],
-        max: 2
+        data: []
     })
     const [ sectionDThaiDoXH, setSectionDThaiDoXH ] = useState({
         typeDetail: 'THAI_DO_XA_HOI',
-        data: [],
-        max: 2
+        data: []
     })
     const [ deleteElement, setDeleteElement ] = useState([])
 
