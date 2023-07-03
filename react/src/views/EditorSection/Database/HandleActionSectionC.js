@@ -12,47 +12,23 @@ const sortCondition = (a, b) => {
     return aK < bK ? -1 : 1
 }
 
-const handleSplitSectionC = ({ data, setSectionCKienThuc, setSectionCKyNang, setSectionCThaiDo, setSectionCValue }) => {
-    const idctdt = data[0].idCTDT
+const handleSplitSectionC = ({ data, setSectionCValue, idctdt }) => {
 
-    const KIEN_THUC = data.filter(item => item.loaiMucTieu === 'KIEN_THUC')
-    KIEN_THUC.sort(sortCondition)
-    setSectionCValue(prev => {
-        const kienThuc = prev.KIEN_THUC
-        return {
-            ...prev,
-            KIEN_THUC: {
-                ...kienThuc,
-                data: handleChangeDataC(KIEN_THUC, 'KIEN_THUC', 1, idctdt)
-            }
-        }
-    })
-    
+    const typeList = ['KIEN_THUC', 'KY_NANG', 'THAI_DO']
 
-    const KY_NANG = data.filter(item => item.loaiMucTieu === 'KY_NANG')
-    KY_NANG.sort(sortCondition)
-    setSectionCValue(prev => {
-        const kyNang = prev.KY_NANG
-        return {
-            ...prev,
-            KY_NANG: {
-                ...kyNang,
-                data: handleChangeDataC(KY_NANG, 'KY_NANG', 2, idctdt)
+    typeList.forEach(type => {
+        const dataList = data.filter(item => item.loaiMucTieu === type)
+        dataList.sort(sortCondition)
+        setSectionCValue(prev => {
+            const dataType = prev[type]
+            return {
+                ...prev,
+                [type]: {
+                    ...dataType,
+                    data: handleChangeDataC(dataList, type, dataType.typeIndex, idctdt)
+                }
             }
-        }
-    })
-
-    const THAI_DO = data.filter(item => item.loaiMucTieu === 'THAI_DO')
-    THAI_DO.sort(sortCondition)
-    setSectionCValue(prev => {
-        const thaiDo = prev.THAI_DO
-        return {
-            ...prev,
-            THAI_DO: {
-                ...thaiDo,
-                data: handleChangeDataC(THAI_DO, 'THAI_DO', 3, idctdt)
-            }
-        }
+        })     
     })
 }
 

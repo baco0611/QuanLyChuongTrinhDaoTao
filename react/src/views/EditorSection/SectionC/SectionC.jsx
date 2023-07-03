@@ -35,7 +35,6 @@ function SectionC() {
     })
     const [ deleteElement, setDeleteElement ] = useState([])
 
-    console.log(sectionCValue)
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -51,7 +50,8 @@ function SectionC() {
                     if(restData.data)
                         handleSplitSectionC({ 
                             data: restData.data,
-                            setSectionCValue
+                            setSectionCValue,
+                            idctdt: id
                         })
                 })
                 .catch(error => {
