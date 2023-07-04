@@ -31,7 +31,7 @@ function PLOElement({ item, type, index, typeDetail, setState, setDelete, data, 
                         data-index={index+1}
                         data-idctdt={id}
                         autoComplete="off"
-                        onChange={() => handleChangeValueD({ typeDetail, setState })}
+                        onChange={() => handleChangeValueD({ typeDetail, setState, type })}
                         onInput={(e) => {
                             e.target.style.height = 'auto'
                             e.target.style.height = `${e.target.scrollHeight}px`

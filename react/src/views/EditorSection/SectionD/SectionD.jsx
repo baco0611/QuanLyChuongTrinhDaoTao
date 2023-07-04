@@ -16,67 +16,97 @@ function SectionD() {
     const { id } = useParams()
     const { apiURL, fakeApi } = useContext(UserContext)
     const navigate = useNavigate()
-    const [ isHiddenA, setIsHiddenA ] = useState(true)
-    const [ isHiddenB, setIsHiddenB ] = useState(true)
-    const [ isHiddenC, setIsHiddenC ] = useState(true)
-    const [ sectionDKienThucDHH, setSectionDKienThucDHH ] = useState({
-        typeDetail: 'KIEN_THUC_DAI_HOC_HUE',
-        data: []
-    })
-    const [ sectionDKienThucDHKH, setSectionDKienThucDHKH ] = useState({
-        typeDetail: 'KIEN_THUC_DAI_HOC_KHOA_HOC',
-        data: []
-    })
-    const [ sectionDKienThucLV, setSectionDKienThucLV ] = useState({
-        typeDetail: 'KIEN_THUC_LINH_VUC',
-        data: []
-    })
-    const [ sectionDKienThucNN, setSectionDKienThucNN ] = useState({
-        typeDetail: 'KIEN_THUC_NHOM_NGANH',
-        data: []
-    })
-    const [ sectionDKienThucN, setSectionDKienThucN ] = useState({
-        typeDetail: 'KIEN_THUC_NGANH',
-        data: []
-    })
-    const [ sectionDKyNangCM, setSectionDKyNangCM ] = useState({
-        typeDetail: 'KY_NANG_CHUYEN_MON',
-        data: []
-    })
-    const [ sectionDKyNangMem, setSectionDKyNangMem ] = useState({
-        typeDetail: 'KY_NANG_MEM',
-        data: []
-    })
-    const [ sectionDThaiDoCN, setSectionDThaiDoCN ] = useState({
-        typeDetail: 'THAI_DO_CA_NHAN',
-        data: []
-    })
-    const [ sectionDThaiDoNN, setSectionDThaiDoNN ] = useState({
-        typeDetail: 'THAI_DO_NGHE_NGHIEP',
-        data: []
-    })
-    const [ sectionDThaiDoXH, setSectionDThaiDoXH ] = useState({
-        typeDetail: 'THAI_DO_XA_HOI',
-        data: []
+    const [ isHiddenA, setIsHiddenA ] = useState(false)
+    const [ isHiddenB, setIsHiddenB ] = useState(false)
+    const [ isHiddenC, setIsHiddenC ] = useState(false)
+    const [ sectionDValue, setSectionDValue ] = useState({
+        KIEN_THUC: {
+            KIEN_THUC_DAI_HOC_HUE: {
+                type: 'KIEN_THUC',
+                typeDetail: 'KIEN_THUC_DAI_HOC_HUE',
+                data: [],
+                typeIndex: '1.1'
+            },
+            KIEN_THUC_DAI_HOC_KHOA_HOC: {
+                type: 'KIEN_THUC',
+                typeDetail: 'KIEN_THUC_DAI_HOC_KHOA_HOC',
+                data: [],
+                typeIndex: '1.2'
+            },
+            KIEN_THUC_LINH_VUC: {
+                type: 'KIEN_THUC',
+                typeDetail: 'KIEN_THUC_LINH_VUC',
+                data: [],
+                typeIndex: '1.3'
+            },
+            KIEN_THUC_NHOM_NGANH: {
+                type: 'KIEN_THUC',
+                typeDetail: 'KIEN_THUC_NHOM_NGANH',
+                data: [],
+                typeIndex: '1.4'
+            },
+            KIEN_THUC_NGANH: {
+                type: 'KIEN_THUC',
+                typeDetail: 'KIEN_THUC_NGANH',
+                data: [],
+                typeIndex: '1.5'
+            }
+        },
+        KY_NANG: {
+            KY_NANG_CHUYEN_MON: {
+                type: 'KY_NANG',
+                typeDetail: 'KY_NANG_CHUYEN_MON',
+                data: [],
+                typeIndex: '2.1'
+            },
+            KY_NANG_MEM: {
+                type: 'KY_NANG',
+                typeDetail: 'KY_NANG_CHUYEN_MEM',
+                data: [],
+                typeIndex: '2.2'
+            }
+        },
+        THAI_DO: {
+            THAI_DO_CA_NHAN: {
+                type: 'THAI_DO',
+                typeDetail: 'THAI_DO_CA_NHAN',
+                data: [],
+                typeIndex: '3.1'
+            },
+            THAI_DO_NGHE_NGHIEP: {
+                type: 'THAI_DO',
+                typeDetail: 'THAI_DO_NGHE_NGHIEP',
+                data: [],
+                typeIndex: '3.2'
+            },
+            THAI_DO_XA_HOI: {
+                type: 'THAI_DO',
+                typeDetail: 'THAI_DO_XA_HOI',
+                data: [],
+                typeIndex: '3.3'
+            }
+        }
     })
     const [ deleteElement, setDeleteElement ] = useState([])
 
+
+    console.log(sectionDValue)
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
 
     useEffect(() => {
         localStorage.setItem(`sectionD-${id}`, JSON.stringify([
-            ...sectionDKienThucDHH.data,
-            ...sectionDKienThucDHKH.data,
-            ...sectionDKienThucLV.data,
-            ...sectionDKienThucNN.data,
-            ...sectionDKienThucN.data,
-            ...sectionDKyNangCM.data,
-            ...sectionDKyNangMem.data,
-            ...sectionDThaiDoCN.data,
-            ...sectionDThaiDoNN.data,
-            ...sectionDThaiDoXH.data
+            ...sectionDValue.KIEN_THUC.KIEN_THUC_DAI_HOC_HUE.data,
+            ...sectionDValue.KIEN_THUC.KIEN_THUC_DAI_HOC_KHOA_HOC.data,
+            ...sectionDValue.KIEN_THUC.KIEN_THUC_LINH_VUC.data,
+            ...sectionDValue.KIEN_THUC.KIEN_THUC_NHOM_NGANH.data,
+            ...sectionDValue.KIEN_THUC.KIEN_THUC_NGANH.data,
+            ...sectionDValue.KY_NANG.KY_NANG_CHUYEN_MON.data,
+            ...sectionDValue.KY_NANG.KY_NANG_MEM.data,
+            ...sectionDValue.THAI_DO.THAI_DO_CA_NHAN.data,
+            ...sectionDValue.THAI_DO.THAI_DO_NGHE_NGHIEP.data,
+            ...sectionDValue.THAI_DO.THAI_DO_XA_HOI.data
         ]))
         localStorage.setItem(`sectionD-delete-${id}`, JSON.stringify(deleteElement))
     })
@@ -91,16 +121,7 @@ function SectionD() {
                     if(restData.data)
                         handleSplitSectionD({ 
                             data: restData.data,
-                            setSectionDKienThucDHH,
-                            setSectionDKienThucDHKH,
-                            setSectionDKienThucLV,
-                            setSectionDKienThucN,
-                            setSectionDKienThucNN,
-                            setSectionDKyNangCM,
-                            setSectionDKyNangMem,
-                            setSectionDThaiDoCN,
-                            setSectionDThaiDoNN,
-                            setSectionDThaiDoXH,
+                            setSectionDValue,
                             idCTDT: id
                         })
                 })
@@ -126,154 +147,102 @@ function SectionD() {
         console.log(results)
         const { source, destination, type } = results
 
-        const PLOSelector = {
-            KIEN_THUC_DAI_HOC_HUE: {
-                data: sectionDKienThucDHH,
-                setState: setSectionDKienThucDHH,
-                type: 'KIEN_THUC',
-                typeIndex: '1.1',
-                typeDetail: 'KIEN_THUC_DAI_HOC_HUE'
-            },
-            KIEN_THUC_DAI_HOC_KHOA_HOC: {
-                data: sectionDKienThucDHKH,
-                setState: setSectionDKienThucDHKH,
-                type: 'KIEN_THUC',
-                typeIndex: '1.2',
-                typeDetail: 'KIEN_THUC_DAI_HOC_KHOA_HOC'
-            },
-            KIEN_THUC_LINH_VUC: {
-                data: sectionDKienThucLV,
-                setState: setSectionDKienThucLV,
-                type: 'KIEN_THUC',
-                typeIndex: '1.3',
-                typeDetail: 'KIEN_THUC_LINH_VUC'
-            },
-            KIEN_THUC_NHOM_NGANH: {
-                data: sectionDKienThucNN,
-                setState: setSectionDKienThucNN,
-                type: 'KIEN_THUC',
-                typeIndex: '1.4',
-                typeDetail: 'KIEN_THUC_NHOM_NGANH'
-            },
-            KIEN_THUC_NGANH: {
-                data: sectionDKienThucN,
-                setState: setSectionDKienThucN,
-                type: 'KIEN_THUC',
-                typeIndex: '1.5',
-                typeDetail: 'KIEN_THUC_NGANH'
-            },
-            KY_NANG_CHUYEN_MON: {
-                data: sectionDKyNangCM,
-                setState: setSectionDKyNangCM,
-                type: 'KY_NANG',
-                typeIndex: '2.1',
-                typeDetail: 'KY_NANG_CHUYEN_MON'
-            },
-            KY_NANG_MEM: {
-                data: sectionDKyNangMem,
-                setState: setSectionDKyNangMem,
-                type: 'KY_NANG',
-                typeIndex: '2.2',
-                typeDetail: 'KY_NANG_CHUYEN_MEM'
-            },
-            THAI_DO_CA_NHAN: {
-                data: sectionDThaiDoCN,
-                setState: setSectionDThaiDoCN,
-                type: 'THAI_DO',
-                typeIndex: '3.1',
-                typeDetail: 'THAI_DO_CA_NHAN'
-            },
-            THAI_DO_NGHE_NGHIEP: {
-                data: sectionDThaiDoNN,
-                setState: setSectionDThaiDoNN,
-                type: 'THAI_DO',
-                typeIndex: '3.2',
-                typeDetail: 'THAI_DO_NGHE_NGHIEP'
-            },
-            THAI_DO_XA_HOI: {
-                data: sectionDThaiDoXH,
-                setState: setSectionDThaiDoXH,
-                type: 'THAI_DO',
-                typeIndex: '3.3',
-                typeDetail: 'THAI_DO_XA_HOI'
-            }
-        }
-
         if(!destination) return
 
         if(source.droppableId === destination.droppableId && source.index === destination.index) return 
 
         if(type === 'PLO') {
-            const deleteElement = ({ source, list, typeIndex, typeDetail, type }) => {
-                const index = source.index
-                return handleChangeDataD([...list.slice(0, index), ...list.slice(index + 1)], type, typeDetail, typeIndex, id)
-            }
 
-            const addElement = ({ data, destination, list, typeIndex, typeDetail, type  }) => {
-                const index = destination.index
-                return handleChangeDataD([...list.slice(0, index), data, ...list.slice(index)], type, typeDetail, typeIndex, id)
-            }
+            const handleChangeIndexComponent = ({ source, destination }) => {
+                const [ sourceType, sourceTypeDetail ] = source.droppableId.split('/')
+                const [ destinationType, destinationTypeDetail ] = destination.droppableId.split('/')
 
-            const changeIndex = ({ source, destination, list, setState, type, typeIndex, typeDetail }) => {
-                const data = list.data
-                
-                const removedElement = data.splice(source.index, 1)[0]
-                data.splice(destination.index, 0, removedElement);
+                setSectionDValue(prev => {
+                    const dataSource = prev[sourceType]
+                    const dataSourceDetail = dataSource[sourceTypeDetail]
+                    const sourceList = dataSourceDetail.data 
+                    const data = sourceList[source.index]
 
-                setState(prev => {
+                    const dataDestination = prev[destinationType]
+                    const dataDestinationDetail = dataDestination[destinationTypeDetail]
+                    const destinationList = dataDestinationDetail.data
+
+                    const sourceData = handleChangeDataD(
+                        [...sourceList.slice(0, source.index), ...sourceList.slice(source.index + 1)],
+                        sourceType, sourceTypeDetail, dataSourceDetail.typeIndex, id
+                    )
+
+                    const destinationData = handleChangeDataD(
+                        [...destinationList.slice(0, destination.index), data, ...destinationList.slice(destination.index)],
+                        destinationType, destinationTypeDetail, dataDestinationDetail.typeIndex, id
+                    )
+
+                    if(sourceType !== destinationType)
+                        return {
+                            ...prev,
+                            [sourceType]: {
+                                ...dataSource,
+                                [sourceTypeDetail]: {
+                                    ...dataSourceDetail,
+                                    data: sourceData
+                                }
+                            },
+                            [destinationType]: {
+                                ...dataDestination,
+                                [destinationTypeDetail]: {
+                                    ...dataDestinationDetail,
+                                    data: destinationData
+                                }
+                            }
+                        }
+                    else 
                     return {
                         ...prev,
-                        data: handleChangeDataD(data, type, typeDetail, typeIndex, id)
+                        [sourceType]: {
+                            ...dataSource,
+                            [sourceTypeDetail]: {
+                                ...dataSourceDetail,
+                                data: sourceData
+                            },
+                            [destinationTypeDetail]: {
+                                ...dataDestinationDetail,
+                                data: destinationData
+                            }
+                        },
+                    }
+                })
+            }
+
+            const changeIndex = ({ source, destination }) => {
+                const [type, typeDetail] = source.droppableId.split('/')
+                
+                setSectionDValue(prev => {
+                    const typeData = prev[type]
+                    const typeDetailData = typeData[typeDetail]
+                    const list = typeDetailData.data
+
+                    const removedElement = list.splice(source.index, 1)[0]
+                    list.splice(destination.index, 0, removedElement)
+
+                    return {
+                        ...prev,
+                        [type]: {
+                            ...typeData,
+                            [typeDetail]: {
+                                ...typeDetailData,
+                                data: handleChangeDataD(list, type, typeDetail, typeDetailData.typeIndex, id)
+                            }
+                        }
                     }
                 })
             }
 
             if(source.droppableId === destination.droppableId) {
-                changeIndex({
-                    source,
-                    destination,
-                    list: PLOSelector[source.droppableId].data,
-                    setState: PLOSelector[source.droppableId].setState,
-                    typeIndex: PLOSelector[source.droppableId].typeIndex,
-                    type: PLOSelector[source.droppableId].type,
-                    typeDetail: PLOSelector[source.droppableId].typeDetail
-                })
+                changeIndex({ source, destination })
                 return
             }
 
-            const data = PLOSelector[source.droppableId].data.data[source.index]
-            const listBefore = PLOSelector[source.droppableId].data.data
-            const setDataBefore = PLOSelector[source.droppableId].setState
-
-            const listAfter = PLOSelector[destination.droppableId].data.data
-            const setDataAfter = PLOSelector[destination.droppableId].setState
-
-            setDataBefore(prev => {
-                return {
-                    ...prev,
-                    data: deleteElement({ 
-                        source, 
-                        list: listBefore,
-                        typeIndex: PLOSelector[source.droppableId].typeIndex,
-                        type: PLOSelector[source.droppableId].type,
-                        typeDetail: PLOSelector[source.droppableId].typeDetail
-                    })
-                }
-            })
-
-            setDataAfter(prev => {
-                return {
-                    ...prev,
-                    data: addElement({
-                        data,
-                        destination,
-                        list: listAfter,
-                        typeIndex: PLOSelector[destination.droppableId].typeIndex,
-                        type: PLOSelector[destination.droppableId].type,
-                        typeDetail: PLOSelector[destination.droppableId].typeDetail
-                    })
-                }
-            })
+            handleChangeIndexComponent({ source, destination })
         }
     }
 
@@ -300,38 +269,48 @@ function SectionD() {
                                     !isHiddenA &&
                                     <>
                                         <PLOSection
+                                            title={'1.1. Kiến thức chung trong toàn Đại học Huế'}
                                             type={'KIEN_THUC'}
+                                            typeDetail={'KIEN_THUC_DAI_HOC_HUE'}
                                             idCTDT={id}
-                                            data={sectionDKienThucDHH}
-                                            setState={setSectionDKienThucDHH}
+                                            data={sectionDValue}
+                                            setState={setSectionDValue}
                                             setDelete={setDeleteElement}
                                         />
                                         <PLOSection
+                                            title={'1.2. Kiến thức chung trong Trường Đại học Khoa học'}
                                             type={'KIEN_THUC'}
+                                            typeDetail={'KIEN_THUC_DAI_HOC_KHOA_HOC'}
                                             idCTDT={id}
-                                            data={sectionDKienThucDHKH}
-                                            setState={setSectionDKienThucDHKH}
+                                            data={sectionDValue}
+                                            setState={setSectionDValue}
                                             setDelete={setDeleteElement}
                                         />
                                         <PLOSection
+                                            title={'1.3. Kiến thức giáo dục cơ bản'}
                                             type={'KIEN_THUC'}
+                                            typeDetail={'KIEN_THUC_LINH_VUC'}
                                             idCTDT={id}
-                                            data={sectionDKienThucLV}
-                                            setState={setSectionDKienThucLV}
+                                            data={sectionDValue}
+                                            setState={setSectionDValue}
                                             setDelete={setDeleteElement}
                                         />
                                         <PLOSection
+                                            title={'1.4. Kiến thức chung của nhóm ngành'}
                                             type={'KIEN_THUC'}
+                                            typeDetail={'KIEN_THUC_NHOM_NGANH'}
                                             idCTDT={id}
-                                            data={sectionDKienThucNN}
-                                            setState={setSectionDKienThucNN}
+                                            data={sectionDValue}
+                                            setState={setSectionDValue}
                                             setDelete={setDeleteElement}
                                         />
                                         <PLOSection
+                                            title={'1.5. Kiến thức của ngành'}
                                             type={'KIEN_THUC'}
+                                            typeDetail={'KIEN_THUC_NGANH'}
                                             idCTDT={id}
-                                            data={sectionDKienThucN}
-                                            setState={setSectionDKienThucN}
+                                            data={sectionDValue}
+                                            setState={setSectionDValue}
                                             setDelete={setDeleteElement}
                                         />
                                     </>
@@ -344,17 +323,21 @@ function SectionD() {
                                     !isHiddenB &&
                                     <>
                                         <PLOSection
+                                            title={'2.1. Kỹ năng chuyên môn'}
                                             type={'KY_NANG'}
+                                            typeDetail={'KY_NANG_CHUYEN_MON'}
                                             idCTDT={id}
-                                            data={sectionDKyNangCM}
-                                            setState={setSectionDKyNangCM}
+                                            data={sectionDValue}
+                                            setState={setSectionDValue}
                                             setDelete={setDeleteElement}
                                         />
                                         <PLOSection
+                                            title={'2.2. Kỹ năng mềm'}
                                             type={'KY_NANG'}
+                                            typeDetail={'KY_NANG_MEM'}
                                             idCTDT={id}
-                                            data={sectionDKyNangMem}
-                                            setState={setSectionDKyNangMem}
+                                            data={sectionDValue}
+                                            setState={setSectionDValue}
                                             setDelete={setDeleteElement}
                                         />
                                     </>
@@ -366,24 +349,30 @@ function SectionD() {
                                     !isHiddenC &&
                                     <>
                                         <PLOSection
+                                            title={'3.1. Phẩm chất, đạo đức và thái độ của cá nhân'}
                                             type={'THAI_DO'}
+                                            typeDetail={'THAI_DO_CA_NHAN'}
                                             idCTDT={id}
-                                            data={sectionDThaiDoCN}
-                                            setState={setSectionDThaiDoCN}
+                                            data={sectionDValue}
+                                            setState={setSectionDValue}
                                             setDelete={setDeleteElement}
                                         />
                                         <PLOSection
+                                            title={'3.2. Phẩm chất, đạo đức và thái độ đối với nghề nghiệp'}
                                             type={'THAI_DO'}
+                                            typeDetail={'THAI_DO_NGHE_NGHIEP'}
                                             idCTDT={id}
-                                            data={sectionDThaiDoNN}
-                                            setState={setSectionDThaiDoNN}
+                                            data={sectionDValue}
+                                            setState={setSectionDValue}
                                             setDelete={setDeleteElement}
                                         />
                                         <PLOSection
+                                            title={'3.3. Phẩm chất, đạo đức và thái độ đối với xã hội'}
                                             type={'THAI_DO'}
+                                            typeDetail={'THAI_DO_XA_HOI'}
                                             idCTDT={id}
-                                            data={sectionDThaiDoXH}
-                                            setState={setSectionDThaiDoXH}
+                                            data={sectionDValue}
+                                            setState={setSectionDValue}
                                             setDelete={setDeleteElement}
                                         />
                                     </>
