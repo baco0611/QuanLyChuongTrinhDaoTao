@@ -8,7 +8,7 @@ function RowBlock({ index, title, POList, POSize, PLOList, value, setState }) {
     return (
         <>
             <tr 
-                className="title cursorPointer"
+                className="title cursorPointer sticky"
                 onClick={() => setIsHidden(!isHidden)}
             >
                 <td>{index}</td>
@@ -21,8 +21,7 @@ function RowBlock({ index, title, POList, POSize, PLOList, value, setState }) {
                     return (
                         <React.Fragment key={index}>
                             <tr 
-                                className="title sticky cursorPointer"
-                                onClick={() => setIsHidden(!isHidden)}
+                                className="title"
                             >
                                 <td>{PLO.typeIndex}.</td>
                                 <td colSpan={POSize + 1}>{PLO.title}</td>

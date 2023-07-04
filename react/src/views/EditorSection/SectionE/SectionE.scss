@@ -34,7 +34,9 @@
         }
 
         th {
-            border: .5px solid white;
+            border: .1px solid white;
+            // padding: .5px;
+            background-clip: content-box;
             background-color: $primary-color;
             color: white;
             font-weight: 700;
@@ -47,11 +49,44 @@
             position: relative;
 
             input {
-               position: absolute;
-               left: 50%;
-               top: 50%;
-               transform: translate(-50%, -50%);
-               width: 20px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 20px;
+
+                appearance: none;
+                -webkit-appearance: none;
+                height: 25px;
+                width: 25px;
+                background-color: $button-color;
+                cursor: pointer;
+                border-radius: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                    
+                &:after {
+                    content: '\e64c';
+                    font-weight: 900;
+                    font-family: 'themify';
+                    -webkit-font-smoothing: antialiased;
+	                -moz-osx-font-smoothing: grayscale;
+                    color: white;
+                    display: none;
+                }
+
+                &:hover {
+                    background-color: $gray-color;
+                }
+
+                &:checked {
+                    background-color: $primary-color;
+
+                    &:after {
+                        display: block;
+                    }
+                }
             }
         }
 
@@ -68,7 +103,7 @@
                 z-index: 100;
             }
 
-            &:hover {
+            &.cursorPointer:hover {
                 td {
                     color: $primary-color;
                 }
