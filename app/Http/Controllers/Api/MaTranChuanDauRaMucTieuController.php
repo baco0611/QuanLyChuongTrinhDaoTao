@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ChuyenNganhDaoTaoResource;
-use App\Models\ChuyenNganhDaoTao;
+use App\Http\Resources\MaTranChuanDauRaMucTieuResource;
+use App\Models\MatranChuanDauRaMucTieu;
 use App\Service\ChuongTrinhDaoTaoService;
-use App\Service\ChuyenNganhDaoTaoService;
+use App\Service\MaTranChuanDauRaMucTieuService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Response as HttpResponse;
 
-class ChuyenNganhDaoTaoController extends Controller
+
+class MaTranChuanDauRaMucTieuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,7 @@ class ChuyenNganhDaoTaoController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -33,47 +33,30 @@ class ChuyenNganhDaoTaoController extends Controller
     {
         $data = $request['data'];
         $idChuongTrinh = $request['idCTDT'];
+        $MaTranService = new MaTranChuanDauRaMucTieuService();
+        $listItem = $MaTranService->getList($idChuongTrinh);
+        $listMaTran = MaTranChuanDauRaMucTieuResource::collection($listItem);
         if (empty($data)) {
             return response()->json([
                 'idCTDT'=>intval($idChuongTrinh),
-                'data' => []
+                'data' => $listMaTran,
+                'status'=>HttpResponse::HTTP_OK
             ]);
         }
-        foreach($data as $val) {
-            $cndt = new ChuyenNganhDaoTao();
-            $cndt->tenChuyenNganh = $val;
-            $cndt->idChuongTrinh=   intval($idChuongTrinh);
-            $cndt->save();
-        }
-        $CNDTService = new ChuyenNganhDaoTaoService();
-        $listItem = $CNDTService->getCNDT($idChuongTrinh);
-        $listCNDT = ChuyenNganhDaoTaoResource::collection($listItem);
-        return response()->json([
-            'idCTDT'=>intval($idChuongTrinh),
-            'data' => $listCNDT
-        ], HttpResponse::HTTP_OK);
+       foreach($data as $val) {
+           $matran = new MatranChuanDauRaMucTieu();
+           $matran->idChuongTrinh=$idChuongTrinh;
+           $matran->idChuanDauRa=$val['PLO'];
+           $matran->idMucTieu=$val['PO'];
+           $matran->save();
+       }
+       return response()->json([
+        'idCTDT'=>intval($idChuongTrinh),
+        'data' => $listMaTran,
+        'status'=>HttpResponse::HTTP_OK
+    ], HttpResponse::HTTP_OK);
     }
-    public function storeUpdate(Request $request)
-    {
-        $data = $request['data'];
-        $idChuongTrinh = $request['idCTDT'];
-        if (empty($data)) {
-            return response()->json([
-                'idCTDT'=>intval($idChuongTrinh),
-                'data' => []
-            ]);
-        }
-        $CNDTService = new ChuyenNganhDaoTaoService();
-        foreach($data as $val) {
-           $CNDTService->update($val,$idChuongTrinh);
-        }
-        $listItem = $CNDTService->getCNDT($idChuongTrinh);
-        $listCNDT = ChuyenNganhDaoTaoResource::collection($listItem);
-        return response()->json([
-            'idCTDT'=>intval($idChuongTrinh),
-            'data' => $listCNDT
-        ], HttpResponse::HTTP_OK);
-    }
+
     /**
      * Display the specified resource.
      *
@@ -82,10 +65,10 @@ class ChuyenNganhDaoTaoController extends Controller
      */
     public function show($id)
     {
-        $CNDTService = new ChuyenNganhDaoTaoService();
+        $MaTranService = new MaTranChuanDauRaMucTieuService();
         $ctdt = new ChuongTrinhDaoTaoService();
         $itemCTDT = $ctdt->getCTDT($id);
-        $listItem = $CNDTService->getCNDT($id);
+        $listItem = $MaTranService->getList($id);
         if (empty(json_decode($itemCTDT))) {
             return response()->json([
                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
@@ -97,10 +80,11 @@ class ChuyenNganhDaoTaoController extends Controller
                 'data' => []
             ]);
         }
-        $listCNDT = ChuyenNganhDaoTaoResource::collection($listItem);
+        $listMaTran = MaTranChuanDauRaMucTieuResource::collection($listItem);
         return response()->json([
             'idCTDT'=>intval($id),
-            'data' => $listCNDT
+            'checkData' => $listMaTran,
+            'status'=>HttpResponse::HTTP_OK
         ], HttpResponse::HTTP_OK);
     }
 
@@ -126,17 +110,18 @@ class ChuyenNganhDaoTaoController extends Controller
     {
         $data = $request['deleteData'];
         $idChuongTrinh =$request['idCTDT'];
-        $CNDTService = new ChuyenNganhDaoTaoService();
+        $MaTranService = new MaTranChuanDauRaMucTieuService();
         if (!empty($data)){
             foreach($data as $val) {
-                $CNDTService->delete($val,$idChuongTrinh);
+                $MaTranService->delete($val,$idChuongTrinh);
             }
         }
-        $listItem = $CNDTService->getCNDT($idChuongTrinh);
-        $listCNDT = ChuyenNganhDaoTaoResource::collection($listItem);
+        $listItem = $MaTranService->getList($idChuongTrinh);
+        $listMaTran = MaTranChuanDauRaMucTieuResource::collection($listItem);
         return response()->json([
             'idCTDT'=>intval($idChuongTrinh),
-            'data' => $listCNDT
+            'data' => $listMaTran,
+            'status'=>HttpResponse::HTTP_OK
         ], HttpResponse::HTTP_OK);
     }
 }

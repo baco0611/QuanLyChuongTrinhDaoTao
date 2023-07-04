@@ -1,0 +1,15 @@
+@import '../../../variable.scss';
+
+.section-E {
+    &-details {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: justify;
+        color: $primary-color;
+    }
+
+    &-main {
+        padding-top: 40px;
+    }
+}

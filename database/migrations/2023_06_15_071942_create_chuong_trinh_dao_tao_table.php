@@ -27,9 +27,9 @@ return new class extends Migration
             $table->integer('thoiGianDaoTao')->nullable();
             $table->string('loaiHinhDaoTao', 500)->nullable();
             $table->integer('soTinChiYeuCauTichLuy')->nullable();
-            $table->string('dieuKienTotNghiep', 500)->nullable();
+            $table->string('dieuKienTotNghiep', 1500)->nullable();
             $table->string('vanBangTotNghiep', 500)->nullable();
-            $table->string('viTriViecLamSauTotNghiep', 500)->nullable();
+            $table->string('viTriViecLamSauTotNghiep', 1500)->nullable();
             $table->string('khaNangNangCaoTrinhDo', 500)->nullable();
             $table->string('chuongTrinhThamKhao', 500)->nullable();
             $table->string('mucTieuTongQuat', 500)->nullable();
