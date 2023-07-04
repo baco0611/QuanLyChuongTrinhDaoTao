@@ -42,10 +42,6 @@ function POElement({ item, type, index, typeIndex, setState, data, setDelete }) 
                         onChange={() => handleChangeValueC({ type, setState })}
                         data-idctdt={id}
                         autoComplete="off"
-                        // onInput={(e) => {
-                        //     e.target.style.height = 'auto'
-                        //     e.target.style.height = `${e.target.scrollHeight}px`
-                        // }}
                     />
                     <button 
                         className="minus"

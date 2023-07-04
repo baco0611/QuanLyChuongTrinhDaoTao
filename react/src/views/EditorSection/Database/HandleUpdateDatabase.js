@@ -3,6 +3,7 @@ import { handleUpdateSectionC } from "./HandleActionSectionC"
 import { handleUpdateSectionA } from "./HandelActionSectionA"
 import { handleUpdateSectionB } from "./HandelActionSectionB"
 import { handleUpdateSectionD } from "./HandleActionSectionD"
+import { handleUpdateSectionE } from "./HandleActionSectionE"
 
 const postData = async (api, url, payload, completeMessage, errorMessage) => {
     const apiURL = api + url
@@ -50,6 +51,10 @@ const handleUpdateDatabase = ({ currentSection, currentId, api, thisE }) => {
             break
         case 'D':
             handleUpdateSectionD(currentId, api)
+            break
+        case 'E':
+            handleUpdateSectionE(currentId, api)
+            break
     }
 
     // console.log(thisE, isSuccess)

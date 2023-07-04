@@ -16,9 +16,9 @@ function SectionD() {
     const { id } = useParams()
     const { apiURL, fakeApi } = useContext(UserContext)
     const navigate = useNavigate()
-    const [ isHiddenA, setIsHiddenA ] = useState(false)
-    const [ isHiddenB, setIsHiddenB ] = useState(false)
-    const [ isHiddenC, setIsHiddenC ] = useState(false)
+    const [ isHiddenA, setIsHiddenA ] = useState(true)
+    const [ isHiddenB, setIsHiddenB ] = useState(true)
+    const [ isHiddenC, setIsHiddenC ] = useState(true)
     const [ sectionDValue, setSectionDValue ] = useState({
         KIEN_THUC: {
             KIEN_THUC_DAI_HOC_HUE: {
@@ -89,8 +89,6 @@ function SectionD() {
     })
     const [ deleteElement, setDeleteElement ] = useState([])
 
-
-    console.log(sectionDValue)
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -287,7 +285,7 @@ function SectionD() {
                                             setDelete={setDeleteElement}
                                         />
                                         <PLOSection
-                                            title={'1.3. Kiến thức giáo dục cơ bản'}
+                                            title={'1.3. Kiến thức chung theo lĩnh vực'}
                                             type={'KIEN_THUC'}
                                             typeDetail={'KIEN_THUC_LINH_VUC'}
                                             idCTDT={id}
