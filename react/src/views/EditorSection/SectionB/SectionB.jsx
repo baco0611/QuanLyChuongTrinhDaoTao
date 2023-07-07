@@ -55,17 +55,17 @@ function SectionB() {
         navigate('/error')
 
     const handleChangeTextArea = e => {
-        const value = e.target.value.split(' ')
+        const value = e.target.value
 
-        if(value.length > 50)
+        if(value.length > 1500)
             setSectionBValue({
                 ...sectionBValue,
-                [e.target.name]: value.slice(0, 50).join(' ')
+                [e.target.name]: value.slice(0, 1500)
             })
         else
             setSectionBValue({
                 ...sectionBValue,
-                [e.target.name]: value.join(' ')
+                [e.target.name]: value
             })
     }
 
@@ -80,11 +80,11 @@ function SectionB() {
                     <h1>B. MỤC TIÊU TỔNG QUÁT</h1>
                 </div>
                 <div className="section-B-main wrapper">
-                    <p>Viết tối đa 50 từ: trình bày tổng quát về chương trình đào tạo, trong đó xác định mục tiêu tổng quát của chương trình đào tạo: năng lực về kiến thức, năng lực thực hành nghề nghiệp của sinh viên sau khi tốt nghiệp…</p>
+                    <p>Viết tối đa 1500 kí tự: trình bày tổng quát về chương trình đào tạo, trong đó xác định mục tiêu tổng quát của chương trình đào tạo: năng lực về kiến thức, năng lực thực hành nghề nghiệp của sinh viên sau khi tốt nghiệp…</p>
                     <textarea
                         type="text"
                         name="mucTieuTongQuat"
-                        value={sectionBValue.mucTieuTongQuat}
+                        value={sectionBValue.mucTieuTongQuat || ''}
                         onChange={handleChangeTextArea}
                         rows={20}
                         autoComplete="off"

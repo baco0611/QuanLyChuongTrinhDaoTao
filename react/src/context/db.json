@@ -37,50 +37,6 @@
         "id": 1,
         "data": ["Mạng máy tính", "Phân tích dữ liệu"]
     },
-    "sectionE": [
-        {
-            "id": 10005,
-            "checkData": [
-                {
-                    "id": 1,
-                    "PO": 37,
-                    "PLO": 1
-                },
-                {
-                    "id": 2,
-                    "PO": 37,
-                    "PLO": 2
-                },
-                {
-                    "id": 3,
-                    "PO": 62,
-                    "PLO": 6
-                },
-                {
-                    "id": 4,
-                    "PO": 42,
-                    "PLO": 17
-                }
-            ]
-        }
-    ],
-    "sectionE-delete": {
-        "id": 10005,
-        "deleteData": [1, 2, 3, 4]
-    },
-    "sectionE-create": {
-        "id": 10005,
-        "data": [
-            {
-                "PO": 62,
-                "PLO": 14
-            },
-            {
-                "PO": 69,
-                "PLO": 12
-            }
-        ]
-    },
     "sectionG": [
         {
             "id": 10005,
@@ -105,7 +61,8 @@
                     "hocKy": 1,
                     "khoiKienThuc": "DAI_CUONG",
                     "chiTietKhoiKienTHuc": "",
-                    "idChuyenNganh": ""
+                    "idChuyenNganh": "",
+                    "tenChuyenNganh":""
                 },
                 {
                     "id": 2,
@@ -127,7 +84,8 @@
                     "hocKy": 1,
                     "khoiKienThuc": "CHUYEN_NGHIEP",
                     "chiTietKhoiKienTHuc": "NGANH",
-                    "idChuyenNganh": "" 
+                    "idChuyenNganh": "" ,
+                    "tenChuyenNganh": ""
                 },
                 {
                     "id": 3,
@@ -149,7 +107,8 @@
                     "hocKy": 6,
                     "khoiKienThuc": "CHUYEN_NGHIEP",
                     "chiTietKhoiKienTHuc": "CHUYEN_NGANH",
-                    "idChuyenNganh": "2" 
+                    "idChuyenNganh": "2",
+                    "tenChuyenNganh": "Khoa học máy tính"
                 },
                 {
                     "id": 4,
@@ -171,7 +130,8 @@
                     "hocKy": 8,
                     "khoiKienThuc": "CHUYEN_NGHIEP",
                     "chiTietKhoiKienTHuc": "CHUYEN_NGANH",
-                    "idChuyenNganh": "2" 
+                    "idChuyenNganh": "2",
+                    "tenChuyenNganh": "Khoa học máy tính"
                 }
             ]
         }

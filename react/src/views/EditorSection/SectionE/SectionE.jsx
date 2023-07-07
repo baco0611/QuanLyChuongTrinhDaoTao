@@ -118,8 +118,6 @@ function SectionE() {
 
     const [ POSize, setPOSize ] = useState(0)
 
-    console.log(sectionEValue)
-
     useEffect(() => {
         const POList = [
             ...POValue.KIEN_THUC.data,
@@ -182,7 +180,7 @@ function SectionE() {
         }
     }
 
-    const { isLoading, isError} = useQuery(`sectionD-${id}`, fecthAPI(id),{
+    const { isLoading, isError} = useQuery(`sectionE-${id}`, fecthAPI(id),{
         cacheTime: Infinity,
         refetchOnWindowFocus: false,
     })
@@ -216,7 +214,7 @@ function SectionE() {
                                 <tr>
                                     <th style={{width: '140px'}} rowSpan={3}>Ký kiệu</th>
                                     <th style={{width: '750px'}} className="title" rowSpan={3}>Chuẩn đầu ra</th>
-                                    <th colSpan={POSize}>Mục tiêu</th>
+                                    <th colSpan={POSize || 3}>Mục tiêu</th>
                                 </tr>
                                 <tr>
                                     <th colSpan={POValue.KIEN_THUC.data.length}>Kiến thức</th>

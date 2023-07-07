@@ -1,7 +1,7 @@
 import axios from "axios"
 import { handleUpdateSectionC } from "./HandleActionSectionC"
-import { handleUpdateSectionA } from "./HandelActionSectionA"
-import { handleUpdateSectionB } from "./HandelActionSectionB"
+import { handleUpdateSectionA } from "./HandleActionSectionA"
+import { handleUpdateSectionB } from "./HandleActionSectionB"
 import { handleUpdateSectionD } from "./HandleActionSectionD"
 import { handleUpdateSectionE } from "./HandleActionSectionE"
 

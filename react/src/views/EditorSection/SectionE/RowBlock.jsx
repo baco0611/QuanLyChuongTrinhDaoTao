@@ -12,7 +12,7 @@ function RowBlock({ index, title, POList, POSize, PLOList, value, setState }) {
                 onClick={() => setIsHidden(!isHidden)}
             >
                 <td>{index}</td>
-                <td colSpan={POSize + 1}>{title}</td>
+                <td colSpan={POSize && POSize + 1 || 4}>{title}</td>
             </tr>
             {
                 !isHidden &&
@@ -24,7 +24,7 @@ function RowBlock({ index, title, POList, POSize, PLOList, value, setState }) {
                                 className="title"
                             >
                                 <td>{PLO.typeIndex}.</td>
-                                <td colSpan={POSize + 1}>{PLO.title}</td>
+                                <td colSpan={POSize && POSize + 1 || 4}>{PLO.title}</td>
                             </tr>
                             {
                                 PLO.data.map((data, index) => {

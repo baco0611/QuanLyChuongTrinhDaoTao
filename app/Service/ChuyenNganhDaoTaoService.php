@@ -16,7 +16,7 @@ class ChuyenNganhDaoTaoService
     }
     public function update($val,$idCTDT)  {
         DB::table('ChuyenNganhDaoTao')
-        ->where('idChuyenNganh', $val['id'])
+        ->where('idChuyenNganh', $val['idChuyenNganh'])
         ->where('idChuongTrinh', $idCTDT)
         ->update([
             "tenChuyenNganh"=>$val['tenChuyenNganh']

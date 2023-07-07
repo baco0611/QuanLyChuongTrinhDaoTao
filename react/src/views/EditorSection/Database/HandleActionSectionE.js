@@ -67,11 +67,10 @@ const handleUpdateSectionE = ( id, api) => {
     const uncheckedElement = inputElement.filter(item => !item.checked)
     
     const deleteElement = uncheckedElement.filter(item => item.getAttribute('data-id')!='false')
-    const createElement = checkedElement.filter(item => item.getAttribute('data-id')=='')
+    const createElement = checkedElement.filter(item => item.getAttribute('data-id')=='false')
 
-    console.log(deleteElement, createElement)
     const deleteValue = deleteElement.map(item => item.dataset.id)
-    const createValue = checkedElement.map(item => {
+    const createValue = createElement.map(item => {
         const dataset = item.dataset
 
         return {
