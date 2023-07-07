@@ -1,10 +1,20 @@
 import { useParams } from "react-router-dom"
 import { handleChangeValueD, handleClickDeleteD } from "../Database/HandleActionSectionD"
 import { Draggable } from "react-beautiful-dnd"
+import { useEffect } from "react"
 
 function PLOElement({ item, type, index, typeDetail, setState, setDelete, data, typeIndex }) {
     const { id } = useParams()
     const sourceData = data
+
+    useEffect(() => {
+        const elements = document.querySelectorAll('textarea')
+
+        elements.forEach(item => {
+            item.style.height = 'auto'
+            item.style.height = `${item.scrollHeight}px`
+        })
+    })
 
     return (
         <Draggable
@@ -31,11 +41,7 @@ function PLOElement({ item, type, index, typeDetail, setState, setDelete, data, 
                         data-index={index+1}
                         data-idctdt={id}
                         autoComplete="off"
-                        onChange={() => handleChangeValueD({ typeDetail, setState })}
-                        onInput={(e) => {
-                            e.target.style.height = 'auto'
-                            e.target.style.height = `${e.target.scrollHeight}px`
-                        }}
+                        onChange={() => handleChangeValueD({ typeDetail, setState, type })}
                     />
                     <input
                         placeholder="Trình độ năng lực"
@@ -44,7 +50,7 @@ function PLOElement({ item, type, index, typeDetail, setState, setDelete, data, 
                             const number = Number.parseInt(e.target.value)
                             if(!(number >= 1 && number <= 5)) e.target.value = 0
                             else e.target.value = number
-                            handleChangeValueD({ typeDetail, setState })
+                            handleChangeValueD({ typeDetail, setState, type })
                         }}
                     />
                     <button 

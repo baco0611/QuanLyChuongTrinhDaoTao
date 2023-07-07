@@ -2,22 +2,34 @@
 
 import { deleteData, getParent, postData } from "./HandleUpdateDatabase"
 
-const sortCondition = (a, b) => a.kiHieu < b.kiHieu ? -1 : 1
+const sortCondition = (a, b) => {
+    const aKiHieu = a.kiHieu.split('.')
+    const bKiHieu = b.kiHieu.split('.')
 
-const handleSplitSectionC = ({ data, setSectionCKienThuc, setSectionCKyNang, setSectionCThaiDo }) => {
-    const idctdt = data[0].idCTDT
+    const aK = Number.parseInt(aKiHieu.pop())
+    const bK = Number.parseInt(bKiHieu.pop())
 
-    const KIEN_THUC = data.filter(item => item.loaiMucTieu === 'KIEN_THUC')
-    KIEN_THUC.sort(sortCondition)
-    setSectionCKienThuc(handleChangeDataC(KIEN_THUC, 'KIEN_THUC', 1, idctdt))
+    return aK < bK ? -1 : 1
+}
 
-    const KY_NANG = data.filter(item => item.loaiMucTieu === 'KY_NANG')
-    KY_NANG.sort(sortCondition)
-    setSectionCKyNang(handleChangeDataC(KY_NANG, 'KY_NANG', 2, idctdt))
+const handleSplitSectionC = ({ data, setSectionCValue, idctdt }) => {
 
-    const THAI_DO = data.filter(item => item.loaiMucTieu === 'THAI_DO')
-    THAI_DO.sort(sortCondition)
-    setSectionCThaiDo(handleChangeDataC(THAI_DO, 'THAI_DO', 3, idctdt))
+    const typeList = ['KIEN_THUC', 'KY_NANG', 'THAI_DO']
+
+    typeList.forEach(type => {
+        const dataList = data.filter(item => item.loaiMucTieu === type)
+        dataList.sort(sortCondition)
+        setSectionCValue(prev => {
+            const dataType = prev[type]
+            return {
+                ...prev,
+                [type]: {
+                    ...dataType,
+                    data: handleChangeDataC(dataList, type, dataType.typeIndex, idctdt)
+                }
+            }
+        })     
+    })
 }
 
 // Handle changing value in an input element
@@ -26,7 +38,6 @@ const handleChangeValueC = ({ type, setState }) => {
 
     const value = Array.from(element).map((item, index) => {
         return {
-            // kiHieu: `PO - ${item.getAttribute('data-typeindex')}.${item.getAttribute('data-index')}`,
             kiHieu: `PO - ${item.getAttribute('data-typeindex')}.${index+1}`,
             noiDung: item.value,
             loaiMucTieu: type,
@@ -35,9 +46,19 @@ const handleChangeValueC = ({ type, setState }) => {
         }
     })
 
-    value.sort((a, b) => a.kiHieu < b.kiHieu ? -1 : 1)
+    value.sort(sortCondition)
 
-    setState(value)
+    setState(prev => {
+        const dataType = prev[type]
+        
+        return {
+            ...prev,
+            [type]: {
+                ...dataType,
+                data: value
+            }
+        }
+    })
 }
 
 // Handle changing many thing (like drop, ...)
@@ -52,11 +73,12 @@ const handleChangeDataC = (element, type, typeIndex, idCTDT) => {
         }
     })
 
-    value.sort((a, b) => a.kiHieu < b.kiHieu ? -1 : 1)
+    value.sort(sortCondition)
+
     return value
 }
 
-const handleClickDeleteC = ({ e, setState, data, setDelete, idctdt }) => {
+const handleClickDeleteC = ({ e, setState, data, setDelete, idctdt, type }) => {
     const parentElement = getParent(e.target, 'element')
     const inputElement = parentElement.querySelector('textarea')
     const dataset = inputElement.dataset
@@ -64,15 +86,27 @@ const handleClickDeleteC = ({ e, setState, data, setDelete, idctdt }) => {
     const list = [...data]
     const deleteElement = list[dataset.index - 1]
     list.splice(dataset.index - 1, 1)
-    setState(handleChangeDataC(list, dataset.type, dataset.typeindex, idctdt))
+    setState(prev => {
+        const dataType = prev[type]
+        
+        return {
+            ...prev,
+            [type]: {
+                ...dataType,
+                data: handleChangeDataC(list, dataType.type, dataType.typeIndex, idctdt)
+            }
+        }
+    })
     setDelete(prev => [...prev, deleteElement])
 }
 
-const handleClickAddC = ({ setState, idCTDT, type, typeIndex }) => {
+const handleClickAddC = ({ idCTDT, type, typeIndex, setState }) => {
     setState(prev => {
-        const list =
-        [
-            ...prev,
+        const dataType = prev[type]
+        const data = dataType.data
+
+        const list = [
+            ...data,
             {
                 kiHieu: '',
                 loaiMucTieu: '',
@@ -81,7 +115,14 @@ const handleClickAddC = ({ setState, idCTDT, type, typeIndex }) => {
                 idCTDT: Number.parseInt(idCTDT)
             }
         ]
-        return handleChangeDataC(list, type, typeIndex, idCTDT)
+        
+        return {
+            ...prev,
+            [type]: {
+                ...dataType,
+                data: handleChangeDataC(list, dataType.type, dataType.typeIndex, idCTDT)
+            }
+        }
     })
 }
 
