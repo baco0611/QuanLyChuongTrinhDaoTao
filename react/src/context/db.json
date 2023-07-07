@@ -37,48 +37,142 @@
         "id": 1,
         "data": ["Mạng máy tính", "Phân tích dữ liệu"]
     },
-    "sectionE": [
+    "sectionG": [
         {
             "id": 10005,
-            "checkData": [
+            "data": [
                 {
                     "id": 1,
-                    "PO": 37,
-                    "PLO": 1
+                    "idDeCuongHocPhan": 1,
+                    "thayTheKhoaLuan": false,
+                    "maHocPhan": "LLCTTH3",
+                    "tenHocPhan": "Triết học Mác-Lênin",
+                    "batBuoc": true,
+                    "soTinChi": 3,
+                    "lyThuyet": 31,
+                    "baiTap": 6,
+                    "thaoLuan": 6,
+                    "thucHanh": 0,
+                    "thucTap": 0,
+                    "kiemTra": 2,
+                    "tienQuyet": ["LLCTTH3", "LLCTKT2"],
+                    "hocTruoc": [],
+                    "songHanh": [],
+                    "hocKy": 1,
+                    "khoiKienThuc": "DAI_CUONG",
+                    "chiTietKhoiKienTHuc": "",
+                    "idChuyenNganh": "",
+                    "tenChuyenNganh":""
                 },
                 {
                     "id": 2,
-                    "PO": 37,
-                    "PLO": 2
+                    "maHocPhan": "TIN3032",
+                    "idDeCuongHocPhan": 2,
+                    "thayTheKhoaLuan": false,
+                    "tenHocPhan": "Nhập môn cơ sở dữ liệu",
+                    "batBuoc": true,
+                    "soTinChi": 2,
+                    "lyThuyet": 20,
+                    "baiTap": 8,
+                    "thaoLuan": 0,
+                    "thucHanh": 0,
+                    "thucTap": 0,
+                    "kiemTra": 2,
+                    "tienQuyet": ["TIN1093"],
+                    "hocTruoc": [],
+                    "songHanh": [],
+                    "hocKy": 1,
+                    "khoiKienThuc": "CHUYEN_NGHIEP",
+                    "chiTietKhoiKienTHuc": "NGANH",
+                    "idChuyenNganh": "" ,
+                    "tenChuyenNganh": ""
                 },
                 {
                     "id": 3,
-                    "PO": 62,
-                    "PLO": 6
+                    "idDeCuongHocPhan": 3,
+                    "thayTheKhoaLuan": false,
+                    "maHocPhan": "TIN4103",
+                    "tenHocPhan": "Khai phá dữ liệu",
+                    "batBuoc": true,
+                    "soTinChi": 3,
+                    "lyThuyet": 27,
+                    "baiTap": 6,
+                    "thaoLuan": 10,
+                    "thucHanh": 0,
+                    "thucTap": 0,
+                    "kiemTra": 2,
+                    "tienQuyet": [],
+                    "hocTruoc": ["TIN3032", "TIN4663"],
+                    "songHanh": [],
+                    "hocKy": 6,
+                    "khoiKienThuc": "CHUYEN_NGHIEP",
+                    "chiTietKhoiKienTHuc": "CHUYEN_NGANH",
+                    "idChuyenNganh": "2",
+                    "tenChuyenNganh": "Khoa học máy tính"
                 },
                 {
                     "id": 4,
-                    "PO": 42,
-                    "PLO": 17
+                    "idDeCuongHocPhan": 4,
+                    "thayTheKhoaLuan": true,
+                    "maHocPhan": "TIN4653",
+                    "tenHocPhan": "Học máy với Python",
+                    "batBuoc": true,
+                    "soTinChi": 3,
+                    "lyThuyet": 30,
+                    "baiTap": 0,
+                    "thaoLuan": 0,
+                    "thucHanh": 9,
+                    "thucTap": 0,
+                    "kiemTra": 6,
+                    "tienQuyet": ["TOAN1012", "TOAN1023", "TIN1083"],
+                    "hocTruoc": ["TN4623"],
+                    "songHanh": ["TOAN2023", "TIN4012"],
+                    "hocKy": 8,
+                    "khoiKienThuc": "CHUYEN_NGHIEP",
+                    "chiTietKhoiKienTHuc": "CHUYEN_NGANH",
+                    "idChuyenNganh": "2",
+                    "tenChuyenNganh": "Khoa học máy tính"
                 }
             ]
         }
     ],
-    "sectionE-delete": {
-        "id": 10005,
-        "deleteData": [1, 2, 3, 4]
-    },
-    "sectionE-create": {
-        "id": 10005,
+    "sectionG-update": {
+        "idCTDT": 10005,
         "data": [
             {
-                "PO": 62,
-                "PLO": 14
-            },
-            {
-                "PO": 69,
-                "PLO": 12
+                "id": 3,
+                "idDeCuongHocPhan": 3,
+                "thayTheKhoaLuan": false,
+                "batBuoc": true,
+                "tienQuyet": [],
+                "hocTruoc": ["TIN3032", "TIN4663"],
+                "songHanh": [],
+                "hocKy": 6,
+                "khoiKienThuc": "CHUYEN_NGHIEP",
+                "chiTietKhoiKienTHuc": "CHUYEN_NGANH",
+                "idChuyenNganh": "2" 
             }
         ]
+    },
+    "sectionG-create": {
+        "idCTDT": 10005,
+        "data": [
+            {
+                "idDeCuongHocPhan": 3,
+                "thayTheKhoaLuan": false,
+                "batBuoc": true,
+                "tienQuyet": [],
+                "hocTruoc": ["TIN3032", "TIN4663"],
+                "songHanh": [],
+                "hocKy": 6,
+                "khoiKienThuc": "CHUYEN_NGHIEP",
+                "chiTietKhoiKienTHuc": "CHUYEN_NGANH",
+                "idChuyenNganh": "2" 
+            }
+        ]
+    },
+    "sectionG-delete": {
+        "idCTDT": 10005,
+        "deleteData": [2, 3]
     }
 }

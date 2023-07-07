@@ -42,10 +42,6 @@ function PLOElement({ item, type, index, typeDetail, setState, setDelete, data, 
                         data-idctdt={id}
                         autoComplete="off"
                         onChange={() => handleChangeValueD({ typeDetail, setState, type })}
-                        onInput={(e) => {
-                            e.target.style.height = 'auto'
-                            e.target.style.height = `${e.target.scrollHeight}px`
-                        }}
                     />
                     <input
                         placeholder="Trình độ năng lực"
@@ -54,7 +50,7 @@ function PLOElement({ item, type, index, typeDetail, setState, setDelete, data, 
                             const number = Number.parseInt(e.target.value)
                             if(!(number >= 1 && number <= 5)) e.target.value = 0
                             else e.target.value = number
-                            handleChangeValueD({ typeDetail, setState })
+                            handleChangeValueD({ typeDetail, setState, type })
                         }}
                     />
                     <button 
