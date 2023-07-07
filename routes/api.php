@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ChuanDauRaController;
+use App\Http\Controllers\Api\ChuongTrinhChiTietController;
 use App\Http\Controllers\Api\ChuongTrinhDaoTaoController;
 use App\Http\Controllers\Api\ChuyenNganhDaoTaoController;
 use App\Http\Controllers\Api\GiangVienController;
@@ -60,3 +61,8 @@ Route::post('create_sectionE', [MaTranChuanDauRaMucTieuController::class, 'store
 Route::delete('delete_sectionE', [MaTranChuanDauRaMucTieuController::class, 'destroy'])
                                                 ->name('deleteMaTran_MT_CDT.destroy');
 Route::get('sectionE/{id}', [MaTranChuanDauRaMucTieuController::class, 'show'])->name('MaTran.show');
+#ChuongTrinhChiTiet SectionG
+Route::post('create_sectionG', [ChuongTrinhChiTietController::class, 'storeCreate'])->name('createCTCT.storeCreate');
+Route::post('update_sectionG', [ChuongTrinhChiTietController::class, 'storeUpdate'])->name('updateCTCT.storeUpdate');
+Route::delete('delete_sectionG', [ChuongTrinhChiTietController::class, 'destroy'])->name('deleteCTCT.destroy');
+Route::get('sectionG/{id}', [ChuongTrinhChiTietController::class, 'show'])->name('CTCT.show');

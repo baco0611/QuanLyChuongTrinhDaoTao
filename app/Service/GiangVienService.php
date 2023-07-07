@@ -11,7 +11,6 @@ class GiangVienService
     public function check($passwork, $mgv) {
         $user= DB::table('GiangVien')
         ->join('DonVi', 'GiangVien.MaDonVi', '=', 'DonVi.MaDonVi')
-       // ->join('phan_quyen','phan_quyen.MaGiangVien','=', 'GiangVien.MaGiangVien')
         ->where('GiangVien.MaGiangVien', $mgv)
         ->where('GiangVien.MatKhau', $passwork)
         ->get();

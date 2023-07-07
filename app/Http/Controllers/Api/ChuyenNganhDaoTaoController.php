@@ -33,6 +33,13 @@ class ChuyenNganhDaoTaoController extends Controller
     {
         $data = $request['data'];
         $idChuongTrinh = $request['idCTDT'];
+        $ctdt = new ChuongTrinhDaoTaoService();
+        $itemCTDT = $ctdt->getCTDT($idChuongTrinh);
+        if (empty(json_decode($itemCTDT))) {
+            return response()->json([
+                'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
         if (empty($data)) {
             return response()->json([
                 'idCTDT'=>intval($idChuongTrinh),
@@ -57,6 +64,13 @@ class ChuyenNganhDaoTaoController extends Controller
     {
         $data = $request['data'];
         $idChuongTrinh = $request['idCTDT'];
+        $ctdt = new ChuongTrinhDaoTaoService();
+        $itemCTDT = $ctdt->getCTDT($idChuongTrinh);
+        if (empty(json_decode($itemCTDT))) {
+            return response()->json([
+                'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
         if (empty($data)) {
             return response()->json([
                 'idCTDT'=>intval($idChuongTrinh),

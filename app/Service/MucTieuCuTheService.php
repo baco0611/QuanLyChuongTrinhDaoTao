@@ -24,6 +24,9 @@ class MucTieuCuTheService
         ]);
     }
     public function delete($val)  {
+        DB::table('MaTran_ChuanDauRa_MucTieu')
+        ->where('idMucTieu', $val['id'])
+        ->delete();
         DB::table('MucTieuCuThe')
         ->where('idMucTieu', $val['id'])
         ->where('idChuongTrinh', $val['idCTDT'])
