@@ -39,4 +39,18 @@ class ChuongTrinhChiTietService
         ->where('idChuongTrinhChiTiet', $val)
         ->delete();
     }
+    public function checkMaHocPhan ($arr)
+    {
+        foreach ($arr as $mahp)
+        {
+        $result=DB::table('HocPhan')
+        ->where('MahocPhan', $mahp)
+        ->get();
+        if (empty(json_decode($result)))
+        {
+            return false;
+        }
+        }
+        return true;
+    }
 }
