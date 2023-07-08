@@ -16,6 +16,9 @@
     &-block {
         margin-bottom: 50px;
         h1 {
+            position: sticky;
+            top: calc(150px - 14.85px);
+            background-color: white;
             font-weight: 700;
             font-size: 22px;
             line-height: 27px;

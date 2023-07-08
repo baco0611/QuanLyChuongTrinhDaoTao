@@ -2,25 +2,18 @@ import { Draggable, Droppable } from "react-beautiful-dnd"
 import POElement from "./POElement"
 import { handleClickAddC } from "../Database/HandleActionSectionC"
 
-function POBlock({ data, title, type, setState, setDelete, idCTDT }) {
-    
-    const POType = {
-        KIEN_THUC: 1,
-        KY_NANG: 2,
-        THAI_DO: 3
-    }
+function POBlock({ title, data, setDelete, idCTDT, setState }) {
 
-    
     return (
         <Droppable 
-            droppableId={`${type}`}
+            droppableId={`${data.type}`}
             type="PO"
         >
         {
             provided => (
                 <div 
                     className="section-C-block" 
-                    id={type} 
+                    id={data.type} 
                     ref={provided.innerRef} 
                     {...provided.droppableProps}
                 >
@@ -29,27 +22,24 @@ function POBlock({ data, title, type, setState, setDelete, idCTDT }) {
                         <header className="element">
                             <h4>Kí hiệu</h4>
                             <h4>Chủ đề mục tiêu cụ thể</h4>
-                            {
-                                data.length < 5 &&
-                                <button
-                                    onClick={() => handleClickAddC({ setState, idCTDT, type, typeIndex: POType[type] })}
-                                >
-                                    <i className="iconoir-add-square"></i>
-                                </button>
-                            }
+                            <button
+                                onClick={() => handleClickAddC({ idCTDT, type: data.type, typeIndex: data.typeIndex, setState })}
+                            >
+                                <i className="iconoir-add-square"></i>
+                            </button>
                         </header>
                         {
-                            data.map((item, index) => {
+                            data.data.map((item, index) => {
                                 return (
                                     <POElement
                                         key={index}
                                         item={item}
-                                        type={type}
-                                        typeIndex={POType[type]}
+                                        type={data.type}
+                                        typeIndex={data.typeIndex}
                                         index={index}
-                                        setState={setState}
                                         provided={provided}
                                         innerRef={provided.innerRef}
+                                        setState={setState}
                                         data={data}
                                         setDelete={setDelete}
                                     />

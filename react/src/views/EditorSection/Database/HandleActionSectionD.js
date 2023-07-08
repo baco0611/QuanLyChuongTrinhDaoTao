@@ -1,101 +1,54 @@
 import { deleteData, getParent, postData } from "./HandleUpdateDatabase"
 
-const sortCondition = (a, b) => a.kiHieu < b.kiHieu ? -1 : 1
+const sortCondition = (a, b) => {
+    const aKiHieu = a.kiHieu.split('.')
+    const bKiHieu = b.kiHieu.split('.')
 
-const handleSplitSectionD = ({ 
-    data,
-    setSectionDKienThucDHH,
-    setSectionDKienThucDHKH,
-    setSectionDKienThucLV,
-    setSectionDKienThucN,
-    setSectionDKienThucNN,
-    setSectionDKyNangCM,
-    setSectionDKyNangMem,
-    setSectionDThaiDoCN,
-    setSectionDThaiDoNN,
-    setSectionDThaiDoXH,
-    idCTDT
-}) => {
+    const aK = Number.parseInt(aKiHieu.pop())
+    const bK = Number.parseInt(bKiHieu.pop())
 
-    const KIEN_THUC = data.filter(item => item.loaiChuanDauRa === 'KIEN_THUC')
-    const KY_NANG = data.filter(item => item.loaiChuanDauRa === 'KY_NANG')
-    const THAI_DO = data.filter(item => item.loaiChuanDauRa === 'THAI_DO')
+    return aK < bK ? -1 : 1
+}
 
-    // console.log(KIEN_THUC, KY_NANG, THAI_DO)
+const handleSplitSectionD = ({ data, setSectionDValue, idCTDT }) => {
+    const typeList = [
+        {type: 'KIEN_THUC', typeDetail: 'KIEN_THUC_DAI_HOC_HUE'},
+        {type: 'KIEN_THUC', typeDetail: 'KIEN_THUC_DAI_HOC_KHOA_HOC'},
+        {type: 'KIEN_THUC', typeDetail: 'KIEN_THUC_LINH_VUC'},
+        {type: 'KIEN_THUC', typeDetail: 'KIEN_THUC_NHOM_NGANH'},
+        {type: 'KIEN_THUC', typeDetail: 'KIEN_THUC_NGANH'},
+        {type: 'KY_NANG', typeDetail: 'KY_NANG_CHUYEN_MON'},
+        {type: 'KY_NANG', typeDetail: 'KY_NANG_MEM'},
+        {type: 'THAI_DO', typeDetail: 'THAI_DO_CA_NHAN'},
+        {type: 'THAI_DO', typeDetail: 'THAI_DO_NGHE_NGHIEP'},
+        {type: 'THAI_DO', typeDetail: 'THAI_DO_XA_HOI'}
+    ]
 
-    const KIEN_THUC_DHH = KIEN_THUC.filter(item => item.loaiChuanDauRaChiTiet === 'KIEN_THUC_DAI_HOC_HUE')
-    KIEN_THUC_DHH.sort(sortCondition)
-    setSectionDKienThucDHH(prev => { return {
-        ...prev,
-        data: handleChangeDataD(KIEN_THUC_DHH, 'KIEN_THUC', 'KIEN_THUC_DAI_HOC_HUE', '1.1', idCTDT)
-    }})
-        
-    const KIEN_THUC_DHKH = KIEN_THUC.filter(item => item.loaiChuanDauRaChiTiet === 'KIEN_THUC_DAI_HOC_KHOA_HOC')
-    KIEN_THUC_DHKH.sort(sortCondition)
-    setSectionDKienThucDHKH(prev => { return {
-        ...prev,
-        data: handleChangeDataD(KIEN_THUC_DHKH, 'KIEN_THUC', 'KIEN_THUC_DAI_HOC_KHOA_HOC', '1.2', idCTDT)
-    }})
-        
-    const KIEN_THUC_LV = KIEN_THUC.filter(item => item.loaiChuanDauRaChiTiet === 'KIEN_THUC_LINH_VUC')
-    KIEN_THUC_LV.sort(sortCondition)
-    setSectionDKienThucLV(prev => { return {
-        ...prev,
-        data: handleChangeDataD(KIEN_THUC_LV, 'KIEN_THUC', 'KIEN_THUC_LINH_VUC', '1.3', idCTDT)
-    }})
-        
-    const KIEN_THUC_NN = KIEN_THUC.filter(item => item.loaiChuanDauRaChiTiet === 'KIEN_THUC_NHOM_NGANH')
-    KIEN_THUC_NN.sort(sortCondition)
-    setSectionDKienThucNN(prev => { return {
-        ...prev,
-        data: handleChangeDataD(KIEN_THUC_NN, 'KIEN_THUC', 'KIEN_THUC_NHOM_NGANH', '1.4', idCTDT)
-    }})
-        
-    const KIEN_THUC_N = KIEN_THUC.filter(item => item.loaiChuanDauRaChiTiet === 'KIEN_THUC_NGANH')
-    KIEN_THUC_N.sort(sortCondition)
-    setSectionDKienThucN(prev => { return {
-        ...prev,
-        data: handleChangeDataD(KIEN_THUC_N, 'KIEN_THUC', 'KIEN_THUC_NGANH', '1.5', idCTDT)
-    }})
-        
-    const KY_NANG_CM = KY_NANG.filter(item => item.loaiChuanDauRaChiTiet == 'KY_NANG_CHUYEN_MON')
-    KY_NANG_CM.sort(sortCondition)
-    setSectionDKyNangCM(prev => { return {
-        ...prev,
-        data: handleChangeDataD(KY_NANG_CM, 'KY_NANG', 'KY_NANG_CHUYEN_MON', '2.1', idCTDT)
-    }})
+    typeList.forEach(item => {
+        const type = item.type
+        const typeDetail = item.typeDetail
 
-    const KY_NANG_M = KY_NANG.filter(item => item.loaiChuanDauRaChiTiet == 'KY_NANG_MEM')
-    KY_NANG_M.sort(sortCondition)
-    setSectionDKyNangMem(prev => { return {
-        ...prev,
-        data: handleChangeDataD(KY_NANG_M, 'KY_NANG', 'KY_NANG_MEM', '2.2', idCTDT)
-    }})
+        const value = data.filter(element => element.loaiChuanDauRa === type && element.loaiChuanDauRaChiTiet === typeDetail)
+        setSectionDValue(prev => {
+            const typeData = prev[type]
+            const typeDetailData = typeData[typeDetail]
 
-    const THAI_DO_CN = THAI_DO.filter(item => item.loaiChuanDauRaChiTiet == 'THAI_DO_CA_NHAN')
-    THAI_DO_CN.sort(sortCondition)
-    setSectionDThaiDoCN(prev => { return {
-        ...prev,
-        data: handleChangeDataD(THAI_DO_CN, 'THAI_DO', 'THAI_DO_CA_NHAN', '3.1', idCTDT)
-    }})
-
-    const THAI_DO_NN = THAI_DO.filter(item => item.loaiChuanDauRaChiTiet == 'THAI_DO_NGHE_NGHIEP')
-    THAI_DO_NN.sort(sortCondition)
-    setSectionDThaiDoNN(prev => { return {
-        ...prev,
-        data: handleChangeDataD(THAI_DO_NN, 'THAI_DO', 'THAI_DO_NGHE_NGHIEP', '3.2', idCTDT)
-    }})
-
-    const THAI_DO_XH = THAI_DO.filter(item => item.loaiChuanDauRaChiTiet == 'THAI_DO_XA_HOI')
-    THAI_DO_XH.sort(sortCondition)
-    setSectionDThaiDoXH(prev => { return {
-        ...prev,
-        data: handleChangeDataD(THAI_DO_XH, 'THAI_DO', 'THAI_DO_XA_HOI', '3.3', idCTDT)
-    }})
+            return {
+                ...prev,
+                [type]: {
+                    ...typeData,
+                    [typeDetail]: {
+                        ...typeDetailData,
+                        data: handleChangeDataD(value, type, typeDetail, typeDetailData.typeIndex, idCTDT)
+                    }
+                }
+            }
+        })
+    })
 }
 
 // Handle changing value in an input element
-const handleChangeValueD = ({ typeDetail, setState }) => {
+const handleChangeValueD = ({ typeDetail, setState, type }) => {
     const element = document.querySelectorAll(`#${typeDetail} div.element`)
 
     const value = Array.from(element).map((item, index) => {
@@ -113,12 +66,21 @@ const handleChangeValueD = ({ typeDetail, setState }) => {
         }
     })
 
-    value.sort((a, b) => a.kiHieu < b.kiHieu ? -1 : 1)
+    value.sort(sortCondition)
 
     setState(prev => {
+        const typeData = prev[type]
+        const typeDetailData = typeData[typeDetail]
+
         return {
             ...prev,
-            data: value
+            [type]: {
+                ...typeData,
+                [typeDetail]: {
+                    ...typeDetailData,
+                    data: value
+                }
+            }
         }
     })
 }
@@ -137,16 +99,18 @@ const handleChangeDataD = (element, type, typeDetail, typeIndex, idCTDT) => {
         }
     })
 
-    value.sort((a, b) => a.kiHieu < b.kiHieu ? -1 : 1)
+    value.sort(sortCondition)
 
     return value
 }
 
 const handleClickAddD = ({ setState, idCTDT, type, typeDetail, typeIndex }) => {
     setState(prev => {
+        const typeData = prev[type]
+        const typeDetailData = typeData[typeDetail]
 
-        var stateData = [
-            ...prev.data,
+        const value = [
+            ...typeDetailData.data,
             {
                 id: '',
                 idCTDT: idCTDT,
@@ -158,13 +122,16 @@ const handleClickAddD = ({ setState, idCTDT, type, typeDetail, typeIndex }) => {
             }
         ]
 
-        stateData = handleChangeDataD(stateData, type, typeDetail, typeIndex, idCTDT)
-
-        const value = {
+        return {
             ...prev,
-            data: stateData
+            [type]: {
+                ...typeData,
+                [typeDetail]: {
+                    ...typeDetailData,
+                    data: handleChangeDataD(value, type, typeDetail, typeIndex, idCTDT)
+                }
+            }
         }
-        return value
     })
 }
 
@@ -176,10 +143,22 @@ const handleClickDeleteD = ({  e, setState, data , setDelete, idctdt }) => {
     const list = [...data]
     const deleteElement = list[dataset.index - 1]
     list.splice(dataset.index - 1, 1)
+
     setState(prev => {
+        const type = dataset.type
+        const typeDetail = dataset.typedetail
+        const typeData = prev[type]
+        const typeDetailData = typeData[typeDetail]
+
         return {
             ...prev,
-            data: handleChangeDataD(list, dataset.type, dataset.typedetail, dataset.typeindex, idctdt)
+            [type]: {
+                ...typeData,
+                [typeDetail]: {
+                    ...typeDetailData,
+                    data: handleChangeDataD(list, type, typeDetail, typeDetailData.typeIndex, idctdt)
+                }
+            }
         }
     })
     setDelete(prev => [...prev, deleteElement])

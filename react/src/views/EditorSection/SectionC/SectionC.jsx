@@ -16,10 +16,25 @@ function SectionC() {
     const { id } = useParams()
     const { apiURL, fakeApi } = useContext(UserContext)
     const navigate = useNavigate()
-    const [ sectionCKienThuc, setSectionCKienThuc ] = useState([])
-    const [ sectionCKyNang, setSectionCKyNang ] = useState([])
-    const [ sectionCThaiDo, setSectionCThaiDo ] = useState([])
+    const [ sectionCValue, setSectionCValue ] = useState({
+        KIEN_THUC: {
+            type: 'KIEN_THUC',
+            typeIndex: 1,
+            data: []
+        },
+        KY_NANG: {
+            type: 'KY_NANG',
+            typeIndex: 2,
+            data: []
+        },
+        THAI_DO: {
+            type: 'THAI_DO',
+            typeIndex: 3,
+            data: []
+        }
+    })
     const [ deleteElement, setDeleteElement ] = useState([])
+
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -35,9 +50,8 @@ function SectionC() {
                     if(restData.data)
                         handleSplitSectionC({ 
                             data: restData.data,
-                            setSectionCKienThuc,
-                            setSectionCKyNang,
-                            setSectionCThaiDo
+                            setSectionCValue,
+                            idctdt: id
                         })
                 })
                 .catch(error => {
@@ -48,7 +62,7 @@ function SectionC() {
     }
 
     useEffect(() => {
-        localStorage.setItem(`sectionC-${id}`, JSON.stringify([...sectionCKienThuc, ...sectionCKyNang, ...sectionCThaiDo]))
+        localStorage.setItem(`sectionC-${id}`, JSON.stringify([...sectionCValue.KIEN_THUC.data, ...sectionCValue.KY_NANG.data, ...sectionCValue.THAI_DO.data]))
         localStorage.setItem(`sectionC-delete-${id}`, JSON.stringify(deleteElement))
     })
 
@@ -73,128 +87,64 @@ function SectionC() {
         
         if(type === 'PO') {
 
-            // Function to split and splice state
-            const deleteElement = ({ source, list }) => {
+            const handleChangeIndexComponent = ({ source, destination }) => {
+                const sourceType = source.droppableId
+                const destinationType = destination.droppableId
+
+                setSectionCValue(prev => {
+                    const dataSource = prev[sourceType]
+                    const listSource = dataSource.data
+                    const data = listSource[source.index]
+
+                    const dataDestination = prev[destinationType]
+                    const listDestination = dataDestination.data
+                
+                    return {
+                        ...prev,
+                        [sourceType]: {
+                            ...dataSource,
+                            data: handleChangeDataC([...listSource.slice(0, source.index), ...listSource.slice(source.index + 1)], dataSource.type, dataSource.typeIndex, id)
+                        },
+                        [destinationType]: {
+                            ...dataDestination,
+                            data: handleChangeDataC([...listDestination.slice(0, destination.index), data, ...listDestination.slice(destination.index)], dataDestination.type, dataDestination.typeIndex, id)
+                        }
+                    }
+                })
+            }
+
+            const changeIndex = ({ source, destination }) => {
+
                 const type = source.droppableId
-                const index = source.index
-                switch(type) {
-                    case 'KIEN_THUC':
-                        return handleChangeDataC([...list.slice(0, index), ...list.slice(index + 1)], type, 1, id)
-                    case 'KY_NANG':
-                        return handleChangeDataC([...list.slice(0, index), ...list.slice(index + 1)], type, 2, id)
-                    case 'THAI_DO':
-                        return handleChangeDataC([...list.slice(0, index), ...list.slice(index + 1)], type, 3, id)
-                }
 
-                return list
-            }
+                setSectionCValue(prev => {
+                    const dataType = prev[type]
+                    const list = dataType.data
 
-            const addElement = ({ data, destination, list }) => {
-                const type = destination.droppableId
-                const index = destination.index
-                switch(type) {
-                    case 'KIEN_THUC':
-                        return handleChangeDataC([...list.slice(0, index), data, ...list.slice(index)], type, 1, id)
-                    case 'KY_NANG':
-                        return handleChangeDataC([...list.slice(0, index), data, ...list.slice(index)], type, 2, id)
-                    case 'THAI_DO':
-                        return handleChangeDataC([...list.slice(0, index), data, ...list.slice(index)], type, 3, id)
-                }
-            }
-
-            const changeIndex = ({ source, destination, list, setState }) => {
-                const removedElement = list.splice(source.index, 1)[0];
-                list.splice(destination.index, 0, removedElement);
-
-                let typeIndex
-
-                switch(source.droppableId) {
-                    case 'KIEN_THUC':
-                        typeIndex = 1
-                        break
-                    case 'KY_NANG':
-                        typeIndex = 2
-                        break
-                    case 'THAI_DO':
-                        typeIndex = 3
-                        break
-                }
-
-                setState(handleChangeDataC(list, source.droppableId, typeIndex, id))
+                    const removedElement = list.splice(source.index, 1)[0]
+                    list.splice(destination.index, 0, removedElement)
+                
+                    return {
+                        ...prev,
+                        [type]: {
+                            ...dataType,
+                            data: handleChangeDataC(list, type, dataType.typeIndex, id)
+                        }
+                    }
+                })
             }
 
             // If The drag is in 1 PO block
             if(source.droppableId === destination.droppableId) {
-                switch(source.droppableId) {
-                    case 'KIEN_THUC':
-                        changeIndex({
-                            source,
-                            destination,
-                            list: sectionCKienThuc,
-                            setState: setSectionCKienThuc
-                        })
-                        break
-                    case 'KY_NANG':
-                        changeIndex({
-                            source,
-                            destination,
-                            list: sectionCKyNang,
-                            setState: setSectionCKyNang
-                        })
-                        break
-                    case 'THAI_DO':
-                        changeIndex({
-                            source,
-                            destination,
-                            list: sectionCThaiDo,
-                            setState: setSectionCThaiDo
-                        })
-                        break
-                }
+                changeIndex({
+                    source,
+                    destination
+                })
                 return
             }
 
-            // Get data of drag element
-            let data, listBefore, setStateBefore
-            switch(source.droppableId) {
-                case 'KIEN_THUC':
-                    data = sectionCKienThuc[source.index]
-                    setStateBefore = setSectionCKienThuc
-                    listBefore = sectionCKienThuc
-                    break
-                case 'KY_NANG':
-                    data = sectionCKyNang[source.index]
-                    setStateBefore = setSectionCKyNang
-                    listBefore = sectionCKyNang
-                    break
-                case 'THAI_DO':
-                    data = sectionCThaiDo[source.index]
-                    setStateBefore = setSectionCThaiDo
-                    listBefore = sectionCThaiDo
-                    break
-            }
-
-            let listAfter, setStateAfter
-            switch(destination.droppableId) {
-                case 'KIEN_THUC':
-                    listAfter = sectionCKienThuc
-                    setStateAfter = setSectionCKienThuc
-                    break
-                case 'KY_NANG':
-                    listAfter = sectionCKyNang
-                    setStateAfter = setSectionCKyNang
-                    break
-                case 'THAI_DO':
-                    listAfter = sectionCThaiDo
-                    setStateAfter = setSectionCThaiDo
-                    break
-            }
-
             // Handle change index and component
-            if(listAfter.length <= 4) {
-                setStateBefore(deleteElement({ source, list: listBefore }))
-                setStateAfter(addElement({ data, destination, list: listAfter }))
-            }
+            handleChangeIndexComponent({ source, destination })
         }
     }
     
@@ -217,26 +167,23 @@ function SectionC() {
                         <DragDropContext onDragEnd={handleDragEnd}>
                             <POBlock
                                 title = {'1. KIẾN THỨC'}
-                                data = {sectionCKienThuc}
-                                type = {'KIEN_THUC'}
-                                setState = {setSectionCKienThuc}
+                                data = {sectionCValue.KIEN_THUC}
                                 setDelete = {setDeleteElement}
+                                setState = {setSectionCValue}
                                 idCTDT = {id}
                             />
                             <POBlock
                                 title = {'2. KỸ NĂNG'}
-                                data = {sectionCKyNang}
-                                type = {'KY_NANG'}
-                                setState = {setSectionCKyNang}
+                                data = {sectionCValue.KY_NANG}
                                 setDelete = {setDeleteElement}
+                                setState = {setSectionCValue}
                                 idCTDT = {id}
                             />
                             <POBlock
                                 title = {'3.THÁI ĐỘ'}
-                                data = {sectionCThaiDo}
-                                type = {'THAI_DO'}
-                                setState = {setSectionCThaiDo}
+                                data = {sectionCValue.THAI_DO}
                                 setDelete = {setDeleteElement}
+                                setState = {setSectionCValue}
                                 idCTDT = {id}
                             />
                         </DragDropContext>

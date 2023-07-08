@@ -7,6 +7,7 @@ import './SectionA.scss'
 import Loader from '../../../components/Loader/Loader'
 import EditHeader from "../EditHeader/EditHeader"
 import EditFooter from "../EditFooter/EditFooter"
+import ChuyenNganhBlock from "./ChuyenNganhBlock"
 
 function SectionA() {
 
@@ -34,23 +35,23 @@ function SectionA() {
         vanBangTotNghiep: '',
         khaNangNangCaoTrinhDo: '',
         chuongTrinhThamKhao: '',
+        viTriViecLamSauTotNghiep: ''
     })
 
-    const [ sectionAChuyenNganh, setSectionAChuyenNganh ] = useState({
-        id,
-        chuyenNganh: []
-    })
+    const [ chuyenNganh, setChuyenNganh ] = useState([])
+
+    const [ deleteElement, setDeleteElement ] = useState([])
 
     useEffect(() => {
         localStorage.setItem(`sectionA-${id}`, JSON.stringify(sectionAValue))
-        localStorage.setItem(`sectionA-chuyenNganh-${id}`, JSON.stringify(sectionAChuyenNganh))
+        localStorage.setItem(`sectionA-ChuyenNganh-${id}`, JSON.stringify(chuyenNganh))
+        localStorage.setItem(`sectionA-delete-${id}`, JSON.stringify(deleteElement))
     })
 
     const fecthAPI = (id) => {
         const sectionAValueApi = `${apiURL}/sectionA/${id}`
-        // const sectionAValueApi = `${fakeApi}/sectionA/${id}`
-        // const sectionAChuyenNganhApi = `${apiURL}/mainList`
-        const sectionAChuyenNganhApi = `${fakeApi}/sectionA-ChuyenNganh`
+        const chuyenNganhValueApi = `${apiURL}/ChuyenNganhDaoTao/${id}`
+
         return async () => {
             await axios.get(sectionAValueApi) 
                 .then(response => {
@@ -62,16 +63,18 @@ function SectionA() {
                     console.log(error)
                     navigate('/error')
                 })
-            await axios.get(sectionAChuyenNganhApi) 
-                .then(response => {
-                    const restData = response.data
-                    if(restData.data[0])
-                        setSectionAChuyenNganh(restData.data)
-                })
-                .catch(error => {
-                    console.log(error)
-                    navigate('/error')
-                })
+                return async () => {
+                    await axios.get(chuyenNganhValueApi) 
+                        .then(response => {
+                            const restData = response.data
+                            if(restData.data)
+                                setChuyenNganh(restData.data)
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            navigate('/error')
+                        })
+                }
         }
     }
 
@@ -105,26 +108,19 @@ function SectionA() {
             })
     }
 
-    const handleChangeTextArea = e => {
-        const value = e.target.value.split(' ')
+    const handleChangeTextArea = (e, max) => {
+        const value = e.target.value
 
-        if(value.length > 40)
+        if(value.length > max)
             setSectionAValue({
                 ...sectionAValue,
-                [e.target.name]: value.slice(0, 40).join(' ')
+                [e.target.name]: value.slice(0, max)
             })
         else
             setSectionAValue({
                 ...sectionAValue,
-                [e.target.name]: value.join(' ')
+                [e.target.name]: value
             })
-    }
-
-    const handleChangeChuyenNganh = e => {
-        setSectionAChuyenNganh({
-            ...sectionAChuyenNganh,
-            chuyenNganh: e.target.value.split('\n')
-        })
     }
 
     return (
@@ -348,7 +344,7 @@ function SectionA() {
                                 type="text"
                                 name="dieuKienTotNghiep"
                                 value={sectionAValue.dieuKienTotNghiep.replaceAll('\\n', '\n')}
-                                onChange={handleChangeValue}
+                                onChange={ e => handleChangeTextArea(e, 1500)}
                                 rows={20}
                                 autoComplete="off"
                             />
@@ -377,15 +373,15 @@ function SectionA() {
                             <h4>14. Vị trí làm việc sau khi tốt nghiệp</h4>
                             <ul>
                                 <li>Mỗi ý được viết trên một dòng duy nhất</li>
-                                <li>Viết tối đa 40 từ</li>
+                                <li>Viết tối đa 4000 kí tự</li>
                             </ul>
                         </div>
                         <div>
                             <textarea
                                 type="text"
-                                name="khoaQuanLyChuongTrinh"
-                                value={sectionAValue.khoaQuanLyChuongTrinh}
-                                onChange={handleChangeTextArea}
+                                name="viTriViecLamSauTotNghiep"
+                                value={sectionAValue.viTriViecLamSauTotNghiep}
+                                onChange={ e => handleChangeTextArea(e, 1500)}
                                 rows={20}
                                 autoComplete="off"
                             />
@@ -396,15 +392,15 @@ function SectionA() {
                             <h4>15. Khả năng nâng cao trình độ</h4>
                             <ul>
                                 <li>Mỗi ý được viết trên một dòng duy nhất</li>
-                                <li>Viết tối đa 40 từ</li>
+                                <li>Viết tối đa 200 kí tự</li>
                             </ul>
                         </div>
                         <div>
                             <textarea
                                 type="text"
                                 name="khaNangNangCaoTrinhDo"
-                                value={sectionAValue.khaNangNangCaoTrinhDo.replace('\\n', '\n-')}
-                                onChange={handleChangeTextArea}
+                                value={sectionAValue.khaNangNangCaoTrinhDo.replace('\\n', '\n')}
+                                onChange={e => handleChangeTextArea(e, 200)}
                                 rows={20}
                                 autoComplete="off"
                             />
@@ -416,6 +412,7 @@ function SectionA() {
                             <ul>
                                 <li>Mỗi ý được viết trên một dòng duy nhất</li>
                                 <li>Liệt kê ít nhất 3 chương trình chuẩn đã tham chiếu khi xây dựng chuẩn đầu ra</li>
+                                <li>Không quá 1500 kí tự</li>
                             </ul>
                         </div>
                         <div>
@@ -423,7 +420,7 @@ function SectionA() {
                                 type="text"
                                 name="chuongTrinhThamKhao"
                                 value={sectionAValue.chuongTrinhThamKhao}
-                                onChange={handleChangeValue}
+                                onChange={ e => handleChangeTextArea(e, 1500)}
                                 rows={20}
                                 autoComplete="off"
                             />
@@ -433,20 +430,16 @@ function SectionA() {
                         <div>
                             <h4>17. Các chuyên ngành đào tạo</h4>
                             <ul>
-                                <li>Mỗi chuyên ngành đào tạo được viết trên một dòng duy nhất</li>
-                                <li>Nếu không có chuyên ngành đào tạo thì để trống</li>
+                                <li>Viết mỗi chuyên ngành vào một block bên cạnh.</li>
+                                <li>Nếu xóa một block, dữ liệu ở khung chương trình thuộc chuyên ngành tương ứng cũng sẽ bị xóa.</li>
+                                <li>Dữ liệu chỉ lưu khi bấm nút lưu hoặc hoàn tất.</li>
                             </ul>
                         </div>
-                        <div>
-                            <textarea
-                                type="text"
-                                name="chuyenNganh"
-                                value={sectionAChuyenNganh.chuyenNganh.join('\n')}
-                                onChange={handleChangeChuyenNganh}
-                                rows={20}
-                                autoComplete="off"
-                            />
-                        </div>
+                        <ChuyenNganhBlock
+                            chuyenNganh={chuyenNganh}
+                            setState={setChuyenNganh}
+                            setDelete={setDeleteElement}
+                        />
                     </div>
                 </div>
             </div>
