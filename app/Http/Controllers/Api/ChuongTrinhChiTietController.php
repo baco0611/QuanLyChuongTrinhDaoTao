@@ -72,11 +72,11 @@ class ChuongTrinhChiTietController extends Controller
                {
                 $mess.=" idChuyenNganh allow null";
                }
-               if($mess != "")
+                if($mess != "")
                 return response()->json([
                     'messenger'=>$mess,
                     'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
-            ]);
+                ]);
             }
             if ($val['idChuyenNganh']=="" && $val['thayTheKhoaLuan']==true)
             {
@@ -192,7 +192,7 @@ class ChuongTrinhChiTietController extends Controller
             'status'=>HttpResponse::HTTP_OK
         ], HttpResponse::HTTP_OK);
     }
-
+   
     /**
      * Update the specified resource in storage.
      *

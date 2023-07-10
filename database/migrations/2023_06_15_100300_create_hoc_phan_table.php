@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('Id');
             $table->string('TenHocPhan', 250);
             $table->string('TenTiengAnh', 250)->nullable();
-            $table->string('MaHocPhan', 50)->unique();
+            $table->string('MaHocPhan', 50);
             $table->integer('SoTinChi');
             $table->string('DonViPhuTrach', 50)->nullable();
             $table->string('TrangThaiHocPhan', 50);
