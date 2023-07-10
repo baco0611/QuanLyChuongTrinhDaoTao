@@ -36,6 +36,9 @@ Route::get('mainList', [ChuongTrinhDaoTaoController::class, 'index'])->name('ctd
 Route::get('sectionA/{id}', [ChuongTrinhDaoTaoController::class, 'showCTDT'])->name('ctdt.showCTDT');
 Route::get('sectionHeader/{id}', [ChuongTrinhDaoTaoController::class, 'showHeader'])->name('ctdt.showHeader');
 Route::post('create_sectionA', [ChuongTrinhDaoTaoController::class,'storeCreate'])->name('create.storeCTDT');
+Route::get('total_credits/{id}', [ChuongTrinhDaoTaoController::class, 'showCredits'])->name('ctdt.showCredits');
+Route::post('update_Credits', [ChuongTrinhDaoTaoController::class, 'storeUpdateCredits'])
+                                        ->name('updateCTCT.storeUpdateCredits');
 #GiangVien
 Route::post('find_GiangVien', [GiangVienController::class,'storeFind'])->name('find.showFind');
 #MucTieuTongQuat SectionB

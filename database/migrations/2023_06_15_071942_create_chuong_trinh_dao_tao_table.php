@@ -38,6 +38,13 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('buocHienTai')->nullable();
             $table->string('trangThai')->nullable();
+            $table->integer('khoiDaiCuong')->nullable();
+            $table->integer('khoiCoSoNganh')->nullable();
+            $table->integer('khoiNganh')->nullable();
+            $table->integer('khoiBoTro')->nullable();
+            $table->integer('khoiThucTap')->nullable();
+            $table->integer('khoiDoAnKhoaLuan')->nullable();
+            $table->integer('khoiChuyenNganh')->nullable();
         });
     }
 

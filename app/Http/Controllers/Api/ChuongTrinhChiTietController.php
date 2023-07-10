@@ -194,7 +194,7 @@ class ChuongTrinhChiTietController extends Controller
             'status'=>HttpResponse::HTTP_OK
         ], HttpResponse::HTTP_OK);
     }
-
+   
     /**
      * Update the specified resource in storage.
      *
