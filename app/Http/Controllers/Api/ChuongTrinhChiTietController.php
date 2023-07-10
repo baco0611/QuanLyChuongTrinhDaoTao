@@ -72,10 +72,13 @@ class ChuongTrinhChiTietController extends Controller
                {
                 $mess.=" idChuyenNganh allow null";
                }
-               return response()->json([
-                'messenger'=>$mess,
-                'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
-            ]);
+               if($mess!="")
+               {
+                return response()->json([
+                    'messenger'=>$mess,
+                    'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+                ]);
+               }
             }
             if ($val['idChuyenNganh']=="" && $val['thayTheKhoaLuan']==true)
             {

@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ChuongTrinhChiTietController;
 use App\Http\Controllers\Api\ChuongTrinhDaoTaoController;
 use App\Http\Controllers\Api\ChuyenNganhDaoTaoController;
 use App\Http\Controllers\Api\GiangVienController;
+use App\Http\Controllers\api\HocPhanController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\MaTranChuanDauRaMucTieuController;
 use App\Http\Controllers\Api\MucTieuCuTheController;
@@ -66,3 +67,7 @@ Route::post('create_sectionG', [ChuongTrinhChiTietController::class, 'storeCreat
 Route::post('update_sectionG', [ChuongTrinhChiTietController::class, 'storeUpdate'])->name('updateCTCT.storeUpdate');
 Route::delete('delete_sectionG', [ChuongTrinhChiTietController::class, 'destroy'])->name('deleteCTCT.destroy');
 Route::get('sectionG/{id}', [ChuongTrinhChiTietController::class, 'show'])->name('CTCT.show');
+#HocPhan
+Route::post('search_maHocPhan_search', [HocPhanController::class,'storeSearchMaHocPhan'])->name('searchMaHocPhan.show');
+Route::post('search_tenHocPhan_search', [HocPhanController::class,'storeSearchTenHocPhan'])
+                                                ->name('searchTenHocPhan.show');

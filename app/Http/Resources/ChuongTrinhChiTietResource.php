@@ -35,7 +35,7 @@ class ChuongTrinhChiTietResource extends JsonResource
             "khoiKienThuc"=>$this->khoiKienThuc,
             "chiTietKhoiKienThuc"=>$this->chiTietKhoiKienThuc,
             "idChuyenNganh"=>intval($this->idChuyenNganh),
-            "tenChuyenNganh"=>$this->tenChuyenNganh
+            "tenChuyenNganh"=>strval($this->tenChuyenNganh)
         ];
     }
 }
