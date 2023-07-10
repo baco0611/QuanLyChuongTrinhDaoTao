@@ -174,5 +174,41 @@
     "sectionG-delete": {
         "idCTDT": 10005,
         "deleteData": [2, 3]
+    },
+    "search-maHocPhan-search": {
+        "keyWord": ""
+    },
+    "search-maHocPhan-ketQua": {
+        "idCTDT": 10005,
+        "data": [
+            {
+                "maHocPhan": "TIN3662",
+                "tenHocPhan": "Nhập môn lập trình",
+                "idDeCuongHocPhan": "6"
+            },
+            {
+                "maHocPhan": "TIN3663",
+                "tenHocPhan": "Kiến trúc máy tính",
+                "idDeCuongHocPhan": "4"
+            }
+        ]
+    },
+    "search-tenHocPhan-search": {
+        "keyWord": ""
+    },
+    "search-tenHocPhan-ketQua": {
+        "idCTDT": 10005,
+        "data": [
+            {
+                "maHocPhan": "TIN3662",
+                "tenHocPhan": "Nhập môn lập trình",
+                "idDeCuongHocPhan": "6"
+            },
+            {
+                "maHocPhan": "TIN1323",
+                "tenHocPhan": "Nhập môn trí tuệ nhân tạo",
+                "idDeCuongHocPhan": "9"
+            }
+        ]
     }
 }

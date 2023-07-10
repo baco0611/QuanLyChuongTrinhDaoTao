@@ -212,8 +212,8 @@ function SectionE() {
                         <table>
                             <thead>
                                 <tr>
-                                    <th style={{width: '140px'}} rowSpan={3}>Ký kiệu</th>
-                                    <th style={{width: '750px'}} className="title" rowSpan={3}>Chuẩn đầu ra</th>
+                                    <th style={{minWidth: '140px'}} rowSpan={3}>Ký kiệu</th>
+                                    <th style={{minWidth: '550px'}} className="title" rowSpan={3}>Chuẩn đầu ra</th>
                                     <th colSpan={POSize || 3}>Mục tiêu</th>
                                 </tr>
                                 <tr>
@@ -225,21 +225,21 @@ function SectionE() {
                                     {
                                         POValue.KIEN_THUC.data.map((item, index) => {
                                             return (
-                                                <th style={{width: '100px'}} key={index}>{item.kiHieu}</th>
+                                                <th style={{minWidth: '100px'}} key={index}>{item.kiHieu}</th>
                                             )
                                         })
                                     }
                                     {
                                         POValue.KY_NANG.data.map((item, index) => {
                                             return (
-                                                <th style={{width: '100px'}} key={index}>{item.kiHieu}</th>
+                                                <th style={{minWidth: '100px'}} key={index}>{item.kiHieu}</th>
                                             )
                                         })
                                     }
                                     {
                                         POValue.THAI_DO.data.map((item, index) => {
                                             return (
-                                                <th style={{width: '100px'}} key={index}>{item.kiHieu}</th>
+                                                <th style={{minWidth: '100px'}} key={index}>{item.kiHieu}</th>
                                             )
                                         })
                                     }

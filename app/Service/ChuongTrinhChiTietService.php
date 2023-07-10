@@ -13,7 +13,7 @@ class ChuongTrinhChiTietService
         ->select('*')
         ->join('DeCuongHocPhan as dc','dc.Id','=', 'ChuongTrinhChiTiet.DeCuongHocPhanId')
         ->join('HocPhan as hp','hp.Id','=', 'dc.HocPhanId')
-        ->join('ChuyenNganhDaoTao as cn','ChuongTrinhChiTiet.idChuyenNganh','=', 'cn.idChuyenNganh')
+        ->leftJoin('ChuyenNganhDaoTao as cn','ChuongTrinhChiTiet.idChuyenNganh','=', 'cn.idChuyenNganh')
         ->where('ChuongTrinhChiTiet.idChuongTrinh', $idCTDT)
         ->get();
         return $result;
