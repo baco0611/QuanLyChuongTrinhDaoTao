@@ -13,7 +13,7 @@ class ChuongTrinhChiTietService
         ->select('*')
         ->join('DeCuongHocPhan as dc','dc.Id','=', 'ChuongTrinhChiTiet.DeCuongHocPhanId')
         ->join('HocPhan as hp','hp.Id','=', 'dc.HocPhanId')
-        ->join('ChuyenNganhDaoTao as cn','ChuongTrinhChiTiet.idChuyenNganh','=', 'cn.idChuyenNganh')
+        ->leftJoin('ChuyenNganhDaoTao as cn','ChuongTrinhChiTiet.idChuyenNganh','=', 'cn.idChuyenNganh')
         ->where('ChuongTrinhChiTiet.idChuongTrinh', $idCTDT)
         ->get();
         return $result;
@@ -38,5 +38,19 @@ class ChuongTrinhChiTietService
         DB::table('ChuongTrinhChiTiet')
         ->where('idChuongTrinhChiTiet', $val)
         ->delete();
+    }
+    public function checkMaHocPhan ($arr)
+    {
+        foreach ($arr as $mahp)
+        {
+        $result=DB::table('HocPhan')
+        ->where('MahocPhan', $mahp)
+        ->get();
+        if (empty(json_decode($result)))
+        {
+            return false;
+        }
+        }
+        return true;
     }
 }

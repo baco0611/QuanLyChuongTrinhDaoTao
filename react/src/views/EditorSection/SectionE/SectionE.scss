@@ -17,11 +17,11 @@
 .section-E-main {
     table {
         border-collapse: collapse;
+        overflow-x:auto;
+        // overflow: auto;
         width: 100%;
-        overflow: auto;
 
         thead {
-            width: auto;
             position: sticky;
             top: 130px;
             z-index: 100;
@@ -35,11 +35,11 @@
 
         th {
             border: .1px solid white;
-            // padding: .5px;
             background-clip: content-box;
             background-color: $primary-color;
             color: white;
             font-weight: 700;
+            white-space: nowrap;
         }
 
         td {
@@ -67,7 +67,7 @@
                 justify-content: center;
                     
                 &:after {
-                    content: '\e64c';
+                    content: '\e646';
                     font-weight: 900;
                     font-family: 'themify';
                     -webkit-font-smoothing: antialiased;

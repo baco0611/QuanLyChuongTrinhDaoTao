@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ChuongTrinhDaoTaoResource;
+use App\Http\Resources\CreditsResource;
 use App\Http\Resources\ListCTDTResource;
 use App\Http\Resources\SectionAHeader_Resource;
 use App\Http\Resources\SectionB_Resource;
@@ -125,7 +126,49 @@ class ChuongTrinhDaoTaoController extends Controller
            'data'=> $itemResource
         ], HttpResponse::HTTP_OK);
     }
-
+    public function showCredits($id)
+    {
+        $ctdtService = new ChuongTrinhDaoTaoService();
+        $item =  $ctdtService->getCTDT($id);
+        if (empty(json_decode($item))) {
+            return response()->json([
+                'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $itemResource =CreditsResource::collection($item);
+        return response()->json([
+            'id'=>intval($id),
+           'data'=> $itemResource
+        ], HttpResponse::HTTP_OK);
+    }
+    public function storeUpdateCredits(Request $request)
+    {
+        $data = $request['data'];
+        $idChuongTrinh =$request['idCTDT'];
+        $ctdtService = new ChuongTrinhDaoTaoService();
+        $itemCTDT = $ctdtService->getCTDT($idChuongTrinh);
+        if (empty(json_decode($itemCTDT))) {
+            return response()->json([
+                'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        if (empty($data)) {
+            return response()->json([
+                'idCTDT'=>intval($idChuongTrinh),
+                'data' => [],
+                'status'=>HttpResponse::HTTP_OK
+            ]);
+        }
+        foreach($data as $val) {
+            $ctdtService->updateCredits($val, $idChuongTrinh);
+           }
+        $itemUpdate = $ctdtService->getCTDT($idChuongTrinh);
+        $itemResource = CreditsResource::collection($itemUpdate);
+        return response()->json([
+            'idCTDT'=>intval($idChuongTrinh),
+            'data'=> $itemResource
+        ], HttpResponse::HTTP_OK);
+    }
     /**
      * Update the specified resource in storage.
      *

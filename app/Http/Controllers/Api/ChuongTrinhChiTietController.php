@@ -50,6 +50,62 @@ class ChuongTrinhChiTietController extends Controller
             ]);
         }
          foreach($data as $val) {
+            if (($val['khoiKienThuc']=="CHUYEN_NGHIEP") && ($val['chiTietKhoiKienThuc']=="")) 
+            {
+                return response()->json([
+                    'messenger'=>"chiTietKhoiKienThuc not null",
+                    'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+                ]);
+            }
+            if ($val['khoiKienThuc']=="DAI_CUONG")
+            {
+                $mess="";
+               if ( $val['chiTietKhoiKienThuc']!="")
+               {
+                $mess.="chiTietKhoiKienThuc allow null";
+               }
+               if ($val['thayTheKhoaLuan']!=false)
+               {
+                $mess.=" thayTheKhoaLuan not true";
+               }
+               if ($val['idChuyenNganh']!="")
+               {
+                $mess.=" idChuyenNganh allow null";
+               }
+                if($mess != "")
+                return response()->json([
+                    'messenger'=>$mess,
+                    'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+                ]);
+            }
+            if ($val['idChuyenNganh']=="" && $val['thayTheKhoaLuan']==true)
+            {
+             return response()->json([
+                 'messenger'=>"thayTheKhoaLuan not true",
+                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+             ]);
+            }
+            if ($CTCTService->checkMaHocPhan($val['tienQuyet'])==false) 
+            {
+                return response()->json([
+                    'messenger'=>"khong ton tai ma hoc phan trong tienQuyet",
+                    'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+                ]);
+            }
+            if ($CTCTService->checkMaHocPhan($val['hocTruoc'])==false) 
+            {
+                return response()->json([
+                    'messenger'=>"khong ton tai ma hoc phan trong hocTruoc",
+                    'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+                ]);
+            }
+            if ($CTCTService->checkMaHocPhan($val['songHanh'])==false) 
+            {
+                return response()->json([
+                    'messenger'=>"khong ton tai ma hoc phan trong songHanh",
+                    'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+                ]);
+            }
             $ctct = new ChuongTrinhChiTiet();
             $strHocTruoc=json_encode($val['hocTruoc']);
             $ctct->DeCuongHocPhanId=$val['idDeCuongHocPhan'];
@@ -136,7 +192,7 @@ class ChuongTrinhChiTietController extends Controller
             'status'=>HttpResponse::HTTP_OK
         ], HttpResponse::HTTP_OK);
     }
-
+   
     /**
      * Update the specified resource in storage.
      *

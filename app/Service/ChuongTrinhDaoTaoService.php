@@ -68,4 +68,23 @@ class ChuongTrinhDaoTaoService
     ->get();
     return $result;
    }
+   public function updateCredits ( $val,$idCTDT) 
+   {
+     DB::table('ChuongTrinhDaoTao')
+        ->where('idChuongTrinh', $idCTDT)
+        ->update([
+            "khoiDaiCuong"=>$val['khoiDaiCuong'],
+            "khoiCoSoNganh"=>$val['khoiCoSoNganh'],
+            "khoiNganh"=>$val['khoiNganh'],
+            "khoiBoTro"=>$val['khoiBoTro'],
+            "khoiThucTap"=>$val['khoiThucTap'],
+            "khoiDoAnKhoaLuan"=>$val['khoiDoAnKhoaLuan'],
+            "khoiChuyenNganh"=>$val['khoiChuyenNganh']
+        ]);
+        $result= DB::table('ChuongTrinhDaoTao')
+        ->where('idChuongTrinh', $idCTDT)
+        ->get();
+
+        return $result;
+   }
 }
