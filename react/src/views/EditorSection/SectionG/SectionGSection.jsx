@@ -2,7 +2,7 @@ import { useState } from "react"
 import SectionGElement from "./SectionGElement"
 import CreateElement from "./CreateElement"
 
-function SectionGSection({ title, index, data, setState }) {
+function SectionGSection({ title, index, data, setState, idChuyenNganh }) {
 
     const [ isCreate, setIsCreate ] = useState(false)
 
@@ -16,7 +16,7 @@ function SectionGSection({ title, index, data, setState }) {
     return (
         <>
             <tr className="title cursorPointer">
-                <td>{index}</td>
+                <td style={{textAlign: 'center', paddingLeft: 0}}>{index}</td>
                 <td colSpan={13}>{title}</td>            
             </tr>
             {
@@ -26,6 +26,7 @@ function SectionGSection({ title, index, data, setState }) {
                         index = {index+1}
                         data={item}
                         setState={setState}
+                        idChuyenNganh={idChuyenNganh}
                     />
                 )
             }

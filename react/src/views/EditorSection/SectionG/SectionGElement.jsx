@@ -1,8 +1,8 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import { getParent } from "../Database/HandleUpdateDatabase"
 import EditElement from "./EditElement"
 
-function SectionGElement({ index, data, setState }) {
+function SectionGElement({ index, data, setState, idChuyenNganh }) {
 
     const [ isEdit, setIsEdit ] = useState(false)
 
@@ -34,14 +34,35 @@ function SectionGElement({ index, data, setState }) {
                 />
             </td>
             <td>{data.soTinChi}</td>
-            <td>{data.lyThuyet}</td>
-            <td>{data.baiTap}</td>
-            <td>{data.thaoLuan}</td>
-            <td>{data.thucHanh}</td>
-            <td>{data.thucTap}</td>
-            <td>{data.tienQuyet.join(', ')}</td>
-            <td>{data.hocTruoc.join(', ')}</td>
-            <td>{data.songHanh.join(', ')}</td>
+            <td>{data.lyThuyet != 0 && data.lyThuyet}</td>
+            <td>{data.baiTap != 0 && data.baiTap}</td>
+            <td>{data.thaoLuan != 0 && data.thaoLuan}</td>
+            <td>{data.thucHanh != 0 && data.thucHanh}</td>
+            <td>{data.thucTap != 0 && data.thucTap}</td>
+            <td>
+                <h4>{data.tienQuyet.map((item, index) => {
+                    return (
+                        <React.Fragment key={index}>{item}<br/></React.Fragment>
+                    )
+                })}
+                </h4>
+            </td>
+            <td>
+                <h4>{data.hocTruoc.map((item, index) => {
+                    return (
+                        <React.Fragment key={index}>{item}<br/></React.Fragment>
+                    )
+                })}
+                </h4>
+            </td>
+            <td>
+                <h4>{data.songHanh.map((item, index) => {
+                    return (
+                        <React.Fragment key={index}>{item}<br/></React.Fragment>
+                    )
+                })}
+                </h4>
+            </td>
             <td>{data.hocKy}</td>
             {
                 isEdit &&

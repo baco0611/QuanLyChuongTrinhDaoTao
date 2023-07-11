@@ -11,7 +11,7 @@ function SectionGBlock({ title, index, data, setState }) {
                 className="title cursorPointer"
                 onClick={() => setIsHidden(!isHidden)}
             >
-                <td>{index}</td>
+                <td style={{textAlign: 'center', paddingLeft: 0}}>{index}</td>
                 <td colSpan={13}>{title}</td>            
             </tr>
             {

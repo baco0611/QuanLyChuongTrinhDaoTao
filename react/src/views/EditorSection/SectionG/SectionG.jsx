@@ -73,10 +73,11 @@ function SectionG() {
         }
     }
 
-    // useEffect(() => {
-    //     localStorage.setItem(`sectionC-${id}`, JSON.stringify([...sectionCValue.KIEN_THUC.data, ...sectionCValue.KY_NANG.data, ...sectionCValue.THAI_DO.data]))
-    //     localStorage.setItem(`sectionC-delete-${id}`, JSON.stringify(deleteElement))
-    // })
+    useEffect(() => {
+        localStorage.setItem(`sectionG-${id}`, JSON.stringify(sectionGValue))
+    })
+
+    console.log(sectionGValue)
 
     const { isLoading, isError} = useQuery(`sectionC-${id}`, fecthAPI(id),{
         cacheTime: Infinity,
@@ -108,24 +109,24 @@ function SectionG() {
                     <table>
                         <thead>
                             <tr>
-                                <th rowSpan={2}>STT</th>
-                                <th rowSpan={2}>Mã học phần</th>
-                                <th rowSpan={2}>Tên học phần</th>
-                                <th rowSpan={2}>Bắt buộc</th>
-                                <th rowSpan={2}>Số tín chỉ</th>
+                                <th style={{minWidth: '50px'}} rowSpan={2}>STT</th>
+                                <th style={{minWidth: '120px'}} rowSpan={2}>Mã học phần</th>
+                                <th style={{minWidth: '250px'}} rowSpan={2}>Tên học phần</th>
+                                <th style={{minWidth: '50px' }} rowSpan={2}>Bắt<br/>buộc</th>
+                                <th style={{minWidth: '50px'}} rowSpan={2}>STC</th>
                                 <th colSpan={5}>Phân bố giờ</th>
                                 <th colSpan={3}>Quan hệ với các học phần</th>
-                                <th rowSpan={2}>Học kỳ dự kiến</th>
+                                <th style={{minWidth: '50px'}} rowSpan={2}>Học<br/>kỳ</th>
                             </tr>
                             <tr>
-                                <th>Lý thuyết</th>
-                                <th>Bài tập</th>
-                                <th>Thảo luận</th>
-                                <th>Thực hành</th>
-                                <th>Thực tập</th>
-                                <th>Tiên quyết</th>
-                                <th>Học trước</th>
-                                <th>Song hành</th>
+                                <th style={{minWidth: '50px'}}>LT</th>
+                                <th style={{minWidth: '50px'}}>BT</th>
+                                <th style={{minWidth: '50px'}}>TL</th>
+                                <th style={{minWidth: '50px'}}>TH</th>
+                                <th style={{minWidth: '50px'}}>TT</th>
+                                <th style={{minWidth: '120px'}}>Tiên quyết</th>
+                                <th style={{minWidth: '120px'}}>Học trước</th>
+                                <th style={{minWidth: '120px'}}>Song hành</th>
                             </tr>
                         </thead>
                         <tbody>

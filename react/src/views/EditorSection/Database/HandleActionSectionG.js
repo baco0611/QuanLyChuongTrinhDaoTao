@@ -14,13 +14,15 @@ const getChuyenNganh = async (data, apiURL, id) => {
             window.location='/error'
         })
 
-    const chuyenNganhType = chuyenNganh.data.map(item => item.idChuyenNganh)
-    
     let values = {}
 
-    chuyenNganhType.forEach(CN => {
-        const value = data.filter(item => item.idChuyenNganh == CN)
-        values[CN] = value
+    chuyenNganh.data.forEach(CN => {
+        const value = data.filter(item => item.idChuyenNganh == CN.idChuyenNganh && item.thayTheKhoaLuan == false)
+        values[CN.idChuyenNganh] = {
+            idChuyenNganh: CN.idChuyenNganh,
+            tenChuyenNganh: CN.tenChuyenNganh,
+            data: value
+        }
     })
 
     console.log(values)
