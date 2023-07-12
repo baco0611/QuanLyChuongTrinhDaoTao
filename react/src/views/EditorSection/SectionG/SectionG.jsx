@@ -9,6 +9,7 @@ import Loader from "../../../components/Loader/Loader"
 import axios from "axios"
 import SectionGBlock from "./SectionGBlock"
 import { handleSplitSectionG } from "../Database/HandleActionSectionG"
+import NavIcon from "./NavIcon"
 
 function SectionG() {
 
@@ -57,6 +58,8 @@ function SectionG() {
         window.scrollTo(0, 0)
     }, [])
 
+    console.log(sectionGValue)
+
     const fecthAPI = (id) => {
         const sectionGValueApi = `${apiURL}/sectionG/${id}`
         return async () => {
@@ -76,8 +79,6 @@ function SectionG() {
     useEffect(() => {
         localStorage.setItem(`sectionG-${id}`, JSON.stringify(sectionGValue))
     })
-
-    console.log(sectionGValue)
 
     const { isLoading, isError} = useQuery(`sectionC-${id}`, fecthAPI(id),{
         cacheTime: Infinity,
@@ -149,6 +150,7 @@ function SectionG() {
             <EditFooter
                 currentSection={5}
             />
+            <NavIcon/>
         </>
     )
 }

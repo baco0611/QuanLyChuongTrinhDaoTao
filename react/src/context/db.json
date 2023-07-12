@@ -1,42 +1,4 @@
 {
-    "sectionA-ChuyenNganh": {
-        "id": 10005,
-        "data": []
-    },
-    "sectionA-ChuyenNganhOF": {
-        "id": 1,
-        "data": [
-            {
-                "id": 1,
-                "tenChuyenNganh": "Công nghệ thông tin"
-            },
-            {
-                "id": 2,
-                "tenChuyenNganh": "Công nghệ phần mềm"
-            }
-        ]
-    },
-    "sectionA-update": {
-        "id": 1,
-        "data": [
-            {
-                "id": 1,
-                "tenChuyenNganh": "Công nghệ thông tin"
-            },
-            {
-                "id": 2,
-                "tenChuyenNganh": "Công nghệ phần mềm"
-            }
-        ]
-    },
-    "sectionA-delete": {
-        "id": 1,
-        "deleteData": [1, 2, 3]
-    },
-    "sectionA-create": {
-        "id": 1,
-        "data": ["Mạng máy tính", "Phân tích dữ liệu"]
-    },
     "sectionG": [
         {
             "id": 10005,
@@ -210,5 +172,91 @@
                 "idDeCuongHocPhan": "9"
             }
         ]
+    },
+    "sectionH": [
+        {
+            "id": 10005,
+            "data": [
+                {
+                    "id": 1,
+                    "PLO": 1,
+                    "idCTCT": 1,
+                    "thangDanhGia": 1
+                },
+                {
+                    "id": 2,
+                    "PLO": 2,
+                    "idCTCT": 1,
+                    "thangDanhGia": 4
+                },
+                {
+                    "id": 3,
+                    "PLO": 6,
+                    "idCTCT": 1,
+                    "thangDanhGia": 20
+                }
+            ] 
+        }
+    ],
+    "sectionH-update": {
+        "id": 10005,
+        "data": [
+            {
+                "id": 1,
+                "thangDanhGia": 2
+            },
+            {
+                "id": 23,
+                "thangDanhGia": 5
+            }
+        ]
+    },
+    "sectionH-create":{
+        "id": 10005,
+        "data": [
+            {
+                "PLO": 1,
+                "idCTCT": 1,
+                "thangDanhGia": 1
+            },
+            {
+                "PLO": 2,
+                "idCTCT": 1,
+                "thangDanhGia": 4
+            },
+            {
+                "PLO": 6,
+                "idCTCT": 1,
+                "thangDanhGia": 20
+            }
+        ] 
+    },
+    "sectionH-delete": {
+        "id": 10005,
+        "deleteData": [1, 2, 3, 4]
+    },
+    "sectionG-soTinChi": {
+        "id": 10005,
+        "data": {
+            "daiCuong": 30,
+            "coSoNganh": 25,
+            "nganh": 30,
+            "boTro": 10,
+            "thucTap": 15,
+            "doAnKhoaLuan": 10,
+            "chuyenNganh": 21
+        }
+    },
+    "sectionG-soTinChi-update": {
+        "id": 10005,
+        "data": {
+            "daiCuong": 30,
+            "coSoNganh": 25,
+            "nganh": 30,
+            "boTro": 10,
+            "thucTap": 15,
+            "doAnKhoaLuan": 10,
+            "chuyenNganh": 21
+        }
     }
 }

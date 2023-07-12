@@ -24,17 +24,23 @@ const postData = async (api, url, payload, completeMessage, errorMessage) => {
     }
 }
 
-const deleteData = (api, url, payload, completeMessage, errorMessage) => {
+const deleteData = async (api, url, payload, completeMessage, errorMessage) => {
     const apiURL = api + url
-    axios.delete(apiURL, {
+    const result =
+    await axios.delete(apiURL, {
         data: payload
     })
         .then(response => {
             console.log(completeMessage ? completeMessage : '', response)
+            return response
         })
         .catch(err => {
             console.log(errorMessage ? errorMessage : '', err)
         })
+    return {
+        data: result.data,
+        status: result.status
+    }
 }
 
 const handleUpdateDatabase = ({ currentSection, currentId, api, thisE }) => {
@@ -62,7 +68,7 @@ const handleUpdateDatabase = ({ currentSection, currentId, api, thisE }) => {
 
 function getParent(element, className) {
     while(element.parentElement) {
-        if(element.parentElement.className == className)
+        if(element.parentElement.className.split(' ').includes(className))
             return element.parentElement
         
         element = element.parentElement
