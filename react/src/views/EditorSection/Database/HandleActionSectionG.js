@@ -30,6 +30,35 @@ const getChuyenNganh = async (data, apiURL, id) => {
     return values
 }
 
+const getTTKL = async (data, apiURL, id) => {
+    const chuyenNganhValueApi = `${apiURL}/ChuyenNganhDaoTao/${id}`
+    let chuyenNganh = []
+    await axios.get(chuyenNganhValueApi) 
+        .then(response => {
+            const restData = response.data
+            if(restData.data)
+                chuyenNganh = restData
+        })
+        .catch(error => {
+            console.log(error)
+            window.location='/error'
+        })
+
+    let values = {}
+
+    chuyenNganh.data.forEach(CN => {
+        const value = data.filter(item => item.idChuyenNganh == CN.idChuyenNganh && item.thayTheKhoaLuan == true)
+        values[CN.idChuyenNganh] = {
+            idChuyenNganh: CN.idChuyenNganh,
+            tenChuyenNganh: CN.tenChuyenNganh,
+            type: 'THAY_THE_KHOA_LUAN',
+            data: value
+        }
+    })
+
+    return values
+}
+
 const handleSplitSectionG = async (data, setState, apiURL, id) => {
     const DAI_CUONG = data.filter(item => item.khoiKienThuc == 'DAI_CUONG')
     
@@ -50,7 +79,7 @@ const handleSplitSectionG = async (data, setState, apiURL, id) => {
     const BO_TRO = data.filter(item => item.chiTietKhoiKienThuc == 'BO_TRO')
     const THUC_TAP = data.filter(item => item.chiTietKhoiKienThuc == 'THUC_TAP')
     const DO_AN_KHOA_LUAN = data.filter(item => item.chiTietKhoiKienThuc == 'DO_AN_KHOA_LUAN' && item.thayTheKhoaLuan == false)
-    const THAY_THE_KHOA_LUAN = data.filter(item => item.chiTietKhoiKienThuc == 'DO_AN_KHOA_LUAN' && item.thayTheKhoaLuan == true)
+    const THAY_THE_KHOA_LUAN = await getTTKL(data, apiURL, id)
     
     const CHUYEN_NGANH = await getChuyenNganh(data, apiURL, id)
 

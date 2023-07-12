@@ -269,16 +269,6 @@ function EditElement({ data, setEdit, setState }) {
                             />
                         </div>
                         <div className="formGroup">
-                            <label htmlFor="thayTheKhoaLuan">Thay thế khóa luận</label>
-                            <input 
-                                id="thayTheKhoaLuan"
-                                type="checkBox"
-                                name="thayTheKhoaLuan"
-                                checked={editValue.thayTheKhoaLuan}
-                                onChange={e => handleChangeCheckBox(e)}
-                            />
-                        </div>
-                        <div className="formGroup">
                             <label htmlFor="hocKy">Học kỳ</label>
                             <input
                                 id="hocKy"

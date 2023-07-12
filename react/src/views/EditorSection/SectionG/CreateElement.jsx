@@ -8,15 +8,15 @@ import SearchItem from "./SearchItem"
 import swal from 'sweetalert'
 import TienQuyetRecommend from "./TienQuyetRecommend"
 
-function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCreate, setState }) {
-
+function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCreate, setState, type }) {
+    
     console.log(chiTietKhoiKienThuc)
     const { id } = useParams()
     const { apiURL, fakeApi } = useContext(UserContext)
 
     const [ createValue, setCreateValue ] = useState({
         idDeCuongHocPhan: '',
-        thayTheKhoaLuan: false,
+        thayTheKhoaLuan: chiTietKhoiKienThuc == 'THAY_THE_KHOA_LUAN' ? true : false,
         batBuoc: false,
         tienQuyet: [],
         hocTruoc: [],
@@ -242,13 +242,13 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
                             />
                         </div>
                         <div className="formGroup">
-                            <label htmlFor="thayTheKhoaLuan">Thay thế khóa luận</label>
+                            <label htmlFor="batBuoc">Thay thế khóa luận</label>
                             <input 
                                 id="thayTheKhoaLuan"
                                 type="checkBox"
                                 name="thayTheKhoaLuan"
                                 checked={createValue.thayTheKhoaLuan}
-                                onChange={e => handleChangeCheckBox(e)}
+                                readOnly
                             />
                         </div>
                         <div className="formGroup">

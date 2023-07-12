@@ -4,8 +4,6 @@ import CreateElement from "./CreateElement"
 import { getParent } from "../Database/HandleUpdateDatabase"
 
 function SectionGSection({ title, index, data, setState, idChuyenNganh }) {
-    console.log(data)
-
     const [ isCreate, setIsCreate ] = useState(false)
 
     const handleOpen = (e) => {

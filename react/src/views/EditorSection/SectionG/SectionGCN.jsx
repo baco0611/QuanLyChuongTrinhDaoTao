@@ -5,8 +5,7 @@ function SectionGCN({ data, setState }) {
 
     const chuyenNganhKeys = Object.keys(data.CHUYEN_NGANH.data)
     const chuyenNganhValue = data.CHUYEN_NGANH.data
-
-    console.log(chuyenNganhKeys)
+    const TTKL = data.THAY_THE_KHOA_LUAN.data
 
     return (
         <>
@@ -54,6 +53,20 @@ function SectionGCN({ data, setState }) {
                 data={data.DO_AN_KHOA_LUAN}
                 setState={setState}
             />
+            {
+                chuyenNganhKeys.map((key, index) => {
+                    return (
+                        <SectionGSection
+                            key={index}
+                            title={`Các học phần thay thế KLTN Chuyên ngành ${TTKL[key].tenChuyenNganh}`}
+                            index={`E.${index+1}`}
+                            data={TTKL[key]}
+                            setState={setState}
+                            idChuyenNganh={key}
+                        />
+                    )
+                })
+            }
         </>
     )
 }
