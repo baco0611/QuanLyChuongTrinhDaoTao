@@ -8,7 +8,9 @@ use App\Http\Controllers\Api\GiangVienController;
 use App\Http\Controllers\api\HocPhanController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\MaTranChuanDauRaMucTieuController;
+use App\Http\Controllers\api\MaTranHocPhanChuanDauRaController;
 use App\Http\Controllers\Api\MucTieuCuTheController;
+use App\Models\MaTranHocPhanChuanDauRa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -74,3 +76,12 @@ Route::get('sectionG/{id}', [ChuongTrinhChiTietController::class, 'show'])->name
 Route::post('search_maHocPhan_search', [HocPhanController::class,'storeSearchMaHocPhan'])->name('searchMaHocPhan.show');
 Route::post('search_tenHocPhan_search', [HocPhanController::class,'storeSearchTenHocPhan'])
                                                 ->name('searchTenHocPhan.show');
+#MaTran_HocPhan_ChuanDauRa Section H
+Route::post('create_sectionH', [MaTranHocPhanChuanDauRaController::class,'storeCreate'])
+                                                ->name('createMaTran_HP_CDR.storeCreate');
+Route::post('update_sectionH', [MaTranHocPhanChuanDauRaController::class,'storeUpdate'])
+                                                ->name('updateMaTran_HP_CDR.storeUpdate');
+Route::delete('delete_sectionH', [MaTranHocPhanChuanDauRaController::class,'destroy'])
+                                                ->name('deleteMaTran_HP_CDR.destroy');
+Route::get('sectionH/{id}', [MaTranHocPhanChuanDauRaController::class,'show'])
+                                                ->name('MaTran_HP_CDR.show');

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('idChuongTrinhChiTiet')->references('idChuongTrinhChiTiet')->on('ChuongTrinhChiTiet');
             $table->foreignId('idChuanDauRa');
             $table->foreign('idChuanDauRa')->references('idChuanDauRa')->on('ChuanDauRa');
-            $table->integer('mucDoDapUng');
+            $table->integer('mucDoDapUng')->nullable();
             $table->foreignId('idChuongTrinh');
             $table->foreign('idChuongTrinh')->references('idChuongTrinh')->on('ChuongTrinhDaoTao');
         });

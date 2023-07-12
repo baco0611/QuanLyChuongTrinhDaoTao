@@ -42,13 +42,6 @@ class ChuongTrinhChiTietController extends Controller
                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-        if (empty($data)) {
-            return response()->json([
-                'idCTDT'=>intval($idChuongTrinh),
-                'data' => $listCTCT,
-                'status'=>HttpResponse::HTTP_OK
-            ]);
-        }
          foreach($data as $val) {
             if (($val['khoiKienThuc']=="CHUYEN_NGHIEP") && ($val['chiTietKhoiKienThuc']=="")) 
             {
@@ -137,20 +130,11 @@ class ChuongTrinhChiTietController extends Controller
        $data = $request['data'];
        $idChuongTrinh =$request['idCTDT'];
        $CTCTService = new ChuongTrinhChiTietService();
-       $listItem = $CTCTService->getList($idChuongTrinh);
-       $listCTCT = ChuongTrinhChiTietResource::collection($listItem);
        $ctdt = new ChuongTrinhDaoTaoService();
         $itemCTDT = $ctdt->getCTDT($idChuongTrinh);
         if (empty(json_decode($itemCTDT))) {
             return response()->json([
                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
-            ]);
-        }
-        if (empty($data)) {
-            return response()->json([
-                'idCTDT'=>intval($idChuongTrinh),
-                'data' => $listCTCT,
-                'status'=>HttpResponse::HTTP_OK
             ]);
         }
        foreach($data as $val) {
@@ -182,12 +166,6 @@ class ChuongTrinhChiTietController extends Controller
         }
         $listItem = $CTCTService->getList($id);
         $listCTCT = ChuongTrinhChiTietResource::collection($listItem);
-        if (!empty(json_decode($itemCTDT)) && empty(json_decode($listItem))) {
-            return response()->json([
-                'idCTDT'=>intval($id),
-                'data' => []
-            ]);
-        }
         return response()->json([
             'idCTDT'=>intval($id),
             'data' =>  $listCTCT,
