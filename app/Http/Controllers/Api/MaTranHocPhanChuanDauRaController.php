@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\MucTieuCuTheCreateReSource;
-use App\Http\Resources\MucTieuCuTheUpdateReSource;
-use App\Models\MucTieuCuThe;
+use App\Http\Resources\MaTranHocPhanChuanDauRaResource;
+use App\Models\MaTranHocPhanChuanDauRa;
 use App\Service\ChuongTrinhDaoTaoService;
-use App\Service\MucTieuCuTheService;
+use App\Service\MaTranHocPhanChuanDauRaService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 
-class MucTieuCuTheController extends Controller
+class MaTranHocPhanChuanDauRaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,9 +30,10 @@ class MucTieuCuTheController extends Controller
      */
     public function storeCreate(Request $request)
     {
-      $data = $request['data'];
-      $idChuongTrinh =$request['idCTDT'];
-      $ctdt = new ChuongTrinhDaoTaoService();
+        $data = $request['data'];
+        $idChuongTrinh = $request['idCTDT'];
+        $ctdt = new ChuongTrinhDaoTaoService();
+        $matranService = new MaTranHocPhanChuanDauRaService();
         $itemCTDT = $ctdt->getCTDT($idChuongTrinh);
         if (empty(json_decode($itemCTDT))) {
             return response()->json([
@@ -41,41 +41,42 @@ class MucTieuCuTheController extends Controller
             ]);
         }
        foreach($data as $val) {
-           $mtct = new MucTieuCuThe();
-           $mtct->kiHieu = $val['kiHieu'];
-           $mtct->noiDung= $val['noiDung'];
-           $mtct->loaiMucTieu= $val['loaiMucTieu'];
-           $mtct->idChuongTrinh= intval($val['idCTDT']);
-           $mtct->save();
+           $matran = new MaTranHocPhanChuanDauRa();
+           $matran->idChuongTrinh=$idChuongTrinh;
+           $matran->idChuanDauRa=$val['PLO'];
+           $matran->idChuongTrinhChiTiet=$val['idCTCT'];
+           $matran->mucDoDapUng=$val['mucDoDapUng'];
+           $matran->save();
        }
-       $MTCTService = new MucTieuCuTheService();
-       $listItem = $MTCTService->getList($idChuongTrinh);
-       $listMucTieu =  MucTieuCuTheCreateReSource::collection($listItem);
+       $listItem = $matranService->getList($idChuongTrinh);
+       $listMaTran = MaTranHocPhanChuanDauRaResource::collection($listItem);
        return response()->json([
         'idCTDT'=>intval($idChuongTrinh),
-        'data' => $listMucTieu
+        'data' => $listMaTran,
+        'status'=>HttpResponse::HTTP_OK
     ], HttpResponse::HTTP_OK);
     }
     public function storeUpdate(Request $request)
     {
         $data = $request['data'];
-        $idChuongTrinh =$request['idCTDT'];
+        $idChuongTrinh = $request['idCTDT'];
         $ctdt = new ChuongTrinhDaoTaoService();
+        $matranService = new MaTranHocPhanChuanDauRaService();
         $itemCTDT = $ctdt->getCTDT($idChuongTrinh);
         if (empty(json_decode($itemCTDT))) {
             return response()->json([
                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-       $MTCTService = new MucTieuCuTheService();
-       foreach($data as $val) {
-        $MTCTService->update($val);
-       }
-       $listItem = $MTCTService->getList($idChuongTrinh);
-       $listMucTieu =  MucTieuCuTheUpdateReSource::collection($listItem);
+        foreach($data as $val) {
+            $matranService->update($val,$idChuongTrinh);
+         }
+       $listItem = $matranService->getList($idChuongTrinh);
+       $listMaTran = MaTranHocPhanChuanDauRaResource::collection($listItem);
        return response()->json([
         'idCTDT'=>intval($idChuongTrinh),
-        'data' => $listMucTieu
+        'data' => $listMaTran,
+        'status'=>HttpResponse::HTTP_OK
     ], HttpResponse::HTTP_OK);
     }
     /**
@@ -86,19 +87,20 @@ class MucTieuCuTheController extends Controller
      */
     public function show($id)
     {
-        $MTCTService = new MucTieuCuTheService();
+        $MaTranService = new MaTranHocPhanChuanDauRaService();
         $ctdt = new ChuongTrinhDaoTaoService();
         $itemCTDT = $ctdt->getCTDT($id);
-        $listItem = $MTCTService->getList($id);
+        $listItem = $MaTranService->getList($id);
         if (empty(json_decode($itemCTDT))) {
             return response()->json([
                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-        $listMucTieu =  MucTieuCuTheUpdateReSource::collection($listItem);
+        $listMaTran = MaTranHocPhanChuanDauRaResource::collection($listItem);
         return response()->json([
             'idCTDT'=>intval($id),
-            'data' => $listMucTieu
+            'checkData' => $listMaTran,
+            'status'=>HttpResponse::HTTP_OK
         ], HttpResponse::HTTP_OK);
     }
 
@@ -124,17 +126,25 @@ class MucTieuCuTheController extends Controller
     {
         $data = $request['deleteData'];
         $idChuongTrinh =$request['idCTDT'];
-        $MTCTService = new MucTieuCuTheService();
-        if(!empty($data)) {
+        $ctdt = new ChuongTrinhDaoTaoService();
+        $itemCTDT = $ctdt->getCTDT($idChuongTrinh);
+        if (empty(json_decode($itemCTDT))) {
+            return response()->json([
+                'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
+        $MaTranService = new MaTranHocPhanChuanDauRaService();
+        if (!empty($data)){
             foreach($data as $val) {
-                $MTCTService->delete($val);
+                $MaTranService->delete($val,$idChuongTrinh);
             }
         }
-        $listItem = $MTCTService->getList($idChuongTrinh);
-        $listMucTieu =  MucTieuCuTheUpdateReSource::collection($listItem);
-         return response()->json([
+        $listItem = $MaTranService->getList($idChuongTrinh);
+        $listMaTran = MaTranHocPhanChuanDauRaResource::collection($listItem);
+        return response()->json([
             'idCTDT'=>intval($idChuongTrinh),
-            'data' => $listMucTieu
+            'data' => $listMaTran,
+            'status'=>HttpResponse::HTTP_OK
         ], HttpResponse::HTTP_OK);
     }
 }

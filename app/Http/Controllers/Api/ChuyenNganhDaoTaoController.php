@@ -40,12 +40,6 @@ class ChuyenNganhDaoTaoController extends Controller
                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-        if (empty($data)) {
-            return response()->json([
-                'idCTDT'=>intval($idChuongTrinh),
-                'data' => []
-            ]);
-        }
         foreach($data as $val) {
             $cndt = new ChuyenNganhDaoTao();
             $cndt->tenChuyenNganh = $val;
@@ -69,12 +63,6 @@ class ChuyenNganhDaoTaoController extends Controller
         if (empty(json_decode($itemCTDT))) {
             return response()->json([
                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
-            ]);
-        }
-        if (empty($data)) {
-            return response()->json([
-                'idCTDT'=>intval($idChuongTrinh),
-                'data' => []
             ]);
         }
         $CNDTService = new ChuyenNganhDaoTaoService();
@@ -103,12 +91,6 @@ class ChuyenNganhDaoTaoController extends Controller
         if (empty(json_decode($itemCTDT))) {
             return response()->json([
                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
-            ]);
-        }
-        if (!empty(json_decode($itemCTDT)) && empty(json_decode($listItem))) {
-            return response()->json([
-                'idCTDT'=>intval($id),
-                'data' => []
             ]);
         }
         $listCNDT = ChuyenNganhDaoTaoResource::collection($listItem);

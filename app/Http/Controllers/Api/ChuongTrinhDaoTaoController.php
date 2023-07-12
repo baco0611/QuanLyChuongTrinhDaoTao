@@ -152,13 +152,6 @@ class ChuongTrinhDaoTaoController extends Controller
                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
             ]);
         }
-        if (empty($data)) {
-            return response()->json([
-                'idCTDT'=>intval($idChuongTrinh),
-                'data' => [],
-                'status'=>HttpResponse::HTTP_OK
-            ]);
-        }
         foreach($data as $val) {
             $ctdtService->updateCredits($val, $idChuongTrinh);
            }

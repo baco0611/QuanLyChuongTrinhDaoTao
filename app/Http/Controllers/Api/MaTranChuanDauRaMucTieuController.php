@@ -34,20 +34,11 @@ class MaTranChuanDauRaMucTieuController extends Controller
         $data = $request['data'];
         $idChuongTrinh = $request['idCTDT'];
         $MaTranService = new MaTranChuanDauRaMucTieuService();
-        $listItem = $MaTranService->getList($idChuongTrinh);
-        $listMaTran = MaTranChuanDauRaMucTieuResource::collection($listItem);
         $ctdt = new ChuongTrinhDaoTaoService();
         $itemCTDT = $ctdt->getCTDT($idChuongTrinh);
         if (empty(json_decode($itemCTDT))) {
             return response()->json([
                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
-            ]);
-        }
-        if (empty($data)) {
-            return response()->json([
-                'idCTDT'=>intval($idChuongTrinh),
-                'data' => $listMaTran,
-                'status'=>HttpResponse::HTTP_OK
             ]);
         }
        foreach($data as $val) {
@@ -57,6 +48,8 @@ class MaTranChuanDauRaMucTieuController extends Controller
            $matran->idMucTieu=$val['PO'];
            $matran->save();
        }
+       $listItem = $MaTranService->getList($idChuongTrinh);
+       $listMaTran = MaTranChuanDauRaMucTieuResource::collection($listItem);
        return response()->json([
         'idCTDT'=>intval($idChuongTrinh),
         'data' => $listMaTran,
@@ -79,12 +72,6 @@ class MaTranChuanDauRaMucTieuController extends Controller
         if (empty(json_decode($itemCTDT))) {
             return response()->json([
                 'status'=>HttpResponse::HTTP_INTERNAL_SERVER_ERROR
-            ]);
-        }
-        if (!empty(json_decode($itemCTDT)) && empty(json_decode($listItem))) {
-            return response()->json([
-                'idCTDT'=>intval($id),
-                'data' => []
             ]);
         }
         $listMaTran = MaTranChuanDauRaMucTieuResource::collection($listItem);
