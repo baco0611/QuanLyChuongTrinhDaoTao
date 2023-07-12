@@ -27,7 +27,6 @@ function SectionGSection({ title, index, data, setState, idChuyenNganh }) {
                         index = {index+1}
                         data={item}
                         setState={setState}
-                        idChuyenNganh={idChuyenNganh}
                     />
                 )
             }
@@ -45,6 +44,7 @@ function SectionGSection({ title, index, data, setState, idChuyenNganh }) {
                             chiTietKhoiKienThuc={data.type}
                             idChuyenNganh={idChuyenNganh}
                             setCreate={setIsCreate}
+                            setState={setState}
                         />
                     }
                 </td>

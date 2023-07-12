@@ -40,6 +40,7 @@ function SectionGDC({ data, setState}) {
                             chiTietKhoiKienThuc={''}
                             idChuyenNganh={''}
                             setCreate={setIsCreate}
+                            setState={setState}
                         />
                     }
                 </td>

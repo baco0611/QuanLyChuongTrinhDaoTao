@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom"
 import { UserContext } from "../../../context/ContextProvider"
 import axios from "axios"
 import { getParent } from "../Database/HandleUpdateDatabase"
-import { searchHocPhan } from "../Database/HandleActionSectionG"
+import { createSubject, searchHocPhan } from "../Database/HandleActionSectionG"
 import SearchItem from "./SearchItem"
+import swal from 'sweetalert'
+import TienQuyetRecommend from "./TienQuyetRecommend"
 
-function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCreate }) {
+function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCreate, setState }) {
 
     const { id } = useParams()
     const { apiURL, fakeApi } = useContext(UserContext)
@@ -29,6 +31,7 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
     const [ soHocKy, setSoHocKy ] = useState(8)
     const [ isSearch, setIsSearch ] = useState(false)
     const [ searchValue, setSearchValue] = useState([])
+    const [ isSearchTienQuyet, setIsSearchTienQuyet ] = useState(false)
     const typingTimeOutRef = useRef(null)
 
     useEffect(() => {
@@ -88,6 +91,42 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
             tenHocPhan: ''
         })
         setCreate(false)
+    }
+
+    const handleSave = (e) => {
+        e.preventDefault()
+
+        if(createValue.idDeCuongHocPhan == '' &  createValue.hocKy == '')
+        {
+            swal({
+                title: 'Chưa điền thông tin',
+                text: 'Vui lòng chọn học phần và học kỳ tương ứng!',
+                icon: 'error',
+                dangerMode: true
+            })
+        }
+        else
+        if(createValue.idDeCuongHocPhan == '') {
+            swal({
+                title: 'Chưa điền thông tin',
+                text: 'Vui lòng chọn học phần hợp lệ!',
+                icon: 'error',
+                dangerMode: true
+            })
+        }
+        else
+        if(createValue.hocKy == '') {
+            swal({
+                title: 'Chưa điền thông tin',
+                text: 'Vui lòng nhập học kỳ tương ứng!',
+                icon: 'error',
+                dangerMode: true
+            })
+        }
+        else {
+            handleClose()
+            createSubject(id, apiURL, createValue, setState)
+        }
     }
 
     const handleChoiceSubject = (e) => {
@@ -227,7 +266,23 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
                                         return <li key={index}>{item}</li>
                                     })
                                 }
-                                <li><button>Thêm học phần</button></li>
+                                <li>
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            setIsSearchTienQuyet(true)
+                                        }}
+                                    >Thêm học phần</button>
+                                    {
+                                        isSearchTienQuyet &&
+                                        <TienQuyetRecommend
+                                            setClose={() => setIsSearchTienQuyet(false)}
+                                            setState={setCreateValue}
+                                            apiURL={apiURL}
+                                            type={'tienQuyet'}
+                                        />
+                                    }
+                                </li>
                             </ul>
                         </div>
                         <div className="subject">
@@ -258,7 +313,9 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
                     <button
                         onClick={handleClose}
                     >Hủy bỏ</button>
-                    <button>Lưu học phần</button>
+                    <button
+                        onClick={handleSave}
+                    >Lưu học phần</button>
                 </div>
             </div>
         </div>

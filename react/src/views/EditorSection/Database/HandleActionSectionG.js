@@ -1,5 +1,5 @@
 import axios from "axios"
-import { postData } from "./HandleUpdateDatabase"
+import { deleteData, postData } from "./HandleUpdateDatabase"
 
 const getChuyenNganh = async (data, apiURL, id) => {
     const chuyenNganhValueApi = `${apiURL}/ChuyenNganhDaoTao/${id}`
@@ -26,7 +26,6 @@ const getChuyenNganh = async (data, apiURL, id) => {
         }
     })
 
-    console.log(values)
     return values
 }
 
@@ -98,4 +97,71 @@ const searchHocPhan = async (value, apiURL, api) => {
     return searchValues.data.data
 }
 
-export { handleSplitSectionG, searchHocPhan }
+const createSubject = async (id, apiURL, data, setState) => {
+    const createValues = {
+        idDeCuongHocPhan: data.idDeCuongHocPhan,
+        thayTheKhoaLuan: data.thayTheKhoaLuan,
+        batBuoc: data.batBuoc,
+        tienQuyet: data.tienQuyet,
+        hocTruoc: data.hocTruoc,
+        songHanh: data.songHanh,
+        hocKy: data.hocKy,
+        khoiKienThuc: data.khoiKienThuc,
+        chiTietKhoiKienThuc: data.chiTietKhoiKienThuc,
+        idChuyenNganh: data.idChuyenNganh ? data.idChuyenNganh : '',
+    }
+
+    const payload = {
+        idCTDT: id,
+        data: [createValues]
+    }
+    const createResult = await postData(apiURL, '/create_sectionG', payload, 'CREATE_SUBJECT')
+
+    handleSplitSectionG(createResult.data.data, setState, apiURL, id)
+}
+
+const updateSubject = async (id, apiURL, data, setState) => {
+    const createValues = {
+        idDeCuongHocPhan: data.idDeCuongHocPhan,
+        thayTheKhoaLuan: data.thayTheKhoaLuan,
+        batBuoc: data.batBuoc,
+        tienQuyet: data.tienQuyet,
+        hocTruoc: data.hocTruoc,
+        songHanh: data.songHanh,
+        hocKy: data.hocKy,
+        khoiKienThuc: data.khoiKienThuc,
+        chiTietKhoiKienThuc: data.chiTietKhoiKienThuc,
+        idChuyenNganh: data.idChuyenNganh ? data.idChuyenNganh : '',
+        id: data.id
+    }
+
+    const payload = {
+        idCTDT: id,
+        data: [createValues]
+    }
+    const createResult = await postData(apiURL, '/update_sectionG', payload, 'UPDATE_SUBJECT')
+
+    handleSplitSectionG(createResult.data.data, setState, apiURL, id)
+}
+
+const deleteSubject = async (id, apiURL, data, setState) => {
+    const payload = {
+        idCTDT: id,
+        deleteData: [data]
+    }
+
+    const deleteResult = await deleteData(apiURL, '/delete_sectionG', payload, 'DELETE_SUBJECT')
+    console.log(deleteResult)
+
+    handleSplitSectionG(deleteResult.data.data, setState, apiURL, id)
+
+    return deleteResult
+}
+
+export { 
+    handleSplitSectionG, 
+    searchHocPhan, 
+    createSubject, 
+    updateSubject,
+    deleteSubject 
+}

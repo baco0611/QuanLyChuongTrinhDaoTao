@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { getParent } from "../Database/HandleUpdateDatabase"
 import EditElement from "./EditElement"
 
-function SectionGElement({ index, data, setState, idChuyenNganh }) {
+function SectionGElement({ index, data, setState }) {
 
     const [ isEdit, setIsEdit ] = useState(false)
 
@@ -17,6 +17,7 @@ function SectionGElement({ index, data, setState, idChuyenNganh }) {
         <tr
             onDoubleClick={e => handleOpen(e)}
             className="cursorPointer"
+            data-id={data.id}
         >
             <td>{index}</td>
             <td>{data.maHocPhan}</td>
@@ -25,7 +26,20 @@ function SectionGElement({ index, data, setState, idChuyenNganh }) {
                     textAlign:'left',
                     paddingLeft: '10px'
                 }}
-            >{data.tenHocPhan}</td>
+            >
+                {data.tenHocPhan}
+                {
+                    isEdit &&
+                    <EditElement
+                        data={data}
+                        khoiKienThuc={data.khoiKienThuc}
+                        chiTietKhoiKienThuc={data.chiTietKhoiKienThuc}
+                        idChuyenNganh={data.idChuyenNganh}
+                        setEdit={setIsEdit}
+                        setState={setState}
+                    />
+                }
+            </td>
             <td>
                 <input 
                     type="checkbox" 
@@ -64,16 +78,6 @@ function SectionGElement({ index, data, setState, idChuyenNganh }) {
                 </h4>
             </td>
             <td>{data.hocKy}</td>
-            {
-                isEdit &&
-                <EditElement
-                    data={data}
-                    khoiKienThuc={data.khoiKienThuc}
-                    chiTietKhoiKienThuc={data.chiTietKhoiKienThuc}
-                    idChuyenNganh={data.idChuyenNganh}
-                    setEdit={setIsEdit}
-                />
-            }
         </tr>
     )
 }

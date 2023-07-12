@@ -77,8 +77,6 @@ function SectionG() {
         localStorage.setItem(`sectionG-${id}`, JSON.stringify(sectionGValue))
     })
 
-    console.log(sectionGValue)
-
     const { isLoading, isError} = useQuery(`sectionC-${id}`, fecthAPI(id),{
         cacheTime: Infinity,
         refetchOnWindowFocus: false,
