@@ -71,6 +71,6 @@ Route::post('update_sectionG', [ChuongTrinhChiTietController::class, 'storeUpdat
 Route::delete('delete_sectionG', [ChuongTrinhChiTietController::class, 'destroy'])->name('deleteCTCT.destroy');
 Route::get('sectionG/{id}', [ChuongTrinhChiTietController::class, 'show'])->name('CTCT.show');
 #HocPhan
-Route::post('search_maHocPhan_search', [HocPhanController::class,'storeSearchMaHocPhan'])->name('searchMaHocPhan.show');
-Route::post('search_tenHocPhan_search', [HocPhanController::class,'storeSearchTenHocPhan'])
+Route::post('search_maHocPhan', [HocPhanController::class,'storeSearchMaHocPhan'])->name('searchMaHocPhan.show');
+Route::post('search_tenHocPhan', [HocPhanController::class,'storeSearchTenHocPhan'])
                                                 ->name('searchTenHocPhan.show');

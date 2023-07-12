@@ -1,7 +1,10 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
 import { UserContext } from "../../../context/ContextProvider"
 import axios from "axios"
+import { getParent } from "../Database/HandleUpdateDatabase"
+import { searchHocPhan } from "../Database/HandleActionSectionG"
+import SearchItem from "./SearchItem"
 
 function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCreate }) {
 
@@ -17,13 +20,16 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
         songHanh: [],
         hocKy: '',
         khoiKienThuc: khoiKienThuc,
-        chiTietKhoiKienThuc: chiTietKhoiKienThuc,
-        idChuyenNganh: idChuyenNganh,
+        chiTietKhoiKienThuc: chiTietKhoiKienThuc ? chiTietKhoiKienThuc : '',
+        idChuyenNganh: idChuyenNganh ? idChuyenNganh : '',
         maHocPhan: '',
         tenHocPhan: ''
     })
 
     const [ soHocKy, setSoHocKy ] = useState(8)
+    const [ isSearch, setIsSearch ] = useState(false)
+    const [ searchValue, setSearchValue] = useState([])
+    const typingTimeOutRef = useRef(null)
 
     useEffect(() => {
         const sectionAValueApi = `${apiURL}/sectionA/${id}`
@@ -35,7 +41,6 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
             })
             .catch(error => {
                 console.log(error)
-                // navigate('/error')
             })
     }, [])
 
@@ -53,7 +58,7 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
         })
     }
 
-    const handleChangeTextBox = (e) => {
+    const handleChangeCheckBox = (e) => {
         let value = !createValue[e.target.name]
 
         if(chiTietKhoiKienThuc != 'DO_AN_KHOA_LUAN') {
@@ -85,42 +90,102 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
         setCreate(false)
     }
 
+    const handleChoiceSubject = (e) => {
+        const element = getParent(e.target, 'searchItem')
+        const dataSet = element.dataset
+        setCreateValue(prev => {
+            return {
+                ...prev,
+                idDeCuongHocPhan: dataSet.id,
+                tenHocPhan: dataSet.name,
+                maHocPhan: dataSet.ma
+            }
+        })
+        setIsSearch(false)
+    }
+
+    const handleInput = async (e, api) => {
+        const value = e.target.value
+
+        setIsSearch(true)
+        setCreateValue({
+            ...createValue,
+            [e.target.name]: value
+        })
+
+        if(typingTimeOutRef.current) {
+            clearTimeout(typingTimeOutRef.current)
+        }
+
+        typingTimeOutRef.current = await setTimeout(async()=>{
+            const searchValueApi = await searchHocPhan(value, apiURL, api)
+
+            setSearchValue(searchValueApi)
+        }, 300)
+    }
+
+    const handleBlurSearch = e => {
+        const element = getParent(e.target, 'search')
+
+        if(!element) setIsSearch(false)
+    }
+
     return (
-        <div className="section-G-create">
+        <div className="section-G-create" onClick={handleBlurSearch}>
             <div className="section-G-createMain">
                 <h1>Thêm học phần</h1>
                 <form>
                     <div className="flexGroup">
-                        <div className="formGroup">
+                        <div className="formGroup search" style={{width: '30%'}}>
                             <label htmlFor="maHocPhan">Mã học phần</label>
                             <input
                                 id="maHocPhan"
                                 type="text"
                                 name="maHocPhan" 
                                 value={createValue.maHocPhan}   
+                                style={{width: '50%'}}
+                                autoComplete="off"
+                                onChange={e => handleInput(e, '/search_maHocPhan')}
+                                onFocus={(e) => {
+                                    handleInput(e, '/search_maHocPhan')
+                                    setIsSearch(true)
+                                }}
                             />
                         </div>
-                        <div className="formGroup">
-                            <label htmlFor="hocKy">Học kỳ</label>
-                            <input
-                                id="hocKy"
+                        <div className="formGroup search" style={{width: '60%'}}>
+                            <label htmlFor="tenHocPhan">Tên học phần</label>
+                            <input 
+                                id="tenHocPhan"    
                                 type="text"
-                                name="hocKy"
-                                value={createValue.hocKy}    
-                                onChange={e => handleChangeHocKy(e)}
+                                name="tenHocPhan"  
+                                value={createValue.tenHocPhan}  
+                                style={{width: '75%'}}
+                                autoComplete="off"
+                                onInput={e => handleInput(e, '/search_tenHocPhan')}
+                                onFocus={(e) => {
+                                    handleInput(e, '/search_tenHocPhan')
+                                    setIsSearch(true)
+                                }}
                             />
                         </div>
+                        {
+                            isSearch &&
+                            <ul id="searchBox" className="search">
+                            {
+                                searchValue.map((item, index) => {
+                                    return (
+                                        <SearchItem
+                                            key={index}
+                                            item={item}
+                                            handleChoiceSubject={handleChoiceSubject}
+                                        />
+                                    )
+                                })
+                            }
+                            </ul>
+                        }
                     </div>
-                    <div className="formGroup">
-                        <label htmlFor="tenHocPhan">Tên học phần</label>
-                        <input 
-                            id="tenHocPhan"    
-                            type="text"
-                            name="tenHocPhan"  
-                            value={createValue.tenHocPhan}  
-                        />
-                    </div>
-                    <div className="flexGroup box">
+                    <div className="flexGroup">
                         <div className="formGroup">
                             <label htmlFor="batBuoc">Bắt buộc</label>
                             <input 
@@ -128,7 +193,7 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
                                 type="checkBox"
                                 name="batBuoc"
                                 checked={createValue.batBuoc}
-                                onChange={e => handleChangeTextBox(e)}
+                                onChange={e => handleChangeCheckBox(e)}
                             />
                         </div>
                         <div className="formGroup">
@@ -138,36 +203,55 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
                                 type="checkBox"
                                 name="thayTheKhoaLuan"
                                 checked={createValue.thayTheKhoaLuan}
-                                onChange={e => handleChangeTextBox(e)}
+                                onChange={e => handleChangeCheckBox(e)}
+                            />
+                        </div>
+                        <div className="formGroup">
+                            <label htmlFor="hocKy">Học kỳ</label>
+                            <input
+                                id="hocKy"
+                                type="text"
+                                name="hocKy"
+                                value={createValue.hocKy}  
+                                autoComplete="off"
+                                onChange={e => handleChangeHocKy(e)}
                             />
                         </div>
                     </div>
-                    <div className="formGroup">
-                        <label htmlFor="tienQuyen">Tiên quyết</label>
-                        <input 
-                            id="tienQuyen"
-                            type="text"
-                            name="tienQuyen"
-                            value={createValue.tienQuyet.join(', ')}
-                        />
-                    </div>
-                    <div className="formGroup">
-                        <label htmlFor="hocTruoc">Học trước</label>
-                        <input 
-                            id="hocTruoc"
-                            type="text"
-                            name="hocTruoc"
-                            value={createValue.hocTruoc.join(', ')}
-                        />
-                    </div>
-                    <div className="formGroup">
-                        <label htmlFor="songHanh">Song hành</label>
-                        <input 
-                            id="songHanh"
-                            type="text"
-                            name="songHanh"
-                            value={createValue.songHanh.join(', ')}
-                        />
+                    <div className="formGroup flexStart">
+                        <div className="subject">
+                            <h4>Tiên quyết</h4>
+                            <ul>
+                                {
+                                    createValue.tienQuyet.map((item, index) => {
+                                        return <li key={index}>{item}</li>
+                                    })
+                                }
+                                <li><button>Thêm học phần</button></li>
+                            </ul>
+                        </div>
+                        <div className="subject">
+                            <h4>Học trước</h4>
+                            <ul>
+                                {
+                                    createValue.hocTruoc.map((item, index) => {
+                                        return <li key={index}>{item}</li>
+                                    })
+                                }
+                            </ul>
+                            <li><button>Thêm học phần</button></li>
+                        </div>
+                        <div className="subject">
+                            <h4>Song hành</h4>
+                            <ul>
+                                {
+                                    createValue.songHanh.map((item, index) => {
+                                        return <li key={index}>{item}</li>
+                                    })
+                                }
+                            </ul>
+                            <li><button>Thêm học phần</button></li>
+                        </div>
                     </div>
                 </form>
                 <div className="navigate">

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import SectionGElement from "./SectionGElement"
 import CreateElement from "./CreateElement"
+import { getParent } from "../Database/HandleUpdateDatabase"
 
 function SectionGSection({ title, index, data, setState, idChuyenNganh }) {
 
@@ -40,9 +41,9 @@ function SectionGSection({ title, index, data, setState, idChuyenNganh }) {
                     {
                         isCreate &&
                         <CreateElement
-                            khoiKienThuc={''}
-                            chiTietKhoiKienThuc={''}
-                            idChuyenNganh={''}
+                            khoiKienThuc={'CHUYEN_NGHIEP'}
+                            chiTietKhoiKienThuc={data.type}
+                            idChuyenNganh={idChuyenNganh}
                             setCreate={setIsCreate}
                         />
                     }

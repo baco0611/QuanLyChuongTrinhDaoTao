@@ -62,7 +62,7 @@ const handleUpdateDatabase = ({ currentSection, currentId, api, thisE }) => {
 
 function getParent(element, className) {
     while(element.parentElement) {
-        if(element.parentElement.className == className)
+        if(element.parentElement.className.split(' ').includes(className))
             return element.parentElement
         
         element = element.parentElement

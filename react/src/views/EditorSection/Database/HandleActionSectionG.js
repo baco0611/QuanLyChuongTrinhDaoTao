@@ -1,4 +1,5 @@
 import axios from "axios"
+import { postData } from "./HandleUpdateDatabase"
 
 const getChuyenNganh = async (data, apiURL, id) => {
     const chuyenNganhValueApi = `${apiURL}/ChuyenNganhDaoTao/${id}`
@@ -91,4 +92,10 @@ const handleSplitSectionG = async (data, setState, apiURL, id) => {
     })
 }
 
-export { handleSplitSectionG }
+const searchHocPhan = async (value, apiURL, api) => {
+    const searchValues = await postData(apiURL, api, {keyWord: value}, 'SEARCH')
+
+    return searchValues.data.data
+}
+
+export { handleSplitSectionG, searchHocPhan }
