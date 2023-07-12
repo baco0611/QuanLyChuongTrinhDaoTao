@@ -10,6 +10,7 @@ import TienQuyetRecommend from "./TienQuyetRecommend"
 
 function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCreate, setState }) {
 
+    console.log(chiTietKhoiKienThuc)
     const { id } = useParams()
     const { apiURL, fakeApi } = useContext(UserContext)
 
@@ -27,11 +28,14 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
         maHocPhan: '',
         tenHocPhan: ''
     })
+    console.log(createValue)
 
     const [ soHocKy, setSoHocKy ] = useState(8)
     const [ isSearch, setIsSearch ] = useState(false)
     const [ searchValue, setSearchValue] = useState([])
     const [ isSearchTienQuyet, setIsSearchTienQuyet ] = useState(false)
+    const [ isSearchHocTruoc, setIsSearchHocTruoc ] = useState(false)
+    const [ isSearchSongHanh, setIsSearchSongHanh ] = useState(false)
     const typingTimeOutRef = useRef(null)
 
     useEffect(() => {
@@ -95,6 +99,8 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
 
     const handleSave = (e) => {
         e.preventDefault()
+
+        console.log(createValue)
 
         if(createValue.idDeCuongHocPhan == '' &  createValue.hocKy == '')
         {
@@ -267,12 +273,13 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
                                     })
                                 }
                                 <li>
-                                    <button
+                                    <div
+                                        className="btn"
                                         onClick={(e) => {
                                             e.preventDefault()
                                             setIsSearchTienQuyet(true)
                                         }}
-                                    >Thêm học phần</button>
+                                    >Thêm học phần</div>
                                     {
                                         isSearchTienQuyet &&
                                         <TienQuyetRecommend
@@ -295,16 +302,17 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
                                 }
                             </ul>
                             <li>
-                                    <button
+                                    <div
+                                        className="btn"
                                         onClick={(e) => {
                                             e.preventDefault()
-                                            setIsSearchTienQuyet(true)
+                                            setIsSearchHocTruoc(true)
                                         }}
-                                    >Thêm học phần</button>
+                                    >Thêm học phần</div>
                                     {
-                                        isSearchTienQuyet &&
+                                        isSearchHocTruoc &&
                                         <TienQuyetRecommend
-                                            setClose={() => setIsSearchTienQuyet(false)}
+                                            setClose={() => setIsSearchHocTruoc(false)}
                                             setState={setCreateValue}
                                             apiURL={apiURL}
                                             type={'hocTruoc'}
@@ -322,16 +330,17 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
                                 }
                             </ul>
                             <li>
-                                    <button
+                                    <div
+                                        className="btn"
                                         onClick={(e) => {
                                             e.preventDefault()
-                                            setIsSearchTienQuyet(true)
+                                            setIsSearchSongHanh(true)
                                         }}
-                                    >Thêm học phần</button>
+                                    >Thêm học phần</div>
                                     {
-                                        isSearchTienQuyet &&
+                                        isSearchSongHanh &&
                                         <TienQuyetRecommend
-                                            setClose={() => setIsSearchTienQuyet(false)}
+                                            setClose={() => setIsSearchSongHanh(false)}
                                             setState={setCreateValue}
                                             apiURL={apiURL}
                                             type={'songHanh'}

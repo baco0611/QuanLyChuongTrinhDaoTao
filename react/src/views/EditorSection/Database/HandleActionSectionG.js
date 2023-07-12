@@ -22,6 +22,7 @@ const getChuyenNganh = async (data, apiURL, id) => {
         values[CN.idChuyenNganh] = {
             idChuyenNganh: CN.idChuyenNganh,
             tenChuyenNganh: CN.tenChuyenNganh,
+            type: 'CHUYEN_NGANH',
             data: value
         }
     })
@@ -104,6 +105,10 @@ const searchHocPhanById = async (value, apiURL, api, id) => {
 }
 
 const createSubject = async (id, apiURL, data, setState) => {
+    const getData = async () => {
+        return await postData(apiURL, '/create_sectionG', payload, 'CREATE_SUBJECT')
+    }
+
     const createValues = {
         idDeCuongHocPhan: data.idDeCuongHocPhan,
         thayTheKhoaLuan: data.thayTheKhoaLuan,
@@ -121,8 +126,8 @@ const createSubject = async (id, apiURL, data, setState) => {
         idCTDT: id,
         data: [createValues]
     }
-    const createResult = await postData(apiURL, '/create_sectionG', payload, 'CREATE_SUBJECT')
-
+    const createResult = await getData()
+    console.log(createResult)
     handleSplitSectionG(createResult.data.data, setState, apiURL, id)
 }
 
@@ -146,7 +151,6 @@ const updateSubject = async (id, apiURL, data, setState) => {
         data: [createValues]
     }
     const createResult = await postData(apiURL, '/update_sectionG', payload, 'UPDATE_SUBJECT')
-
     handleSplitSectionG(createResult.data.data, setState, apiURL, id)
 }
 

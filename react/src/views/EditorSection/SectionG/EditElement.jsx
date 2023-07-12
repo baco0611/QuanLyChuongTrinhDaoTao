@@ -6,6 +6,7 @@ import swal from 'sweetalert'
 import SearchItem from "./SearchItem"
 import { getParent } from "../Database/HandleUpdateDatabase"
 import { deleteSubject, searchHocPhan, updateSubject } from "../Database/HandleActionSectionG"
+import TienQuyetRecommend from "./TienQuyetRecommend"
 
 function EditElement({ data, setEdit, setState }) {
 
@@ -46,6 +47,9 @@ function EditElement({ data, setEdit, setState }) {
     const [ soHocKy, setSoHocKy ] = useState(8)
     const [ isSearch, setIsSearch ] = useState(false)
     const [ searchValue, setSearchValue] = useState([])
+    const [ isSearchTienQuyet, setIsSearchTienQuyet ] = useState(false)
+    const [ isSearchHocTruoc, setIsSearchHocTruoc ] = useState(false)
+    const [ isSearchSongHanh, setIsSearchSongHanh ] = useState(false)
     const typingTimeOutRef = useRef(null)
 
     useEffect(() => {
@@ -295,7 +299,24 @@ function EditElement({ data, setEdit, setState }) {
                                         return <li key={index}>{item}</li>
                                     })
                                 }
-                                <li><button>Thêm học phần</button></li>
+                                <li>
+                                    <div
+                                        className="btn"
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            setIsSearchTienQuyet(true)
+                                        }}
+                                    >Thêm học phần</div>
+                                    {
+                                        isSearchTienQuyet &&
+                                        <TienQuyetRecommend
+                                            setClose={() => setIsSearchTienQuyet(false)}
+                                            setState={setEditValue}
+                                            apiURL={apiURL}
+                                            type={'tienQuyet'}
+                                        />
+                                    }
+                                </li>
                             </ul>
                         </div>
                         <div className="subject">
@@ -307,7 +328,24 @@ function EditElement({ data, setEdit, setState }) {
                                     })
                                 }
                             </ul>
-                            <li><button>Thêm học phần</button></li>
+                            <li>
+                                    <div
+                                        className="btn"
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            setIsSearchHocTruoc(true)
+                                        }}
+                                    >Thêm học phần</div>
+                                    {
+                                        isSearchHocTruoc &&
+                                        <TienQuyetRecommend
+                                            setClose={() => setIsSearchHocTruoc(false)}
+                                            setState={setEditValue}
+                                            apiURL={apiURL}
+                                            type={'hocTruoc'}
+                                        />
+                                    }
+                                </li>
                         </div>
                         <div className="subject">
                             <h4>Song hành</h4>
@@ -318,7 +356,24 @@ function EditElement({ data, setEdit, setState }) {
                                     })
                                 }
                             </ul>
-                            <li><button>Thêm học phần</button></li>
+                            <li>
+                                    <div
+                                        className="btn"
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            setIsSearchSongHanh(true)
+                                        }}
+                                    >Thêm học phần</div>
+                                    {
+                                        isSearchSongHanh &&
+                                        <TienQuyetRecommend
+                                            setClose={() => setIsSearchSongHanh(false)}
+                                            setState={setEditValue}
+                                            apiURL={apiURL}
+                                            type={'songHanh'}
+                                        />
+                                    }
+                                </li>
                         </div>
                     </div>
                 </form>

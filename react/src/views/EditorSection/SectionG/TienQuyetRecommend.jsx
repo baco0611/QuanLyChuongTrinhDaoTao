@@ -7,6 +7,7 @@ import { useParams } from "react-router"
 
 function TienQuyetRecommend({ setClose, apiURL, setState, type }) {
 
+    console.log(type)
     const { id } = useParams()
     const [ value, setValue] = useState({
         maHocPhan: '',
@@ -108,9 +109,9 @@ function TienQuyetRecommend({ setClose, apiURL, setState, type }) {
                             value={value.tenHocPhan}  
                             style={{width: '75%'}}
                             autoComplete="off"
-                            onChange={e => handleInput(e, '/search_maHocPhan_byId')}
+                            onChange={e => handleInput(e, '/search_tenHocPhan_byId')}
                             onFocus={(e) => {
-                                handleInput(e, '/search_maHocPhan_byId')
+                                handleInput(e, '/search_tenHocPhan_byId')
                                 setIsSearch(true)
                             }}
                         />
