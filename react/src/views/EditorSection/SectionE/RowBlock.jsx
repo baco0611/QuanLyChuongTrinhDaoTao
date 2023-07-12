@@ -30,7 +30,7 @@ function RowBlock({ index, title, POList, POSize, PLOList, value, setState }) {
                                 PLO.data.map((data, index) => {
                                     return (
                                         <tr className="block" key={index}>
-                                            <td>{data.kiHieu}</td>
+                                            <td style={{textAlign: 'center'}}>{data.kiHieu}</td>
                                             <td>{data.noiDung}</td>
                                             <CheckBoxBlock
                                                 POList={POList}

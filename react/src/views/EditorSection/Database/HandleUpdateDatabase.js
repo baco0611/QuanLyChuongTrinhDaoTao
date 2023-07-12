@@ -69,4 +69,4 @@ function getParent(element, className) {
     }
 }
 
-export { handleUpdateDatabase, getParent, postData, deleteData}
+export { handleUpdateDatabase, getParent, postData, deleteData }
