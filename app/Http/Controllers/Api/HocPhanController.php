@@ -43,6 +43,26 @@ class HocPhanController extends Controller
             'data' =>$hpResource
         ]);
     }
+    public function storeSearchMaHocPhanById(Request $request)
+    {
+        $hpService = new HocPhanService();
+        $listHP = $hpService->getHocPhanForMaHocPhanById($request['keyWord'],$request['idCTDT']);
+        $hpResource = HocPhanResource::collection($listHP);
+        return response()->json([
+            'idCTDT'=>intval($request['idCTDT']),
+            'data' =>$hpResource
+        ]);
+    }
+    public function storeSearchTenHocPhanById(Request $request)
+    {
+        $hpService = new HocPhanService();
+        $listHP = $hpService->getHocPhanForTenHocPhanById($request['keyWord'],$request['idCTDT']);
+        $hpResource = HocPhanResource::collection($listHP);
+        return response()->json([
+            'idCTDT'=>intval($request['idCTDT']),
+            'data' =>$hpResource
+        ]);
+    }
     /**
      * Display the specified resource.
      *
