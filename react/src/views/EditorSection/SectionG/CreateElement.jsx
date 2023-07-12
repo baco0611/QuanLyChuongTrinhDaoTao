@@ -300,8 +300,7 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
                                         return <li key={index}>{item}</li>
                                     })
                                 }
-                            </ul>
-                            <li>
+                                <li>
                                     <div
                                         className="btn"
                                         onClick={(e) => {
@@ -319,6 +318,7 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
                                         />
                                     }
                                 </li>
+                            </ul>
                         </div>
                         <div className="subject">
                             <h4>Song hành</h4>
@@ -328,8 +328,7 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
                                         return <li key={index}>{item}</li>
                                     })
                                 }
-                            </ul>
-                            <li>
+                                <li>
                                     <div
                                         className="btn"
                                         onClick={(e) => {
@@ -347,6 +346,7 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
                                         />
                                     }
                                 </li>
+                            </ul>
                         </div>
                     </div>
                 </form>
