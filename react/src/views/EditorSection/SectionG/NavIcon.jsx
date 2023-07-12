@@ -4,7 +4,7 @@ import axios from 'axios'
 import { UserContext } from '../../../context/ContextProvider'
 import { handleSplitGHocKy } from '../Database/HandleActionSectionG'
 
-function NavIcon() {
+function NavIcon({ sectionGValue }) {
     const { id } = useParams()
     const { apiURL } = useContext(UserContext)
     const [ isHidden, setIsHidden ] = useState(true)
@@ -27,7 +27,7 @@ function NavIcon() {
             .catch(error => {
                 console.log(error)
             })
-    }, [])
+    }, [sectionGValue])
 
     return (
         <div className="section-G-nav">

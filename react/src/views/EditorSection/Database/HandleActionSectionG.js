@@ -217,6 +217,7 @@ const handleSplitGHocKy = async (id, setData, thoiGianDaoTao, apiURL) => {
         const batBuoc = values.filter(item => item.hocKy == i && item.batBuoc == true)
         const tuChon = values.filter(item => item.hocKy == i && item.batBuoc == false)
 
+        console.log(batBuoc, tuChon)
         result[i] = {
             batBuoc: batBuoc.reduce((prev, cur) => {
                 return prev + cur.soTinChi

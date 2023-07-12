@@ -150,7 +150,9 @@ function SectionG() {
             <EditFooter
                 currentSection={5}
             />
-            <NavIcon/>
+            <NavIcon
+                sectionGValue={sectionGValue}
+            />
         </>
     )
 }
