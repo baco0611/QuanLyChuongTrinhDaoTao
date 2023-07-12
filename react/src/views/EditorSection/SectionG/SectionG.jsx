@@ -9,6 +9,7 @@ import Loader from "../../../components/Loader/Loader"
 import axios from "axios"
 import SectionGBlock from "./SectionGBlock"
 import { handleSplitSectionG } from "../Database/HandleActionSectionG"
+import NavIcon from "./NavIcon"
 
 function SectionG() {
 
@@ -149,6 +150,7 @@ function SectionG() {
             <EditFooter
                 currentSection={5}
             />
+            <NavIcon/>
         </>
     )
 }

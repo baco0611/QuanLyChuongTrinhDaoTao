@@ -197,11 +197,45 @@ const deleteSubject = async (id, apiURL, data, setState) => {
     return deleteResult
 }
 
+const handleSplitGHocKy = async (id, setData, thoiGianDaoTao, apiURL) => {
+    const valueApi = `${apiURL}/sectionG/${id}`
+    let values = []
+    await axios.get(valueApi) 
+        .then(response => {
+            const restData = response.data
+            if(restData.data)
+                values = restData.data
+        })
+        .catch(error => {
+            console.log(error)
+            window.location='/error'
+        })
+    
+    let result = {}
+
+    for(var i = 1; i <=thoiGianDaoTao; i++) {
+        const batBuoc = values.filter(item => item.hocKy == i && item.batBuoc == true)
+        const tuChon = values.filter(item => item.hocKy == i && item.batBuoc == false)
+
+        result[i] = {
+            batBuoc: batBuoc.reduce((prev, cur) => {
+                return prev + cur.soTinChi
+            }, 0),
+            tuChon: tuChon.reduce((prev, cur) => {
+                return prev + cur.soTinChi
+            }, 0)
+        }
+    }
+
+    setData(result)
+}
+
 export { 
     handleSplitSectionG, 
     searchHocPhan, 
     createSubject, 
     updateSubject,
     deleteSubject,
-    searchHocPhanById
+    searchHocPhanById,
+    handleSplitGHocKy
 }
