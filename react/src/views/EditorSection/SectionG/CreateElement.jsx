@@ -294,7 +294,23 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
                                     })
                                 }
                             </ul>
-                            <li><button>Thêm học phần</button></li>
+                            <li>
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            setIsSearchTienQuyet(true)
+                                        }}
+                                    >Thêm học phần</button>
+                                    {
+                                        isSearchTienQuyet &&
+                                        <TienQuyetRecommend
+                                            setClose={() => setIsSearchTienQuyet(false)}
+                                            setState={setCreateValue}
+                                            apiURL={apiURL}
+                                            type={'hocTruoc'}
+                                        />
+                                    }
+                                </li>
                         </div>
                         <div className="subject">
                             <h4>Song hành</h4>
@@ -305,7 +321,23 @@ function CreateElement({ khoiKienThuc, chiTietKhoiKienThuc, idChuyenNganh, setCr
                                     })
                                 }
                             </ul>
-                            <li><button>Thêm học phần</button></li>
+                            <li>
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            setIsSearchTienQuyet(true)
+                                        }}
+                                    >Thêm học phần</button>
+                                    {
+                                        isSearchTienQuyet &&
+                                        <TienQuyetRecommend
+                                            setClose={() => setIsSearchTienQuyet(false)}
+                                            setState={setCreateValue}
+                                            apiURL={apiURL}
+                                            type={'songHanh'}
+                                        />
+                                    }
+                                </li>
                         </div>
                     </div>
                 </form>

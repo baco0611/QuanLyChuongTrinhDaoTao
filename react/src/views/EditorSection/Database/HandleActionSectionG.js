@@ -97,6 +97,12 @@ const searchHocPhan = async (value, apiURL, api) => {
     return searchValues.data.data
 }
 
+const searchHocPhanById = async (value, apiURL, api, id) => {
+    const searchValues = await postData(apiURL, api, {idCTDT: id, keyWord: value}, 'SEARCH')
+
+    return searchValues.data.data
+}
+
 const createSubject = async (id, apiURL, data, setState) => {
     const createValues = {
         idDeCuongHocPhan: data.idDeCuongHocPhan,
@@ -163,5 +169,6 @@ export {
     searchHocPhan, 
     createSubject, 
     updateSubject,
-    deleteSubject 
+    deleteSubject,
+    searchHocPhanById
 }

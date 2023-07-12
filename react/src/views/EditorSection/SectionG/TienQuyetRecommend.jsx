@@ -1,11 +1,13 @@
 import { useRef, useState } from "react"
-import { searchHocPhan } from "../Database/HandleActionSectionG"
+import { searchHocPhanById } from "../Database/HandleActionSectionG"
 import SearchItem from "./SearchItem"
 import { getParent } from "../Database/HandleUpdateDatabase"
 import swal from "sweetalert"
+import { useParams } from "react-router"
 
 function TienQuyetRecommend({ setClose, apiURL, setState, type }) {
 
+    const { id } = useParams()
     const [ value, setValue] = useState({
         maHocPhan: '',
         tenHocPhan: ''
@@ -29,7 +31,7 @@ function TienQuyetRecommend({ setClose, apiURL, setState, type }) {
         }
 
         typingTimeOutRef.current = await setTimeout(async()=>{
-            const searchValueApi = await searchHocPhan(value, apiURL, api)
+            const searchValueApi = await searchHocPhanById(value, apiURL, api, id)
 
             setSearchValue(searchValueApi)
         }, 300)
@@ -41,7 +43,6 @@ function TienQuyetRecommend({ setClose, apiURL, setState, type }) {
         setValue(prev => {
             return {
                 ...prev,
-                // idDeCuongHocPhan: dataSet.id,
                 tenHocPhan: dataSet.name,
                 maHocPhan: dataSet.ma
             }
@@ -91,9 +92,9 @@ function TienQuyetRecommend({ setClose, apiURL, setState, type }) {
                             value={value.maHocPhan}   
                             style={{width: '50%'}}
                             autoComplete="off"
-                            onChange={e => handleInput(e, '/search_maHocPhan')}
+                            onChange={e => handleInput(e, '/search_maHocPhan_byId')}
                             onFocus={(e) => {
-                                // handleInput(e, '/search_maHocPhan')
+                                handleInput(e, '/search_maHocPhan_byId')
                                 setIsSearch(true)
                             }}
                         />
@@ -107,9 +108,9 @@ function TienQuyetRecommend({ setClose, apiURL, setState, type }) {
                             value={value.tenHocPhan}  
                             style={{width: '75%'}}
                             autoComplete="off"
-                            // onInput={e => handleInput(e, '/search_tenHocPhan')}
+                            onChange={e => handleInput(e, '/search_maHocPhan_byId')}
                             onFocus={(e) => {
-                                // handleInput(e, '/search_tenHocPhan')
+                                handleInput(e, '/search_maHocPhan_byId')
                                 setIsSearch(true)
                             }}
                         />
