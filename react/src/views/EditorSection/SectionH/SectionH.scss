@@ -1,0 +1,45 @@
+@import '../../../variable.scss';
+
+.section-H {
+    &-details {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        text-align: justify;
+        color: $primary-color;
+    }
+
+    &-main {
+        padding-top: 40px;
+    }
+}
+
+.section-H-main {
+    table {
+        border-collapse: collapse;
+        overflow-x:auto;
+        // overflow: auto;
+        width: 100%;
+    }
+
+    thead {
+        position: sticky;
+        top: 130px;
+        z-index: 100;
+    }
+
+    th, td {
+        height: 30px;
+        font-size: 16px;
+        vertical-align: middle;
+    }
+
+    th {
+        border: .1px solid white;
+        background-clip: content-box;
+        background-color: $primary-color;
+        color: white;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+}

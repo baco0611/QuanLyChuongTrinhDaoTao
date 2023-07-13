@@ -58,8 +58,6 @@ function SectionG() {
         window.scrollTo(0, 0)
     }, [])
 
-    console.log(sectionGValue)
-
     const fecthAPI = (id) => {
         const sectionGValueApi = `${apiURL}/sectionG/${id}`
         return async () => {
