@@ -30,8 +30,8 @@ return new class extends Migration
             $table->string('dieuKienTotNghiep', 1500)->nullable();
             $table->string('vanBangTotNghiep', 500)->nullable();
             $table->string('viTriViecLamSauTotNghiep', 1500)->nullable();
-            $table->string('khaNangNangCaoTrinhDo', 500)->nullable();
-            $table->string('chuongTrinhThamKhao', 500)->nullable();
+            $table->string('khaNangNangCaoTrinhDo', 1500)->nullable();
+            $table->string('chuongTrinhThamKhao', 1500)->nullable();
             $table->string('mucTieuTongQuat', 500)->nullable();
             $table->string('nguoiPhuTrach', 50);
             $table->foreign('nguoiPhuTrach')->references('MaGiangVien')->on('GiangVien');
