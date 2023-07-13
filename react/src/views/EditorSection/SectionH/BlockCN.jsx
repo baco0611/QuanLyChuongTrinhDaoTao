@@ -15,6 +15,7 @@ function BlockCN({ data, value, PLOList, size }) {
                 value={value}
                 PLOList={PLOList}
                 size={size}
+                setState={setState}
             />
             <BlockSection
                 index={"B."}
@@ -23,6 +24,7 @@ function BlockCN({ data, value, PLOList, size }) {
                 value={value}
                 PLOList={PLOList}
                 size={size}
+                setState={setState}
             />
             {
                 chuyenNganhKeys.map((key, index) => {
@@ -35,6 +37,7 @@ function BlockCN({ data, value, PLOList, size }) {
                             PLOList={PLOList}
                             size={size}
                             key={index + 1}
+                            setState={setState}
                         />
                     )
                 })
@@ -46,6 +49,7 @@ function BlockCN({ data, value, PLOList, size }) {
                 value={value}
                 PLOList={PLOList}
                 size={size}
+                setState={setState}
             />
             <BlockSection
                 index={"D."}
@@ -54,6 +58,7 @@ function BlockCN({ data, value, PLOList, size }) {
                 value={value}
                 PLOList={PLOList}
                 size={size}
+                setState={setState}
             />
             <BlockSection
                 index={"E."}
@@ -62,6 +67,7 @@ function BlockCN({ data, value, PLOList, size }) {
                 value={value}
                 PLOList={PLOList}
                 size={size}
+                setState={setState}
             />
             {
                 chuyenNganhKeys.map((key, index) => {
@@ -74,6 +80,7 @@ function BlockCN({ data, value, PLOList, size }) {
                             PLOList={PLOList}
                             size={size}
                             key={index + 1}
+                            setState={setState}
                         />
                     )
                 })

@@ -53,6 +53,7 @@ function SectionGElement({ index, data, setState }) {
             <td>{data.thaoLuan != 0 && data.thaoLuan}</td>
             <td>{data.thucHanh != 0 && data.thucHanh}</td>
             <td>{data.thucTap != 0 && data.thucTap}</td>
+            <td>{data.hocKy != 0 && data.hocKy}</td>
             <td>
                 <h4>{data.tienQuyet.map((item, index) => {
                     return (

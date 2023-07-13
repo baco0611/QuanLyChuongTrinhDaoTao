@@ -1,7 +1,7 @@
 import React from 'react'
 import InputBlock from './InputBlock'
 
-function BlockDC({ data, value, PLOList }) {
+function BlockDC({ data, value, PLOList, setState }) {
 
     return (
         <>
@@ -20,6 +20,7 @@ function BlockDC({ data, value, PLOList }) {
                                 PLOList={PLOList}
                                 value={value}
                                 hocPhanId={item.id}
+                                setState={setState}
                             />
                         </tr>
                     )

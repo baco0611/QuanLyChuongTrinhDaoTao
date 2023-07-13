@@ -1,6 +1,8 @@
 import React from 'react'
 
 function InputElement({ hocPhanId, list, value}) {
+    
+
     return (
         <>
             {

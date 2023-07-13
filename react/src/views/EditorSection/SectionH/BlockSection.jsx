@@ -1,7 +1,7 @@
 import React from 'react'
 import InputBlock from './InputBlock'
 
-function BlockSection({ index, title, data, value, PLOList, size }) {
+function BlockSection({ index, title, data, value, PLOList, size, setState }) {
     return (
         <>
             <tr 
@@ -27,6 +27,7 @@ function BlockSection({ index, title, data, value, PLOList, size }) {
                                         PLOList={PLOList}
                                         value={value}
                                         hocPhanId={item.id}
+                                        setState={setState}
                                     />
                                 </tr>
                             )

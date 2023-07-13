@@ -2,7 +2,7 @@ import { useState } from 'react'
 import BlockDC from './BlockDC'
 import BlockCN from './BlockCN'
 
-function RowBlock({ index, title, size, data, value, PLOList }) {
+function RowBlock({ index, title, size, data, value, PLOList, setState }) {
     const [ isHidden, setIsHidden ] = useState(true)
 
     return (
@@ -23,6 +23,7 @@ function RowBlock({ index, title, size, data, value, PLOList }) {
                             data={data.data}
                             value={value}
                             PLOList={PLOList}
+                            setState={setState}
                         />
                         ||
                         <BlockCN
@@ -30,6 +31,7 @@ function RowBlock({ index, title, size, data, value, PLOList }) {
                             value={value}
                             PLOList={PLOList}
                             size={size}
+                            setState={setState}
                         />
                     }
                 </>

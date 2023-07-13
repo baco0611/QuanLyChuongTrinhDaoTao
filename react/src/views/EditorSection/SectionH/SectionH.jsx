@@ -72,10 +72,6 @@ function SectionH() {
 
     const [ sectionHValue, setSectionHValue ] = useState([])
 
-    console.log(PLOValue)
-    console.log(sectionGValue)
-    // console.log(sectionHValue)
-
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -137,7 +133,7 @@ function SectionH() {
         navigate('/error')
 
     const splitItem = (data) => {
-        return data.split(' - ')
+        return data.split('-')
     }
 
     return(
@@ -227,7 +223,7 @@ function SectionH() {
                                     data={sectionGValue.DAI_CUONG}
                                     PLOList={PLOValue}
                                     value={sectionHValue}
-                                    setState={sectionHValue}
+                                    setState={setSectionHValue}
                                 />
                                 <RowBlock
                                     title={'KIẾN THỨC GIÁO DỤC CHUYÊN NGHIỆP'}
@@ -236,7 +232,7 @@ function SectionH() {
                                     data={sectionGValue.CHUYEN_NGHIEP}
                                     PLOList={PLOValue}
                                     value={sectionHValue}
-                                    setState={sectionHValue}
+                                    setState={setSectionHValue}
                                 />
                             </tbody>
                         </table>
