@@ -1,7 +1,7 @@
 import React from 'react'
 import BlockSection from './BlockSection'
 
-function BlockCN({ data, value, PLOList, size }) {
+function BlockCN({ data, value, PLOList, size, setState }) {
     const chuyenNganhKeys = Object.keys(data.CHUYEN_NGANH.data)
     const chuyenNganhValue = data.CHUYEN_NGANH.data
     const TTKL = data.THAY_THE_KHOA_LUAN.data

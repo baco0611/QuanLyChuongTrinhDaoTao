@@ -26,7 +26,6 @@ function CheckBox({ list, PLOId, value, setState }) {
                     const dataCheck = valueList[data_plo]
 
                     if(dataCheck) {
-                        {/* console.log(dataCheck[data_po]) */}
                         if(dataCheck[data_po])
                             return (
                                 <td key={index} className="input">

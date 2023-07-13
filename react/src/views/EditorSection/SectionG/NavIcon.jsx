@@ -13,7 +13,6 @@ function NavIcon({ sectionGValue }) {
     const [ soHocKy, setSoHocKy ] = useState(8)
     const keys = Object.keys(data)
 
-    console.log(data)
     useEffect(() => {
         const sectionAValueApi = `${apiURL}/sectionA/${id}`
         axios.get(sectionAValueApi) 

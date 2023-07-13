@@ -4,6 +4,7 @@ import { handleUpdateSectionA } from "./HandleActionSectionA"
 import { handleUpdateSectionB } from "./HandleActionSectionB"
 import { handleUpdateSectionD } from "./HandleActionSectionD"
 import { handleUpdateSectionE } from "./HandleActionSectionE"
+import { handleUpdateSectionH } from "./HandleActionSectionH"
 
 const postData = async (api, url, payload, completeMessage, errorMessage) => {
     const apiURL = api + url
@@ -44,6 +45,7 @@ const deleteData = async (api, url, payload, completeMessage, errorMessage) => {
 }
 
 const handleUpdateDatabase = ({ currentSection, currentId, api, thisE }) => {
+    thisE.preventDefault()
     var isSuccess = true
     switch(currentSection) {
         case 'A':
@@ -61,6 +63,8 @@ const handleUpdateDatabase = ({ currentSection, currentId, api, thisE }) => {
         case 'E':
             handleUpdateSectionE(currentId, api)
             break
+        case 'H':
+            handleUpdateSectionH(currentId, api)
     }
 
     // console.log(thisE, isSuccess)
