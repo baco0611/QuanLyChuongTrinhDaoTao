@@ -70,8 +70,11 @@ function SectionH() {
         }
     })
 
-    console.log(sectionGValue)
+    const [ sectionHValue, setSectionHValue ] = useState([])
+
     console.log(PLOValue)
+    console.log(sectionGValue)
+    // console.log(sectionHValue)
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -81,6 +84,7 @@ function SectionH() {
         
         const sectionGValueApi = `${apiURL}/sectionG/${id}`
         const PLOValueApi = `${apiURL}/sectionD/${id}`
+        const sectionHValueApi = `${apiURL}/sectionH/${id}`
         
         return async () => {
             await axios.get(sectionGValueApi) 
@@ -102,6 +106,17 @@ function SectionH() {
                             data: restData.data,
                             setState: setPLOValue
                         })
+                })
+                .catch(error => {
+                    console.log(error)
+                    navigate('/error')
+                })
+
+            await axios.get(sectionHValueApi) 
+                .then(response => {
+                    const restData = response.data
+                    if(restData.checkData)
+                        setSectionHValue(restData.checkData)
                 })
                 .catch(error => {
                     console.log(error)
@@ -143,18 +158,18 @@ function SectionH() {
                         <table>
                             <thead>
                                 <tr>
-                                    <th rowSpan={3}>STT</th>
-                                    <th rowSpan={3}>Mã hp</th>
-                                    <th rowSpan={3}>Tên học phần</th>
-                                    <th rowSpan={3}>STC</th>
-                                    <th colSpan={PLOValue.KIEN_THUC.data.length || 1}>Chuẩn về kiến thức</th>
+                                    <th rowSpan={3} style={{minWidth: '45px'}}>STT</th>
+                                    <th rowSpan={3} style={{minWidth: '100px'}}>Mã HP</th>
+                                    <th rowSpan={3} style={{minWidth: '350px'}}>Tên học phần</th>
+                                    <th rowSpan={3} style={{minWidth: '45px'}}>STC</th>
+                                    <th colSpan={PLOValue.KIEN_THUC.data.length || 1} style={{height: '40px'}}>Chuẩn về kiến thức</th>
                                     <th colSpan={PLOValue.KY_NANG.data.length || 1}>Chuẩn về kỹ năng</th>
                                     <th colSpan={PLOValue.THAI_DO.data.length || 1}>Chuẩn về thái độ</th>
                                 </tr>
                                 <tr>
                                     {
                                         PLOValue.KIEN_THUC.data.map((item, index) => {
-                                            return <th key={index}>{
+                                            return <th key={index} style={{minWidth: '50px'}}>{
                                                 <>
                                                     {splitItem(item.kiHieu)[0]} 
                                                     <br/>
@@ -165,7 +180,7 @@ function SectionH() {
                                     }
                                     {
                                         PLOValue.KY_NANG.data.map((item, index) => {
-                                            return <th key={index}>{
+                                            return <th key={index} style={{minWidth: '50px'}}>{
                                                 <>
                                                     {splitItem(item.kiHieu)[0]} 
                                                     <br/>
@@ -176,7 +191,7 @@ function SectionH() {
                                     }
                                     {
                                         PLOValue.THAI_DO.data.map((item, index) => {
-                                            return <th key={index}>{
+                                            return <th key={index} style={{minWidth: '50px'}}>{
                                                 <>
                                                     {splitItem(item.kiHieu)[0]} 
                                                     <br/>
@@ -186,11 +201,42 @@ function SectionH() {
                                         })
                                     }
                                 </tr>
+                                <tr>
+                                    {
+                                        PLOValue.KIEN_THUC.data.map((item, index) => {
+                                            return <th key={index} style={{minWidth: '50px'}}>{item.trinhDoNangLuc}</th>
+                                        })
+                                    }
+                                    {
+                                        PLOValue.KY_NANG.data.map((item, index) => {
+                                            return <th key={index} style={{minWidth: '50px'}}>{item.trinhDoNangLuc}</th>
+                                        })
+                                    }
+                                    {
+                                        PLOValue.THAI_DO.data.map((item, index) => {
+                                            return <th key={index} style={{minWidth: '50px'}}>{item.trinhDoNangLuc}</th>
+                                        })
+                                    }
+                                </tr>
                             </thead>
                             <tbody>
                                 <RowBlock
-                                    title={''}
+                                    title={'KIẾN THỨC GIÁO DỤC ĐẠI CƯƠNG'}
                                     index={'I.'}
+                                    size={PLOValue.KIEN_THUC.data.length + PLOValue.KY_NANG.data.length + PLOValue.THAI_DO.data.length}
+                                    data={sectionGValue.DAI_CUONG}
+                                    PLOList={PLOValue}
+                                    value={sectionHValue}
+                                    setState={sectionHValue}
+                                />
+                                <RowBlock
+                                    title={'KIẾN THỨC GIÁO DỤC CHUYÊN NGHIỆP'}
+                                    index={'II.'}
+                                    size={PLOValue.KIEN_THUC.data.length + PLOValue.KY_NANG.data.length + PLOValue.THAI_DO.data.length}
+                                    data={sectionGValue.CHUYEN_NGHIEP}
+                                    PLOList={PLOValue}
+                                    value={sectionHValue}
+                                    setState={sectionHValue}
                                 />
                             </tbody>
                         </table>
