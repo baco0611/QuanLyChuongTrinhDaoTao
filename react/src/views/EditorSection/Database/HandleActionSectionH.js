@@ -110,21 +110,21 @@ const handleUpdateSectionH = (id, api) => {
     const updateElement = value.filter(item => item.mucDoDapUng!='' && item.id!='')
 
     const createPayload = {
-        idCTCT: id,
+        idCTDT: id,
         data: createElement.map(item => ({
             PLO: item.PLO,
-            idCTDT: item.idCTCT,
+            idCTCT: item.idCTCT,
             mucDoDapUng: item.mucDoDapUng
         }))
     }
 
     const deletePayload = {
-        idCTCT: id,
+        idCTDT: id,
         deleteData: deleteElement.map(item => item.id)
     }
 
     const updatePayload = {
-        idCTCT: id,
+        idCTDT: id,
         data: updateElement.map(item => ({
             id: item.id,
             mucDoDapUng: item.mucDoDapUng
