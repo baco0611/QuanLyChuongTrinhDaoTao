@@ -58,8 +58,6 @@ function SectionG() {
         window.scrollTo(0, 0)
     }, [])
 
-    console.log(sectionGValue)
-
     const fecthAPI = (id) => {
         const sectionGValueApi = `${apiURL}/sectionG/${id}`
         return async () => {
@@ -115,7 +113,7 @@ function SectionG() {
                                 <th style={{minWidth: '250px'}} rowSpan={2}>Tên học phần</th>
                                 <th style={{minWidth: '50px' }} rowSpan={2}>Bắt<br/>buộc</th>
                                 <th style={{minWidth: '50px'}} rowSpan={2}>STC</th>
-                                <th colSpan={5}>Phân bố giờ</th>
+                                <th colSpan={6}>Phân bố giờ</th>
                                 <th colSpan={3}>Quan hệ với các học phần</th>
                                 <th style={{minWidth: '50px'}} rowSpan={2}>Học<br/>kỳ</th>
                             </tr>
@@ -125,6 +123,7 @@ function SectionG() {
                                 <th style={{minWidth: '50px'}}>TL</th>
                                 <th style={{minWidth: '50px'}}>TH</th>
                                 <th style={{minWidth: '50px'}}>TT</th>
+                                <th style={{minWidth: '50px'}}>KT</th>
                                 <th style={{minWidth: '120px'}}>Tiên quyết</th>
                                 <th style={{minWidth: '120px'}}>Học trước</th>
                                 <th style={{minWidth: '120px'}}>Song hành</th>

@@ -204,9 +204,7 @@ function SectionE() {
                     <p className="section-E-details">
                         Hãy bấm vào ô tương ứng với Mục tiêu (PO) theo cột và Chuẩn đầu ra (PLO) theo dòng.<br/>
                         Chỉ tick <span style={{color: '#BE0000'}}><b>X</b></span> vào những ô được chọn.<br/>
-                        <span style={{color: '#BE0000'}}>Lưu ý: Dữ liệu chỉ được lưu khi bấm lưu hoặc hoàn tất.
-                            Khi bấm hoàn tất, mỗi dòng, mỗi cột phải có ít nhất một ô được chọn (Mỗi mục tiêu phải ứng với ít nhất một chuẩn đầu ra và ngược lại).
-                        </span>
+                        <span style={{color: '#BE0000'}}>Lưu ý: Dữ liệu chỉ được lưu khi bấm lưu hoặc hoàn tất.</span>
                     </p>
                     <div className="section-E-main">
                         <table>

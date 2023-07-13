@@ -12,7 +12,7 @@ function SectionGBlock({ title, index, data, setState }) {
                 onClick={() => setIsHidden(!isHidden)}
             >
                 <td style={{textAlign: 'center', paddingLeft: 0}}>{index}</td>
-                <td colSpan={13}>{title}</td>            
+                <td colSpan={14}>{title}</td>            
             </tr>
             {
                 !isHidden &&

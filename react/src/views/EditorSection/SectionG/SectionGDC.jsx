@@ -28,7 +28,7 @@ function SectionGDC({ data, setState}) {
             }
             <tr>
                 <td 
-                    colSpan={14} 
+                    colSpan={15} 
                     className="addBtn"
                     onClick={e => handleOpen(e)}
                 >
