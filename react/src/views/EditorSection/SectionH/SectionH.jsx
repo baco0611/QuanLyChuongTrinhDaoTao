@@ -76,6 +76,10 @@ function SectionH() {
         window.scrollTo(0, 0)
     }, [])
 
+    useEffect(() => {
+        localStorage.setItem(`sectionH-${id}`, JSON.stringify(sectionHValue))
+    })
+
     const fecthAPI = (id) => {
         
         const sectionGValueApi = `${apiURL}/sectionG/${id}`

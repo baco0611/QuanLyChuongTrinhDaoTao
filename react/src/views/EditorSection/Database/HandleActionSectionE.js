@@ -7,7 +7,6 @@ const handleChangValueE = (setState, valueList) => {
 
     const state = element.map(item => {
         const dataSet = item.dataset
-        console.log(dataSet)
         if(dataSet.id && dataSet.id!='false')
             return {
                 PLO: dataSet.plo,
