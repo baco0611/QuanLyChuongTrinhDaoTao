@@ -16,6 +16,7 @@ class ChuongTrinhChiTietResource extends JsonResource
     {
         return [
             "id"=>intval($this->idChuongTrinhChiTiet),
+            'stt'=>intval($this->stt),
             "idDeCuongHocPhan"=>intval($this->DeCuongHocPhanId),
             "thayTheKhoaLuan"=>boolval($this->thayThe),
             "maHocPhan"=>$this->MaHocPhan,
