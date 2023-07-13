@@ -10,12 +10,17 @@ class ChuongTrinhChiTietService
     public function getList($idCTDT)
     {
         $result= DB::table('ChuongTrinhChiTiet')
-        ->select('*')
+        ->select("idChuongTrinhChiTiet","DeCuongHocPhanId","thayThe",
+        "MaHocPhan","TenHocPhan","batBuoc","SoTinChi","LyThuyet","BaiTap",
+        "ThaoLuan","ThucHanh","ThucTap","KiemTraGiuaKi","tienQuyet","hocTruoc",
+        "songHanh","hocKy","khoiKienThuc","chiTietKhoiKienThuc","ChuongTrinhChiTiet.idChuyenNganh",
+        "tenChuyenNganh",DB::raw('ROW_NUMBER() OVER(ORDER BY ChuongTrinhChiTiet.idChuongTrinh) AS stt'))
         ->join('DeCuongHocPhan as dc','dc.Id','=', 'ChuongTrinhChiTiet.DeCuongHocPhanId')
         ->join('HocPhan as hp','hp.Id','=', 'dc.HocPhanId')
         ->leftJoin('ChuyenNganhDaoTao as cn','ChuongTrinhChiTiet.idChuyenNganh','=', 'cn.idChuyenNganh')
         ->where('ChuongTrinhChiTiet.idChuongTrinh', $idCTDT)
         ->get();
+        //dd($result);
         return $result;
     }
     public function update($val)  {
