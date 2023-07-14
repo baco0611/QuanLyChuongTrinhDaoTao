@@ -4,16 +4,16 @@ const sortCondition = (a, b) => {
     const aKiHieu = a.kiHieu.split('.')
     const bKiHieu = b.kiHieu.split('.')
 
-    const [ a1, a2, a3 ] = aKiHieu
-    const [ b1, b2, b3 ] = bKiHieu
+    const [ a1, a2, a3 ] = aKiHieu.length === 3 ? aKiHieu : ['', '', '']
+    const [ b1, b2, b3 ] = bKiHieu.length === 3 ? bKiHieu : ['', '', '']
 
-    if(a1 == b1)
-        if(a2 == b2)
-            return a3 < b3 ? -1 : 1
-        else
-            return a2 < b2 ? -1 : 1
-    else
-        return a1 < b1 ? -1 : 1
+    if(a1 === b1) {
+        if(a2 === b2) {
+            return a3 < b3 ? -1 : 1;
+        }
+        return a2 < b2 ? -1 : 1;
+    }
+    return a1 < b1 ? -1 : 1;
 }
 
 const handleSplitPLO = ({ data, setState }) => {
@@ -42,8 +42,6 @@ const handleChangeValueH = (setState, valueList) => {
     const inputElement = document.querySelectorAll('input')
     const element = Array.from(inputElement).filter(item => item.value != '')
 
-    // console.log(data_hocPhan, data_plo, e.target.value)
-    
     const state = element.map(item => {
         const dataSet = item.dataset
         let value = Number(item.value)
@@ -66,10 +64,15 @@ const handleChangeValueH = (setState, valueList) => {
             return undefined
     }).filter(item => item != undefined)
 
-    Object.keys(value).forEach(CTCT => {
-        Object.keys(value[CTCT]).forEach(PLO => {
-            value[CTCT][PLO].mucDoDapUng = ''
-        })
+    const uncheckElement = Array.from(inputElement).filter(item => item.value == '' && item.getAttribute('data-id')!=null)
+
+    uncheckElement.forEach(item => {
+        const dataSet = item.dataset
+
+        value[dataSet.hp][dataSet.plo] = {
+            id: dataSet.id,
+            mucDoDapUng: ''
+        }
     })
 
     state.forEach(item => {
@@ -98,7 +101,6 @@ const handleChangeValueH = (setState, valueList) => {
         })
     })
 
-    console.log(stateValue)
     setState(stateValue)
 }
 
@@ -137,10 +139,7 @@ const handleUpdateSectionH = (id, api) => {
     if(deleteElement.length > 0) deleteData(api, '/delete_sectionH', deletePayload, 'DELETE_SECTIONH')
     else console.log('DELETE_SECTIONH')
 
-    if(updateElement.length > 0) postData(api, '/update_sectionH', updatePayload, 'UPDATE_SECTIONH')
-    else console.log('UPDATE_SECTIONH')
-
-    console.log(deletePayload)
+    postData(api, '/update_sectionH', updatePayload, 'UPDATE_SECTIONH')
 }
 
 export { handleSplitPLO, handleChangeValueH, handleUpdateSectionH }
