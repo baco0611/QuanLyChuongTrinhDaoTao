@@ -23,10 +23,15 @@ const handleChangValueE = (setState, valueList) => {
             }
     })
 
-    Object.keys(value).forEach(PLO => {
-        Object.keys(value[PLO]).forEach(PO => {
-            value[PLO][PO].isCheck = false
-        })
+    const uncheckElement = Array.from(inputElement).filter(item => item.checked != true && item.getAttribute('data-id')!=null)
+
+    uncheckElement.forEach(item => {
+        const dataSet = item.dataset
+
+        value[dataSet.plo][dataSet.po] = {
+            id: dataSet.id,
+            isCheck: false
+        }
     })
 
     state.forEach(item => {
@@ -55,28 +60,24 @@ const handleChangValueE = (setState, valueList) => {
         })
     })
 
-    console.log(stateValue)
     setState(stateValue)
 }
 
 const handleUpdateSectionE = ( id, api) => {
-    const inputElement = Array.from(document.querySelectorAll('input'))
+    const value = JSON.parse(localStorage.getItem(`sectionE-${id}`))
 
-    const checkedElement = inputElement.filter(item => item.checked)
-    const uncheckedElement = inputElement.filter(item => !item.checked)
-    
-    const deleteElement = uncheckedElement.filter(item => item.getAttribute('data-id')!='false')
-    const createElement = checkedElement.filter(item => item.getAttribute('data-id')=='false')
+    const createValue = value.map(item => {
+        if(item.id=='')
+            return {
+                PLO: item.PLO,
+                PO: item.PO
+            }
+    }).filter(item => item != undefined)
 
-    const deleteValue = deleteElement.map(item => item.dataset.id)
-    const createValue = createElement.map(item => {
-        const dataset = item.dataset
-
-        return {
-            PO: dataset.po,
-            PLO: dataset.plo
-        }
-    })
+    const deleteValue = value.map(item => {
+        if(item.isCheck == false && item.id != '')
+            return item.id
+    }).filter(item => item != undefined)
 
     postData(api, '/create_sectionE', { idCTDT: id, data: createValue }, 'CREATE_SECTIONE')
     deleteData(api, '/delete_sectionE', { idCTDT: id, deleteData: deleteValue }, 'DELETE_SECTIONE')
