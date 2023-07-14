@@ -45,7 +45,6 @@ const deleteData = async (api, url, payload, completeMessage, errorMessage) => {
 }
 
 const handleUpdateDatabase = ({ currentSection, currentId, api, thisE }) => {
-    thisE.preventDefault()
     var isSuccess = true
     switch(currentSection) {
         case 'A':
