@@ -127,7 +127,10 @@ function SectionA() {
         <>
             <EditHeader 
                 currentSection={0} 
-                currentId={id}
+                setData={{
+                    setSectionAValue,
+                    setChuyenNganh
+                }}
             />
             <div id="section-A" className="section">
                 <div className="section-header wrapper">
@@ -445,7 +448,10 @@ function SectionA() {
             </div>
             <EditFooter 
                 currentSection={0} 
-                currentId={id}
+                setData={{
+                    setSectionAValue,
+                    setChuyenNganh
+                }}
             />
         </>
     )

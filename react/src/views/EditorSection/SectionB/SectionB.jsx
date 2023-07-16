@@ -73,7 +73,7 @@ function SectionB() {
         <>
             <EditHeader
                 currentSection={1}
-                currentId={id}
+                setData={{setSectionBValue}}
             />
             <div id="section-B" className="section">
                 <div className="section-header wrapper">
@@ -93,7 +93,7 @@ function SectionB() {
             </div>
             <EditFooter
                 currentSection={1}
-                currentId={id}
+                setData={{setSectionBValue}}
             />
         </>
     )

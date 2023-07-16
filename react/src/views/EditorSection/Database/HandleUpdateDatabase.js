@@ -1,4 +1,5 @@
 import axios from "axios"
+import swal from 'sweetalert'
 import { handleUpdateSectionC } from "./HandleActionSectionC"
 import { handleUpdateSectionA } from "./HandleActionSectionA"
 import { handleUpdateSectionB } from "./HandleActionSectionB"
@@ -44,29 +45,71 @@ const deleteData = async (api, url, payload, completeMessage, errorMessage) => {
     }
 }
 
-const handleUpdateDatabase = ({ currentSection, currentId, api, thisE }) => {
-    var isSuccess = true
+const handleSwitchSection = async ({ currentSection, currentId, api, thisE, setData }) => {
+    thisE.preventDefault()
+    const href = getHref(thisE.target)
+
+    swal({
+        title: 'Bạn muốn lưu thông tin không?',
+        text: ``,
+        icon: 'warning',
+        buttons: {
+            no: {
+                text: "Không",
+                closeModal: true,
+                className: 'swalNot'
+            },
+            yes: {
+                text: "Có",
+                closeModal: false
+            }
+        }
+    })
+    .then(async (name) => {
+        if(name == 'yes') {
+            
+            let isSuccess = await handleUpdateDatabase({ currentSection, currentId, api, setData })
+            
+            if(isSuccess) {
+                swal.stopLoading();
+                swal.close();
+                window.location = href
+            } else {
+                throw err
+            }
+        }
+        else {
+            swal.stopLoading();
+            swal.close();
+            window.location = href
+        }
+    })
+    .catch(() => {
+        swal.stopLoading();
+        swal.close();
+        swal({
+            title: 'Đã có lỗi',
+            text: 'Vui lòng thử lại',
+            icon: 'error'
+        })
+    })
+}
+
+const handleUpdateDatabase = async ({ currentSection, currentId, api, setData }) => {
     switch(currentSection) {
         case 'A':
-            isSuccess = isSuccess && handleUpdateSectionA(currentId, api)
-            break
+            return await handleUpdateSectionA(currentId, api, setData)
         case 'B':
-            isSuccess = isSuccess && handleUpdateSectionB(currentId, api)
-            break
+            return await handleUpdateSectionB(currentId, api, setData)
         case 'C':
-            isSuccess = isSuccess && handleUpdateSectionC(currentId, api)
-            break
+            return await handleUpdateSectionC(currentId, api, setData)
         case 'D':
-            handleUpdateSectionD(currentId, api)
-            break
+            return await handleUpdateSectionD(currentId, api, setData)
         case 'E':
-            handleUpdateSectionE(currentId, api)
-            break
+            return await handleUpdateSectionE(currentId, api, setData)
         case 'H':
-            handleUpdateSectionH(currentId, api)
+            return await handleUpdateSectionH(currentId, api, setData)
     }
-
-    // console.log(thisE, isSuccess)
 }
 
 function getParent(element, className) {
@@ -78,4 +121,13 @@ function getParent(element, className) {
     }
 }
 
-export { handleUpdateDatabase, getParent, postData, deleteData }
+function getHref(element) {
+    while(element.parentElement) {
+        if(element.parentElement.href)
+            return element.parentElement.href
+        
+        else element = element.parentElement
+    }
+}
+
+export { handleUpdateDatabase, getParent, postData, deleteData, handleSwitchSection }
