@@ -8,6 +8,7 @@ import Loader from '../../../components/Loader/Loader'
 import EditHeader from "../EditHeader/EditHeader"
 import EditFooter from "../EditFooter/EditFooter"
 import ChuyenNganhBlock from "./ChuyenNganhBlock"
+import { resetPage } from "../Database/HandleUpdateDatabase"
 
 function SectionA() {
 
@@ -16,8 +17,8 @@ function SectionA() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        window.scrollTo(0, 0)
-      }, [])
+        resetPage('A', id)
+    }, [])
 
     const [ sectionAValue, setSectionAValue ] = useState({
         id,
@@ -43,11 +44,12 @@ function SectionA() {
     const [ deleteElement, setDeleteElement ] = useState([])
 
     useEffect(() => {
-        localStorage.setItem(`sectionA-${id}`, JSON.stringify(sectionAValue))
-        localStorage.setItem(`sectionA-ChuyenNganh-${id}`, JSON.stringify(chuyenNganh))
-        localStorage.setItem(`sectionA-delete-${id}`, JSON.stringify(deleteElement))
+        sessionStorage.setItem(`sectionA-${id}`, JSON.stringify(sectionAValue))
+        sessionStorage.setItem(`sectionA-ChuyenNganh-${id}`, JSON.stringify(chuyenNganh))
+        sessionStorage.setItem(`sectionA-delete-${id}`, JSON.stringify(deleteElement))
     })
 
+    console.log(sectionAValue)
     const fecthAPI = (id) => {
         const sectionAValueApi = `${apiURL}/sectionA/${id}`
         const chuyenNganhValueApi = `${apiURL}/ChuyenNganhDaoTao/${id}`

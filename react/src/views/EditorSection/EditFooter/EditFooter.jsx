@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import './EditFooter.scss'
 import { useContext } from 'react'
 import { UserContext } from '../../../context/ContextProvider'
@@ -8,6 +8,7 @@ function EditFooter({ currentSection, setData }) {
 
     const { sectionList, apiURL } = useContext(UserContext)
     const { id } = useParams()
+    const navigate = useNavigate()
 
     return (
         <footer id='edit-footer'>
@@ -32,7 +33,8 @@ function EditFooter({ currentSection, setData }) {
                                     currentSection: sectionList[currentSection], 
                                     currentId: id, 
                                     api: apiURL,
-                                    setData
+                                    setData,
+                                    handleChangeLocation: () => {navigate(`/edit/section${sectionList[currentSection-1]}/${id}`)}
                                 })}
                             >
                                 <i className='ti-arrow-circle-left'></i>
@@ -49,7 +51,8 @@ function EditFooter({ currentSection, setData }) {
                                     currentSection: sectionList[currentSection], 
                                     currentId: id, 
                                     api: apiURL,
-                                    setData
+                                    setData,
+                                    handleChangeLocation: () => {navigate(`/edit/section${sectionList[currentSection+1]}/${id}`)}
                                 })}
                             >
                                 <span>Tiếp theo</span>

@@ -1,9 +1,9 @@
 import { deleteData, postData } from "./HandleUpdateDatabase"
 
 const handleUpdateSectionA = async (id, api, setData) => {
-    const sectionAValue = JSON.parse(localStorage.getItem(`sectionA-${id}`))
-    const sectionAChuyenNganh = JSON.parse(localStorage.getItem(`sectionA-ChuyenNganh-${id}`))
-    const deleteValue = JSON.parse(localStorage.getItem(`sectionA-delete-${id}`))
+    const sectionAValue = JSON.parse(sessionStorage.getItem(`sectionA-${id}`))
+    const sectionAChuyenNganh = JSON.parse(sessionStorage.getItem(`sectionA-ChuyenNganh-${id}`))
+    const deleteValue = JSON.parse(sessionStorage.getItem(`sectionA-delete-${id}`))
 
     const updateValue = sectionAChuyenNganh.filter(item => item.idChuyenNganh != '')
     const createValue = sectionAChuyenNganh.filter(item => item.idChuyenNganh == '').map(item => item.tenChuyenNganh)

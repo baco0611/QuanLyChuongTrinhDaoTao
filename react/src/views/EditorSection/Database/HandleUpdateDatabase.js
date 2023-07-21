@@ -45,9 +45,21 @@ const deleteData = async (api, url, payload, completeMessage, errorMessage) => {
     }
 }
 
-const handleSwitchSection = async ({ currentSection, currentId, api, thisE, setData }) => {
+const deleteStorage = (section, id) => {
+    const keys = Object.keys(sessionStorage)
+    keys.forEach(key => {
+        const arr = key.split('-')
+        console.log(arr)
+
+        if(arr[0] != `section${section}` || arr[arr.length - 1] != id) {
+            sessionStorage.removeItem(key)
+            console.log(key)
+        }
+    })
+}
+
+const handleSwitchSection = async ({ currentSection, currentId, api, thisE, setData, handleChangeLocation }) => {
     thisE.preventDefault()
-    const href = getHref(thisE.target)
 
     swal({
         title: 'Bạn muốn lưu thông tin không?',
@@ -73,7 +85,7 @@ const handleSwitchSection = async ({ currentSection, currentId, api, thisE, setD
             if(isSuccess) {
                 swal.stopLoading();
                 swal.close();
-                window.location = href
+                handleChangeLocation()
             } else {
                 throw err
             }
@@ -81,7 +93,7 @@ const handleSwitchSection = async ({ currentSection, currentId, api, thisE, setD
         else {
             swal.stopLoading();
             swal.close();
-            window.location = href
+            handleChangeLocation()
         }
     })
     .catch(() => {
@@ -130,4 +142,16 @@ function getHref(element) {
     }
 }
 
-export { handleUpdateDatabase, getParent, postData, deleteData, handleSwitchSection }
+function resetPage(section, id) {
+    deleteStorage(section, id)
+    window.scrollTo(0, 0)
+}
+
+export { 
+    handleUpdateDatabase, 
+    getParent, 
+    postData, 
+    deleteData, 
+    handleSwitchSection,
+    resetPage
+}

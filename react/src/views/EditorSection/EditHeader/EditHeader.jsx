@@ -88,7 +88,8 @@ function EditHeader({ currentSection, setData }) {
                                                 currentSection: sectionList[currentSection], 
                                                 currentId: id, 
                                                 api: apiURL,
-                                                setData
+                                                setData,
+                                                handleChangeLocation: () => {navigate(`/edit/section${element}/${id}`)}
                                             }) 
                                             : () => {}
                                         }

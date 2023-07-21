@@ -10,6 +10,7 @@ import axios from "axios"
 import POBlock from "./POBlock"
 import { DragDropContext } from 'react-beautiful-dnd' 
 import { handleChangeDataC, handleSplitSectionC } from "../Database/HandleActionSectionC"
+import { resetPage } from "../Database/HandleUpdateDatabase"
 
 function SectionC() {
 
@@ -37,7 +38,7 @@ function SectionC() {
 
 
     useEffect(() => {
-        window.scrollTo(0, 0)
+        resetPage('C', id)
     }, [])
 
     const fecthAPI = (id) => {
@@ -62,8 +63,8 @@ function SectionC() {
     }
 
     useEffect(() => {
-        localStorage.setItem(`sectionC-${id}`, JSON.stringify([...sectionCValue.KIEN_THUC.data, ...sectionCValue.KY_NANG.data, ...sectionCValue.THAI_DO.data]))
-        localStorage.setItem(`sectionC-delete-${id}`, JSON.stringify(deleteElement))
+        sessionStorage.setItem(`sectionC-${id}`, JSON.stringify([...sectionCValue.KIEN_THUC.data, ...sectionCValue.KY_NANG.data, ...sectionCValue.THAI_DO.data]))
+        sessionStorage.setItem(`sectionC-delete-${id}`, JSON.stringify(deleteElement))
     })
 
     const { isLoading, isError} = useQuery(`sectionC-${id}`, fecthAPI(id),{

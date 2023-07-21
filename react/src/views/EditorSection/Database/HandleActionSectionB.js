@@ -1,7 +1,7 @@
 import { postData } from "./HandleUpdateDatabase"
 
 const handleUpdateSectionB = async (id, api, setData) => {
-    const sectionBValue = JSON.parse(localStorage.getItem(`sectionB-${id}`))
+    const sectionBValue = JSON.parse(sessionStorage.getItem(`sectionB-${id}`))
 
     const updateB = await postData(api, '/update_sectionB', sectionBValue, 'UPDATE_SECTIONB')
 
