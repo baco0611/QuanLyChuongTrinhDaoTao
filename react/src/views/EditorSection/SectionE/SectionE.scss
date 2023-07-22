@@ -3,14 +3,14 @@
 .section-E {
     &-details {
         font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 14px;
+        line-height: 20px;
         text-align: justify;
         color: $primary-color;
     }
 
     &-main {
-        padding-top: 40px;
+        padding-top: 20px;
     }
 }
 
@@ -18,18 +18,17 @@
     table {
         border-collapse: collapse;
         overflow-x:auto;
-        // overflow: auto;
         width: 100%;
 
         thead {
             position: sticky;
-            top: 130px;
+            top: calc(90px - 2.5px);
             z-index: 100;
         }
 
         th, td {
             height: 30px;
-            font-size: 16px;
+            font-size: 13px;
             vertical-align: middle;
         }
 
@@ -57,8 +56,8 @@
 
                 appearance: none;
                 -webkit-appearance: none;
-                height: 25px;
-                width: 25px;
+                height: 18px;
+                width: 18px;
                 background-color: $button-color;
                 cursor: pointer;
                 border-radius: 5px;
@@ -74,6 +73,7 @@
 	                -moz-osx-font-smoothing: grayscale;
                     color: white;
                     display: none;
+                    font-size: 12px;
                 }
 
                 &:hover {
@@ -99,7 +99,7 @@
 
             &.sticky {
                 position: sticky;
-                top: 219px;
+                top: calc(180px - 2.5px);
                 z-index: 100;
             }
 
@@ -112,8 +112,8 @@
 
         .block {
             td:nth-child(2) {
-                padding: 10px 10px;
-                line-height: 20px;
+                padding: 7px 7px;
+                line-height: 14px;
                 text-align: justify;
             }
         }

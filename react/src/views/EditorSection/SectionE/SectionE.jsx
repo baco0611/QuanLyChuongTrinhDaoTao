@@ -196,6 +196,10 @@ function SectionE() {
     if(isError)
         navigate('/error')
 
+    const splitItem = (data) => {
+        return data.split('-')
+    }
+
     return(
         <>
             <EditHeader
@@ -216,7 +220,7 @@ function SectionE() {
                         <table>
                             <thead>
                                 <tr>
-                                    <th style={{minWidth: '140px'}} rowSpan={3}>Ký kiệu</th>
+                                    <th style={{minWidth: '100px'}} rowSpan={3}>Ký kiệu</th>
                                     <th style={{minWidth: '550px'}} className="title" rowSpan={3}>Chuẩn đầu ra</th>
                                     <th colSpan={POSize || 3}>Mục tiêu</th>
                                 </tr>
@@ -229,21 +233,39 @@ function SectionE() {
                                     {
                                         POValue.KIEN_THUC.data.map((item, index) => {
                                             return (
-                                                <th style={{minWidth: '100px'}} key={index}>{item.kiHieu}</th>
+                                                <th style={{minWidth: '50px'}} key={index}>{
+                                                    <>
+                                                        {splitItem(item.kiHieu)[0]} 
+                                                        <br/>
+                                                        {splitItem(item.kiHieu)[1]} 
+                                                    </>
+                                                }</th>
                                             )
                                         })
                                     }
                                     {
                                         POValue.KY_NANG.data.map((item, index) => {
                                             return (
-                                                <th style={{minWidth: '100px'}} key={index}>{item.kiHieu}</th>
+                                                <th style={{minWidth: '50px'}} key={index}>{
+                                                    <>
+                                                        {splitItem(item.kiHieu)[0]} 
+                                                        <br/>
+                                                        {splitItem(item.kiHieu)[1]} 
+                                                    </>
+                                                }</th>
                                             )
                                         })
                                     }
                                     {
                                         POValue.THAI_DO.data.map((item, index) => {
                                             return (
-                                                <th style={{minWidth: '100px'}} key={index}>{item.kiHieu}</th>
+                                                <th style={{minWidth: '50px'}} key={index}>{
+                                                    <>
+                                                        {splitItem(item.kiHieu)[0]} 
+                                                        <br/>
+                                                        {splitItem(item.kiHieu)[1]} 
+                                                    </>
+                                                }</th>
                                             )
                                         })
                                     }

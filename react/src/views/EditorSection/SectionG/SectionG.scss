@@ -4,14 +4,14 @@
 .section-G {
     &-details {
         font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 14px;
+        line-height: 20px;
         text-align: justify;
         color: $primary-color;
     }
 
     &-main {
-        padding-top: 40px;
+        padding-top: 20px;
     }
 
     &-block {
@@ -34,13 +34,13 @@
 
         thead {
             position: sticky;
-            top: 130px;
+            top: calc(90px - 2.5px);
             z-index: 100;
         }
 
         th, td {
             height: 30px;
-            font-size: 16px;
+            font-size: 13px;
             vertical-align: middle;
             line-height: 1.5;
         }
@@ -119,7 +119,7 @@
 
             &.sticky {
                 position: sticky;
-                top: 219px;
+                top: calc(150px - 2.5px);
                 z-index: 100;
             }
 
@@ -416,7 +416,7 @@
     width: 450px;
 
     background: white;
-    opacity: 0.85;
+    opacity: 0.9;
     padding: 5px;
 
     table {

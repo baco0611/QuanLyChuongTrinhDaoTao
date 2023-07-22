@@ -3,14 +3,14 @@
 .section-H {
     &-details {
         font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 14px;
+        line-height: 20px;
         text-align: justify;
         color: $primary-color;
     }
 
     &-main {
-        padding-top: 40px;
+        padding-top: 20px;
     }
 }
 
@@ -24,13 +24,13 @@
 
     thead {
         position: sticky;
-        top: 130px;
+        top: calc(90px - 2.5px);
         z-index: 100;
     }
 
     th, td {
         height: 30px;
-        font-size: 16px;
+        font-size: 13px;
         vertical-align: middle;
     }
 
@@ -61,7 +61,7 @@
             border: none;
             text-align: center;
             font-weight: 700;
-            font-size: 18px;
+            font-size: 15px;
         }
     }
 
@@ -74,7 +74,7 @@
 
         &.sticky {
             position: sticky;
-            top: 219px;
+            top: calc(190px - 2.5px);
             z-index: 100;
         }
 
