@@ -17,10 +17,10 @@ function EditHeader({ currentSection, setData }) {
 
     useEffect(() => {
         const handleChangeNav = () => {
-            if(window.scrollY <= 100) {
+            if(window.scrollY <= 52) {
                 setNavHeight(-window.scrollY)
             } else {
-                setNavHeight(-100)
+                setNavHeight(-52)
             }
         }
 

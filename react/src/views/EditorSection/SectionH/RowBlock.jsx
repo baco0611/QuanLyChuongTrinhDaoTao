@@ -8,7 +8,7 @@ function RowBlock({ index, title, size, data, value, PLOList, setState }) {
     return (
         <>
             <tr 
-                className="title cursorPointer"
+                className="title cursorPointer sticky"
                 onClick={() => setIsHidden(!isHidden)}
             >
                 <td>{index}</td>

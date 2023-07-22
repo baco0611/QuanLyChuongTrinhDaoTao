@@ -3,25 +3,25 @@
 .section-D {
     &-details {
         font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 14px;
+        line-height: 20px;
         text-align: justify;
         color: $primary-color;
     }
 
     &-main {
-        padding-top: 40px;
+        padding-top: 20px;
     }
 
     &-block {
-        margin-bottom: 50px;
+        margin-bottom: 15px;
         h1 {
             position: sticky;
-            top: calc(150px - 14.85px);
+            top: calc(90px - 1.95px);
             background-color: white;
             font-weight: 700;
-            font-size: 22px;
-            line-height: 27px;
+            font-size: 20px;
+            line-height: 24px;
             color: $primary-color;
             text-transform: uppercase;
             cursor: pointer;
@@ -34,11 +34,11 @@
 
     &-section {
         h2 {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 700;
-            line-height: 24px;
-            padding-top: 10px;
-            padding-bottom: 10px;
+            line-height: 18px;
+            padding-top: 5px;
+            padding-bottom: 5px;
         }
     }
 }
@@ -47,14 +47,15 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding-bottom: 35px;
+    padding-bottom: 15px;
 
     .element {
+        width: 100%;
         display: grid;
-        grid-template-columns: calc((100% - 120px) * 0.12) calc((100% - 120px) * 0.58) calc((100% - 120px) * 0.3) 40px;
-        min-height: 50px;
-        padding-bottom: 10px;
-        column-gap: 40px;
+        grid-template-columns: calc((100% - 90px) * 0.1) calc((100% - 90px) * 0.7) calc((100% - 90px) * 0.2) 30px;
+        min-height: 30px;
+        padding-bottom: 5px;
+        column-gap: 20px;
         border-bottom: 1.5px solid $button-color;
         align-items: center;
 
@@ -68,7 +69,7 @@
         }
 
         h4, label, input, textarea, span{
-            font-size: 18px;
+            font-size: 13px;
             height: 100%;
             display: flex;
             align-items: center;
@@ -87,13 +88,13 @@
 
         button {
             height: 100%;
-            width: 40px;
+            width: 30px;
             border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: $primary-color;
-            border-radius: 10px;
+            border-radius: 5px;
 
             &.minus {
                 background-color: $highlight-color;
@@ -101,7 +102,7 @@
 
             i {
                 color: white;
-                font-size: 22px;
+                font-size: 16px;
             }
         }
     }
