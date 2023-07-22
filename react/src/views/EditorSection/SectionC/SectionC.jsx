@@ -164,7 +164,7 @@ function SectionC() {
                 <div className="section-C wrapper">
                     <p className="section-C-details">Tối đa 05 mục tiêu cụ thể cho mỗi phần về kiến thức, kỹ năng và thái độ của sinh viên sau khi tốt nghiệp, PO = Program Objectives.<br/>
                         Sinh viên sau khi tốt nghiệp có các kiến thức, kỹ năng và thái độ được thể hiện như bên dưới.<br/>
-                        <span style={{ fontWeight: 600, fontSize: '14px', color: '#BE0000' }}>Lưu ý: Dữ liệu chỉ được lưu lại khi bấm nút lưu hoặc nút hoàn tất. Khi đã xóa một mục tiêu cụ thể thì dữ liệu về mục tiêu đó ở ma trận mục tiêu - chuẩn đầu ra sẽ bị xóa. Vì vậy, hãy cẩn trọng trước khi lưu lại những thao tác đó!</span>
+                        <span style={{ fontWeight: 600, fontSize: '12px', color: '#BE0000' }}>Lưu ý: Dữ liệu chỉ được lưu lại khi bấm nút lưu hoặc nút hoàn tất. Khi đã xóa một mục tiêu cụ thể thì dữ liệu về mục tiêu đó ở ma trận mục tiêu - chuẩn đầu ra sẽ bị xóa. Vì vậy, hãy cẩn trọng trước khi lưu lại những thao tác đó!</span>
                     </p>
                     <div className="section-C-main">
                         <DragDropContext onDragEnd={handleDragEnd}>
@@ -183,7 +183,7 @@ function SectionC() {
                                 idCTDT = {id}
                             />
                             <POBlock
-                                title = {'3.THÁI ĐỘ'}
+                                title = {'3. THÁI ĐỘ'}
                                 data = {sectionCValue.THAI_DO}
                                 setDelete = {setDeleteElement}
                                 setState = {setSectionCValue}

@@ -3,8 +3,8 @@
 .section-B-main {
     p {
         font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 14px;
+        line-height: 20px;
         text-align: justify;
         color: $primary-color;
         padding-bottom: 15px;
@@ -16,10 +16,10 @@
         resize: none;
         padding: 25px;
         overflow: auto !important;
-        line-height: 22px;
+        line-height: 18px;
         border: none;
         background-color: $gray-color;
-        font-size: 16px;
+        font-size: 13px;
         font-weight: 400;
     }
 }
