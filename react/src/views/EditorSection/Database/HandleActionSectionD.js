@@ -164,9 +164,9 @@ const handleClickDeleteD = ({  e, setState, data , setDelete, idctdt }) => {
     setDelete(prev => [...prev, deleteElement])
 }
 
-const handleUpdateSectionD = (id, api) => {
-    const sectionDElement = JSON.parse(localStorage.getItem(`sectionD-${id}`))
-    const sectionDDelete = JSON.parse(localStorage.getItem(`sectionD-delete-${id}`))
+const handleUpdateSectionD = async (id, api, setData) => {
+    const sectionDElement = JSON.parse(sessionStorage.getItem(`sectionD-${id}`))
+    const sectionDDelete = JSON.parse(sessionStorage.getItem(`sectionD-delete-${id}`))
 
     const deleteElement = sectionDDelete.filter(item => item.id != '').map(item => {
         return {
@@ -186,17 +186,38 @@ const handleUpdateSectionD = (id, api) => {
     })
     const updateElement = sectionDElement.filter(item => item.id != '')
 
-    // debugger
-    if(deleteElement.length <= 0) console.log('DELETE_SECTIOND')
-    else deleteData(api, '/delete_sectionD', { idCTDT: id, deleteData: deleteElement }, 'DELETE_SECTIOND')
     
-    // debugger
-    if(createElement.length <= 0) console.log('CREATE_SECTIOND')
-    else postData(api, '/create_sectionD', { idCTDT: id, data: createElement }, 'CREATE_SECIOND')
+    const deleteD = await deleteData(api, '/delete_sectionD', { idCTDT: id, deleteData: deleteElement }, 'DELETE_SECTIOND')
+    const createD = await postData(api, '/create_sectionD', { idCTDT: id, data: createElement }, 'CREATE_SECIOND')
+    const updateD = await postData(api, '/update_sectionD', { idCTDT: id, data: updateElement }, 'UPDATE_SECTIOND')
 
-    // debugger
-    if(updateElement.length <= 0) console.log('UPDATE_SECTIOND')
-    else postData(api, '/update_sectionD', { idCTDT: id, data: updateElement }, 'UPDATE_SECTIOND')
+
+    console.log(updateD)
+
+    if( deleteD.status == 200 &&
+        createD.status == 200 &&
+        updateD.status == 200
+    ) {
+        handleSplitSectionD({
+            data: updateD.data.data,
+            setSectionDValue: setData.setSectionDValue,
+            idCTDT: id
+        })
+        setData.setDeleteElement([])
+    }
+
+    return (
+        deleteD.status == 200 &&
+        createD.status == 200 &&
+        updateD.status == 200
+    )
 }
 
-export { handleSplitSectionD, handleChangeValueD, handleClickAddD, handleClickDeleteD, handleChangeDataD, handleUpdateSectionD }
+export { 
+    handleSplitSectionD, 
+    handleChangeValueD, 
+    handleClickAddD,
+    handleClickDeleteD, 
+    handleChangeDataD, 
+    handleUpdateSectionD 
+}

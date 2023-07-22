@@ -10,6 +10,7 @@ import axios from "axios"
 import { handleSplitSectionD, handleChangeDataD } from "../Database/HandleActionSectionD"
 import PLOSection from "./PLOSection.jsx"
 import { DragDropContext } from "react-beautiful-dnd"
+import { resetPage } from "../Database/HandleUpdateDatabase"
 
 function SectionD() {
 
@@ -90,11 +91,11 @@ function SectionD() {
     const [ deleteElement, setDeleteElement ] = useState([])
 
     useEffect(() => {
-        window.scrollTo(0, 0)
+        resetPage('D', id)
     }, [])
 
     useEffect(() => {
-        localStorage.setItem(`sectionD-${id}`, JSON.stringify([
+        sessionStorage.setItem(`sectionD-${id}`, JSON.stringify([
             ...sectionDValue.KIEN_THUC.KIEN_THUC_DAI_HOC_HUE.data,
             ...sectionDValue.KIEN_THUC.KIEN_THUC_DAI_HOC_KHOA_HOC.data,
             ...sectionDValue.KIEN_THUC.KIEN_THUC_LINH_VUC.data,
@@ -106,7 +107,7 @@ function SectionD() {
             ...sectionDValue.THAI_DO.THAI_DO_NGHE_NGHIEP.data,
             ...sectionDValue.THAI_DO.THAI_DO_XA_HOI.data
         ]))
-        localStorage.setItem(`sectionD-delete-${id}`, JSON.stringify(deleteElement))
+        sessionStorage.setItem(`sectionD-delete-${id}`, JSON.stringify(deleteElement))
     })
 
     const fecthAPI = (id) => {
@@ -248,6 +249,10 @@ function SectionD() {
         <>
             <EditHeader
                 currentSection={3}
+                setData={{
+                    setSectionDValue,
+                    setDeleteElement
+                }}
             />
             <div id="section-D" className="section">
                 <div className="section-header wrapper">
@@ -382,6 +387,10 @@ function SectionD() {
             </div>
             <EditFooter
                 currentSection={3}
+                setData={{
+                    setSectionDValue,
+                    setDeleteElement
+                }}
             />
         </>
     )

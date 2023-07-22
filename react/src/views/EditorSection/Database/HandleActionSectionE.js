@@ -63,8 +63,8 @@ const handleChangValueE = (setState, valueList) => {
     setState(stateValue)
 }
 
-const handleUpdateSectionE = ( id, api) => {
-    const value = JSON.parse(localStorage.getItem(`sectionE-${id}`))
+const handleUpdateSectionE = async ( id, api, setData) => {
+    const value = JSON.parse(sessionStorage.getItem(`sectionE-${id}`))
 
     const createValue = value.map(item => {
         if(item.id=='')
@@ -79,8 +79,19 @@ const handleUpdateSectionE = ( id, api) => {
             return item.id
     }).filter(item => item != undefined)
 
-    postData(api, '/create_sectionE', { idCTDT: id, data: createValue }, 'CREATE_SECTIONE')
-    deleteData(api, '/delete_sectionE', { idCTDT: id, deleteData: deleteValue }, 'DELETE_SECTIONE')
+    const createE = await postData(api, '/create_sectionE', { idCTDT: id, data: createValue }, 'CREATE_SECTIONE')
+    const deleteE = await deleteData(api, '/delete_sectionE', { idCTDT: id, deleteData: deleteValue }, 'DELETE_SECTIONE')
+
+    if( createE.status == 200 &&
+        deleteE.status == 200
+    ) {
+        setData.setSectionEValue(convertValueE(deleteE.data.data))
+    }
+
+    return (
+        createE.status == 200 &&
+        deleteE.status == 200
+    )
 }
 
 const convertValueE = (value) => {

@@ -1,13 +1,14 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import './EditFooter.scss'
 import { useContext } from 'react'
 import { UserContext } from '../../../context/ContextProvider'
-import { handleUpdateDatabase } from '../Database/HandleUpdateDatabase'
+import { handleSavingData, handleSwitchSection, handleUpdateDatabase } from '../Database/HandleUpdateDatabase'
 
-function EditFooter({currentSection}) {
+function EditFooter({ currentSection, setData }) {
 
     const { sectionList, apiURL } = useContext(UserContext)
     const { id } = useParams()
+    const navigate = useNavigate()
 
     return (
         <footer id='edit-footer'>
@@ -27,7 +28,14 @@ function EditFooter({currentSection}) {
                         currentSection != 0 &&
                         <Link to={`/edit/section${sectionList[currentSection-1]}/${id}`}>
                             <button
-                                onClick={() => handleUpdateDatabase({ currentSection: sectionList[currentSection], currentId: id, api: apiURL })}
+                                onClick={(e) => handleSwitchSection({ 
+                                    thisE: e,
+                                    currentSection: sectionList[currentSection], 
+                                    currentId: id, 
+                                    api: apiURL,
+                                    setData,
+                                    handleChangeLocation: () => {navigate(`/edit/section${sectionList[currentSection-1]}/${id}`)}
+                                })}
                             >
                                 <i className='ti-arrow-circle-left'></i>
                                 <span>Lùi lại</span>
@@ -38,7 +46,14 @@ function EditFooter({currentSection}) {
                         currentSection < sectionList.length - 1 &&
                         <Link to={`/edit/section${sectionList[currentSection+1]}/${id}`}>
                             <button
-                                onClick={() => handleUpdateDatabase({ currentSection: sectionList[currentSection], currentId: id, api: apiURL })}
+                                onClick={(e) => handleSwitchSection({ 
+                                    thisE: e,
+                                    currentSection: sectionList[currentSection], 
+                                    currentId: id, 
+                                    api: apiURL,
+                                    setData,
+                                    handleChangeLocation: () => {navigate(`/edit/section${sectionList[currentSection+1]}/${id}`)}
+                                })}
                             >
                                 <span>Tiếp theo</span>
                                 <i className='ti-arrow-circle-right'></i>
@@ -59,6 +74,21 @@ function EditFooter({currentSection}) {
                     </Link>
                 </div>
             </div>
+            {
+                currentSection != 5 
+                &&
+                <div 
+                    className='edit-footer-save'
+                    onClick={() => handleSavingData({
+                        currentSection: sectionList[currentSection],
+                        currentId: id,
+                        api: apiURL,
+                        setData: setData
+                    })}
+                >
+                    <i className='ti-save'></i>
+                </div>
+            }
         </footer>
     )
 }

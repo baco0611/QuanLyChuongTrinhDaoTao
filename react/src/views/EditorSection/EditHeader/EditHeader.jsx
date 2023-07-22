@@ -6,12 +6,12 @@ import { useQuery } from 'react-query'
 import axios from 'axios'
 import Loader from '../../../components/Loader/Loader'
 import { UserContext } from '../../../context/ContextProvider'
-import { handleUpdateDatabase } from '../Database/HandleUpdateDatabase'
+import { handleSwitchSection } from '../Database/HandleUpdateDatabase'
 
-function EditHeader({ currentSection }) {
+function EditHeader({ currentSection, setData }) {
 
     const { id } = useParams()
-    const { sectionList, fakeApi, apiURL } = useContext(UserContext)
+    const { sectionList, apiURL } = useContext(UserContext)
     const navigate = useNavigate()
     const [ navHeight, setNavHeight ] = useState(0)
 
@@ -33,7 +33,6 @@ function EditHeader({ currentSection }) {
 
     const fecthAPI = (id) => {
         const editHeaderApi = `${apiURL}/sectionHeader/${id}`
-        // const editHeaderApi = `${fakeApi}/sectionHeader/${id}`
         return async () => {
             const result = await axios.get(editHeaderApi) 
                 .then(response => {
@@ -83,13 +82,14 @@ function EditHeader({ currentSection }) {
                                                 'active': index === currentSection
                                             }
                                         )}
-                                        onClick={(e) => index!=currentSection 
-                                            ? handleUpdateDatabase({ 
+                                        onClick={(e) => index!=currentSection
+                                            ? handleSwitchSection({ 
                                                 thisE: e, 
                                                 currentSection: sectionList[currentSection], 
                                                 currentId: id, 
                                                 api: apiURL,
-                                                path: `/edit/section${element}/${id}`
+                                                setData,
+                                                handleChangeLocation: () => {navigate(`/edit/section${element}/${id}`)}
                                             }) 
                                             : () => {}
                                         }

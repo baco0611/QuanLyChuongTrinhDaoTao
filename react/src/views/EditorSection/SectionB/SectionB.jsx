@@ -7,6 +7,7 @@ import EditFooter from "../EditFooter/EditFooter"
 import { useQuery } from "react-query"
 import axios from "axios"
 import Loader from "../../../components/Loader/Loader"
+import { resetPage } from "../Database/HandleUpdateDatabase"
 
 function SectionB() {
 
@@ -19,11 +20,11 @@ function SectionB() {
     }) 
 
     useEffect(() => {
-        localStorage.setItem(`sectionB-${id}`, JSON.stringify(sectionBValue))
+        sessionStorage.setItem(`sectionB-${id}`, JSON.stringify(sectionBValue))
     })
 
     useEffect(() => {
-        window.scrollTo(0, 0)
+        resetPage('B', id)
       }, [])
 
     const fecthAPI = (id) => {
@@ -73,7 +74,7 @@ function SectionB() {
         <>
             <EditHeader
                 currentSection={1}
-                currentId={id}
+                setData={{setSectionBValue}}
             />
             <div id="section-B" className="section">
                 <div className="section-header wrapper">
@@ -93,7 +94,7 @@ function SectionB() {
             </div>
             <EditFooter
                 currentSection={1}
-                currentId={id}
+                setData={{setSectionBValue}}
             />
         </>
     )

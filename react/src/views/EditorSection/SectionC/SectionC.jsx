@@ -9,7 +9,8 @@ import { useQuery } from "react-query"
 import axios from "axios"
 import POBlock from "./POBlock"
 import { DragDropContext } from 'react-beautiful-dnd' 
-import { handleChangeDataC, handleSplitSectionC } from "../Database/HandleActionSectionC"
+import { handleChangeDataC, handleSplitSectionC, handleUpdateSectionC } from "../Database/HandleActionSectionC"
+import { resetPage } from "../Database/HandleUpdateDatabase"
 
 function SectionC() {
 
@@ -35,9 +36,8 @@ function SectionC() {
     })
     const [ deleteElement, setDeleteElement ] = useState([])
 
-
     useEffect(() => {
-        window.scrollTo(0, 0)
+        resetPage('C', id)
     }, [])
 
     const fecthAPI = (id) => {
@@ -62,8 +62,8 @@ function SectionC() {
     }
 
     useEffect(() => {
-        localStorage.setItem(`sectionC-${id}`, JSON.stringify([...sectionCValue.KIEN_THUC.data, ...sectionCValue.KY_NANG.data, ...sectionCValue.THAI_DO.data]))
-        localStorage.setItem(`sectionC-delete-${id}`, JSON.stringify(deleteElement))
+        sessionStorage.setItem(`sectionC-${id}`, JSON.stringify([...sectionCValue.KIEN_THUC.data, ...sectionCValue.KY_NANG.data, ...sectionCValue.THAI_DO.data]))
+        sessionStorage.setItem(`sectionC-delete-${id}`, JSON.stringify(deleteElement))
     })
 
     const { isLoading, isError} = useQuery(`sectionC-${id}`, fecthAPI(id),{
@@ -147,12 +147,15 @@ function SectionC() {
             handleChangeIndexComponent({ source, destination })
         }
     }
-    
+
     return(
         <>
             <EditHeader 
                 currentSection={2} 
-                currentiId={id}
+                setData={{
+                    setSectionCValue,
+                    setDeleteElement
+                }}
             />
             <div id="section-C" className="section">
                 <div className="section-header wrapper">
@@ -192,7 +195,10 @@ function SectionC() {
             </div>
             <EditFooter 
                 currentSection={2} 
-                currentId={id}
+                setData={{
+                    setSectionCValue,
+                    setDeleteElement
+                }}
             />
         </>
     )

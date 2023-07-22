@@ -11,6 +11,7 @@ import { handleSplitSectionD } from "../Database/HandleActionSectionD"
 import { handleSplitSectionC } from "../Database/HandleActionSectionC"
 import RowBlock from "./RowBlock"
 import { convertValueE } from "../Database/HandleActionSectionE"
+import { resetPage } from "../Database/HandleUpdateDatabase"
 
 function SectionE() {
 
@@ -129,7 +130,11 @@ function SectionE() {
     }, [POValue, PLOValue])
 
     useEffect(() => {
-        localStorage.setItem(`sectionE-${id}`, JSON.stringify(sectionEValue))
+        resetPage('E', id)
+    }, [])
+
+    useEffect(() => {
+        sessionStorage.setItem(`sectionE-${id}`, JSON.stringify(sectionEValue))
     })
 
     const fecthAPI = (id) => {
@@ -195,6 +200,7 @@ function SectionE() {
         <>
             <EditHeader
                 currentSection={4}
+                setData={{setSectionEValue}}
             />
             <div id="section-E" className="section">
                 <div className="section-header wrapper">
@@ -278,6 +284,7 @@ function SectionE() {
             </div>
             <EditFooter
                 currentSection={4}
+                setData={{setSectionEValue}}
             />
         </>
     )

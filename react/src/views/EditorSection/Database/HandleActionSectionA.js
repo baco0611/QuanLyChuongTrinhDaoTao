@@ -1,18 +1,34 @@
-import { values } from "lodash"
 import { deleteData, postData } from "./HandleUpdateDatabase"
 
-const handleUpdateSectionA = (id, api) => {
-    const sectionAValue = JSON.parse(localStorage.getItem(`sectionA-${id}`))
-    const sectionAChuyenNganh = JSON.parse(localStorage.getItem(`sectionA-ChuyenNganh-${id}`))
-    const deleteValue = JSON.parse(localStorage.getItem(`sectionA-delete-${id}`))
+const handleUpdateSectionA = async (id, api, setData) => {
+    const sectionAValue = JSON.parse(sessionStorage.getItem(`sectionA-${id}`))
+    const sectionAChuyenNganh = JSON.parse(sessionStorage.getItem(`sectionA-ChuyenNganh-${id}`))
+    const deleteValue = JSON.parse(sessionStorage.getItem(`sectionA-delete-${id}`))
 
     const updateValue = sectionAChuyenNganh.filter(item => item.idChuyenNganh != '')
     const createValue = sectionAChuyenNganh.filter(item => item.idChuyenNganh == '').map(item => item.tenChuyenNganh)
 
-    postData(api, '/update_sectionA', sectionAValue, 'UPDATE_SECTIONA', 'SOMETHING HAS BEEN INTERESTED WITH THE UPDATE')
-    deleteData(api, '/delete_ChuyenNganhDaoTao', { idCTDT: id, deleteData: deleteValue }, 'DELETE_CHUYEN_NGANH')
-    postData(api, '/update_ChuyenNganhDaoTao', { idCTDT: id, data: updateValue }, 'UPDATE_CHUYEN_NGANH' )
-    postData(api, '/create_ChuyenNganhDaoTao', { idCTDT: id, data: createValue }, 'UPDATE_CHUYEN_NGANH')
+    const updateA= await postData(api, '/update_sectionA', sectionAValue, 'UPDATE_SECTIONA', 'SOMETHING HAS BEEN INTERESTED WITH THE UPDATE')
+    const deleteCN = await deleteData(api, '/delete_ChuyenNganhDaoTao', { idCTDT: id, deleteData: deleteValue }, 'DELETE_CHUYEN_NGANH')
+    const updateCN = await postData(api, '/update_ChuyenNganhDaoTao', { idCTDT: id, data: updateValue }, 'UPDATE_CHUYEN_NGANH' )
+    const createCN = await postData(api, '/create_ChuyenNganhDaoTao', { idCTDT: id, data: createValue }, 'UPDATE_CHUYEN_NGANH')
+
+    if(updateA.status == 200 && 
+        deleteCN.status == 200 &&
+        updateCN.status == 200 &&
+        createCN.status == 200)
+    {
+        setData.setSectionAValue(updateA.data.data[0])
+        setData.setChuyenNganh(createCN.data.data)
+        setData.setDeleteElement([])
+    }
+
+    return (
+        updateA.status == 200 && 
+        deleteCN.status == 200 &&
+        updateCN.status == 200 &&
+        createCN.status == 200
+    )
 }
 
 const handleChangeValueA = (e, setState, indexItem) => {

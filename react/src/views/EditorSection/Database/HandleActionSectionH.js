@@ -104,8 +104,8 @@ const handleChangeValueH = (setState, valueList) => {
     setState(stateValue)
 }
 
-const handleUpdateSectionH = (id, api) => {
-    const value = JSON.parse(localStorage.getItem(`sectionH-${id}`))
+const handleUpdateSectionH = async (id, api, setData) => {
+    const value = JSON.parse(sessionStorage.getItem(`sectionH-${id}`))
 
     const createElement = value.filter(item => item.mucDoDapUng!='' && item.id=='')
     const deleteElement = value.filter(item => item.mucDoDapUng=='' && item.id!='')
@@ -133,13 +133,22 @@ const handleUpdateSectionH = (id, api) => {
         }))
     }
     
-    if(createElement.length > 0) postData(api, '/create_sectionH', createPayload, 'CREATE_SECTIONH')
-    else console.log('CREATE_SECTIONH')
+    const createH = await postData(api, '/create_sectionH', createPayload, 'CREATE_SECTIONH')
+    const deleteH = await deleteData(api, '/delete_sectionH', deletePayload, 'DELETE_SECTIONH')
+    const updateH = await postData(api, '/update_sectionH', updatePayload, 'UPDATE_SECTIONH')
 
-    if(deleteElement.length > 0) deleteData(api, '/delete_sectionH', deletePayload, 'DELETE_SECTIONH')
-    else console.log('DELETE_SECTIONH')
+    if( createH.status == 200 &&
+        deleteH.status == 200 &&
+        updateH.status == 200)
+    {
+        setData.setSectionHValue(updateH.data.data)
+    }
 
-    postData(api, '/update_sectionH', updatePayload, 'UPDATE_SECTIONH')
+    return (
+        createH.status == 200 &&
+        deleteH.status == 200 &&
+        updateH.status == 200
+    )
 }
 
 export { handleSplitPLO, handleChangeValueH, handleUpdateSectionH }

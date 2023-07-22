@@ -11,6 +11,7 @@ import { handleSplitSectionG } from "../Database/HandleActionSectionG"
 import { handleSplitSectionD } from "../Database/HandleActionSectionD"
 import { handleSplitPLO } from "../Database/HandleActionSectionH"
 import RowBlock from "./RowBlock"
+import { resetPage } from "../Database/HandleUpdateDatabase"
 
 function SectionH() {
 
@@ -73,11 +74,11 @@ function SectionH() {
     const [ sectionHValue, setSectionHValue ] = useState([])
 
     useEffect(() => {
-        window.scrollTo(0, 0)
+        resetPage('H', id)
     }, [])
 
     useEffect(() => {
-        localStorage.setItem(`sectionH-${id}`, JSON.stringify(sectionHValue))
+        sessionStorage.setItem(`sectionH-${id}`, JSON.stringify(sectionHValue))
     })
 
     const fecthAPI = (id) => {
@@ -144,6 +145,7 @@ function SectionH() {
         <>
             <EditHeader
                 currentSection={6}
+                setData={{setSectionHValue}}
             />
             <div id="section-D" className="section">
                 <div className="section-header wrapper">
@@ -245,6 +247,7 @@ function SectionH() {
             </div>
             <EditFooter
                 currentSection={6}
+                setData={{setSectionHValue}}
             />
         </>
     )

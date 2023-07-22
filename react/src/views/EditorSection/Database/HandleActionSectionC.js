@@ -126,9 +126,9 @@ const handleClickAddC = ({ idCTDT, type, typeIndex, setState }) => {
     })
 }
 
-const handleUpdateSectionC = (id, api) => {
-    const sectionCElement = JSON.parse(localStorage.getItem(`sectionC-${id}`))
-    const sectionCDelete = JSON.parse(localStorage.getItem(`sectionC-delete-${id}`))
+const handleUpdateSectionC = async (id, api, setData) => {
+    const sectionCElement = JSON.parse(sessionStorage.getItem(`sectionC-${id}`))
+    const sectionCDelete = JSON.parse(sessionStorage.getItem(`sectionC-delete-${id}`))
 
     const deleteElement = sectionCDelete.filter(item => item.id != '').map(item => {
         return {
@@ -147,16 +147,31 @@ const handleUpdateSectionC = (id, api) => {
     const updateElement = sectionCElement.filter(item => item.id != '')
 
     // debugger
-    if(deleteElement.length <= 0) console.log('DELETE_SECTIONC')
-    else deleteData(api, '/delete_sectionC', { idCTDT: id, deleteData: deleteElement }, 'DELETE_SECTIONC')
+    const deleteC = await deleteData(api, '/delete_sectionC', { idCTDT: id, deleteData: deleteElement }, 'DELETE_SECTIONC')
     
     // debugger
-    if(createElement.length <= 0) console.log('CREATE_SECTIONC')
-    else postData(api, '/create_sectionC', { idCTDT: id, data: createElement }, 'CREATE_SECIONC')
+    const createC = await postData(api, '/create_sectionC', { idCTDT: id, data: createElement }, 'CREATE_SECIONC')
 
     // debugger
-    if(updateElement.length <= 0) console.log('UPDATE_SECTIONC')
-    else postData(api, '/update_sectionC', { idCTDT: id, data: updateElement }, 'UPDATE_SECTIONC')
+    const updateC = await postData(api, '/update_sectionC', { idCTDT: id, data: updateElement }, 'UPDATE_SECTIONC')
+
+    if( deleteC.status == 200 &&
+        createC.status == 200 &&
+        updateC.status == 200) 
+    {
+        handleSplitSectionC({
+            data: updateC.data.data,
+            setSectionCValue: setData.setSectionCValue,
+            idctdt: id
+        })
+        setData.setDeleteElement([])
+    }
+
+    return (
+        deleteC.status == 200 &&
+        createC.status == 200 &&
+        updateC.status == 200
+    )
 }
 
 export { 
