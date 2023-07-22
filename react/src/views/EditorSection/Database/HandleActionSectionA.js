@@ -20,6 +20,7 @@ const handleUpdateSectionA = async (id, api, setData) => {
     {
         setData.setSectionAValue(updateA.data.data[0])
         setData.setChuyenNganh(createCN.data.data)
+        setData.setDeleteElement([])
     }
 
     return (

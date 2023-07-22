@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import './EditFooter.scss'
 import { useContext } from 'react'
 import { UserContext } from '../../../context/ContextProvider'
-import { handleSwitchSection } from '../Database/HandleUpdateDatabase'
+import { handleSavingData, handleSwitchSection, handleUpdateDatabase } from '../Database/HandleUpdateDatabase'
 
 function EditFooter({ currentSection, setData }) {
 
@@ -74,6 +74,21 @@ function EditFooter({ currentSection, setData }) {
                     </Link>
                 </div>
             </div>
+            {
+                currentSection != 5 
+                &&
+                <div 
+                    className='edit-footer-save'
+                    onClick={() => handleSavingData({
+                        currentSection: sectionList[currentSection],
+                        currentId: id,
+                        api: apiURL,
+                        setData: setData
+                    })}
+                >
+                    <i className='ti-save'></i>
+                </div>
+            }
         </footer>
     )
 }

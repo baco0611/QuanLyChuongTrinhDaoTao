@@ -8,7 +8,11 @@ const handleUpdateSectionB = async (id, api, setData) => {
     console.log(setData)
 
     if(updateB.status == 200)
-        setData.setSectionBValue(updateB.data.data[0].mucTieuTongQuat)
+        setData.setSectionBValue(
+        {
+            id: id,
+            mucTieuTongQuat: updateB.data.data[0].mucTieuTongQuat
+        })
     
     console.log(updateB)
 

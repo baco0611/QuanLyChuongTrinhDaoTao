@@ -131,7 +131,8 @@ function SectionA() {
                 currentSection={0} 
                 setData={{
                     setSectionAValue,
-                    setChuyenNganh
+                    setChuyenNganh,
+                    setDeleteElement
                 }}
             />
             <div id="section-A" className="section">
@@ -452,7 +453,8 @@ function SectionA() {
                 currentSection={0} 
                 setData={{
                     setSectionAValue,
-                    setChuyenNganh
+                    setChuyenNganh,
+                    setDeleteElement
                 }}
             />
         </>

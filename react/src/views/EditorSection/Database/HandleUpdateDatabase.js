@@ -49,22 +49,69 @@ const deleteStorage = (section, id) => {
     const keys = Object.keys(sessionStorage)
     keys.forEach(key => {
         const arr = key.split('-')
-        console.log(arr)
 
         if(arr[0] != `section${section}` || arr[arr.length - 1] != id) {
             sessionStorage.removeItem(key)
-            console.log(key)
         }
     })
 }
 
 const handleSwitchSection = async ({ currentSection, currentId, api, thisE, setData, handleChangeLocation }) => {
-    thisE.preventDefault()
+    if(currentSection!='G') {
+        thisE.preventDefault()
+    
+        swal({
+            title: 'Bạn muốn lưu thông tin không?',
+            text: ``,
+            icon: 'warning',
+            buttons: {
+                no: {
+                    text: "Không",
+                    closeModal: true,
+                    className: 'swalNot'
+                },
+                yes: {
+                    text: "Có",
+                    closeModal: false
+                }
+            }
+        })
+        .then(async (name) => {
+            if(name == 'yes') {
+                
+                let isSuccess = await handleUpdateDatabase({ currentSection, currentId, api, setData })
+                
+                if(isSuccess) {
+                    swal.stopLoading();
+                    swal.close();
+                    handleChangeLocation()
+                } else {
+                    throw err
+                }
+            }
+            else {
+                swal.stopLoading();
+                swal.close();
+                handleChangeLocation()
+            }
+        })
+        .catch(() => {
+            swal.stopLoading();
+            swal.close();
+            swal({
+                title: 'Đã có lỗi',
+                text: 'Vui lòng thử lại',
+                icon: 'error'
+            })
+        })
+    }
+}
 
+const handleSavingData = async ({ currentSection, currentId, api, setData }) => {
     swal({
-        title: 'Bạn muốn lưu thông tin không?',
+        title: 'Bạn muốn lưu thông tin?',
         text: ``,
-        icon: 'warning',
+        icon: 'info',
         buttons: {
             no: {
                 text: "Không",
@@ -81,11 +128,9 @@ const handleSwitchSection = async ({ currentSection, currentId, api, thisE, setD
         if(name == 'yes') {
             
             let isSuccess = await handleUpdateDatabase({ currentSection, currentId, api, setData })
-            
             if(isSuccess) {
                 swal.stopLoading();
                 swal.close();
-                handleChangeLocation()
             } else {
                 throw err
             }
@@ -93,7 +138,6 @@ const handleSwitchSection = async ({ currentSection, currentId, api, thisE, setD
         else {
             swal.stopLoading();
             swal.close();
-            handleChangeLocation()
         }
     })
     .catch(() => {
@@ -153,5 +197,6 @@ export {
     postData, 
     deleteData, 
     handleSwitchSection,
-    resetPage
+    resetPage,
+    handleSavingData
 }

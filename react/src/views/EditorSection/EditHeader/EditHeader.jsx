@@ -82,7 +82,7 @@ function EditHeader({ currentSection, setData }) {
                                                 'active': index === currentSection
                                             }
                                         )}
-                                        onClick={(e) => index!=currentSection 
+                                        onClick={(e) => index!=currentSection
                                             ? handleSwitchSection({ 
                                                 thisE: e, 
                                                 currentSection: sectionList[currentSection], 

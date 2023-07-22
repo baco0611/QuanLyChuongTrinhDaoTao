@@ -10,6 +10,7 @@ import axios from "axios"
 import SectionGBlock from "./SectionGBlock"
 import { handleSplitSectionG } from "../Database/HandleActionSectionG"
 import NavIcon from "./NavIcon"
+import { resetPage } from "../Database/HandleUpdateDatabase"
 
 function SectionG() {
 
@@ -55,7 +56,7 @@ function SectionG() {
     })
 
     useEffect(() => {
-        window.scrollTo(0, 0)
+        resetPage('G', id)
     }, [])
 
     const fecthAPI = (id) => {
@@ -75,7 +76,7 @@ function SectionG() {
     }
 
     useEffect(() => {
-        localStorage.setItem(`sectionG-${id}`, JSON.stringify(sectionGValue))
+        sessionStorage.setItem(`sectionG-${id}`, JSON.stringify(sectionGValue))
     })
 
     const { isLoading, isError} = useQuery(`sectionC-${id}`, fecthAPI(id),{
