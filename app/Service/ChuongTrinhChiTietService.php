@@ -36,7 +36,8 @@ class ChuongTrinhChiTietService
             "hocKy"=>$val['hocKy'],
             "khoiKienThuc"=>$val['khoiKienThuc'],
             "chiTietKhoiKienThuc"=>$val['chiTietKhoiKienThuc'],
-            "idChuyenNganh"=>$val['idChuyenNganh']
+            "idChuyenNganh"=>$val['idChuyenNganh'],
+            "stt"=>$val['stt']
         ]);
     }
     public function delete($val)  {

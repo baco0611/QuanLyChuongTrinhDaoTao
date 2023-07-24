@@ -10,13 +10,18 @@ import axios from "axios"
 import SectionGBlock from "./SectionGBlock"
 import { handleSplitSectionG } from "../Database/HandleActionSectionG"
 import NavIcon from "./NavIcon"
-import { resetPage } from "../Database/HandleUpdateDatabase"
+import { postData, resetPage } from "../Database/HandleUpdateDatabase"
 
 function SectionG() {
 
     const { id } = useParams()
     const { apiURL, fakeApi } = useContext(UserContext)
     const navigate = useNavigate()
+    const [ first, setFirst ] = useState({
+        create: true,
+        first: true,
+        second: true
+    })
 
     const [ sectionGValue, setSectionGValue ] = useState({
         DAI_CUONG: {
@@ -58,6 +63,56 @@ function SectionG() {
     useEffect(() => {
         resetPage('G', id)
     }, [])
+
+    useEffect(() => {
+        if(first.create) {
+            setFirst({...first, create: false})
+        } else
+        if(first.first) {
+            setFirst({...first, first: false})
+        }
+        else
+        if(first.second) {
+            console.log(sectionGValue)
+            setFirst({...first, second: false})
+            const TTKL = sectionGValue.CHUYEN_NGHIEP.THAY_THE_KHOA_LUAN.data
+            ?
+            Object.keys(sectionGValue.CHUYEN_NGHIEP.THAY_THE_KHOA_LUAN.data).map(CN => {
+                return sectionGValue.CHUYEN_NGHIEP.THAY_THE_KHOA_LUAN.data[CN].data
+            }).reduce((result, item) => [...result, ...item], [])
+            : []
+
+            const CN = sectionGValue.CHUYEN_NGHIEP.CHUYEN_NGANH.data 
+            ?
+             Object.keys(sectionGValue.CHUYEN_NGHIEP.CHUYEN_NGANH.data).map(CN => {
+                return sectionGValue.CHUYEN_NGHIEP.CHUYEN_NGANH.data[CN].data
+            }).reduce((result, item) => [...result, ...item], [])
+            : []
+
+            const updateData = [
+                ...sectionGValue.DAI_CUONG.data,
+                ...sectionGValue.CHUYEN_NGHIEP.CO_SO_NGANH.data,
+                ...sectionGValue.CHUYEN_NGHIEP.NGANH.data,
+                ...sectionGValue.CHUYEN_NGHIEP.BO_TRO.data,
+                ...sectionGValue.CHUYEN_NGHIEP.THUC_TAP.data,
+                ...sectionGValue.CHUYEN_NGHIEP.DO_AN_KHOA_LUAN.data,
+                ...TTKL,
+                ...CN
+            ]
+
+            const payload = {
+                idCTDT: id,
+                data: updateData.map(item => {
+                    return {
+                        ...item,
+                        idChuyenNganh: item.idChuyenNganh ? item.idChuyenNganh : ''
+                    }
+                })
+            }
+
+            postData(apiURL, '/update_sectionG', payload, 'UPDATE_SUBJECT')
+        }
+    }, [sectionGValue])
 
     const fecthAPI = (id) => {
         const sectionGValueApi = `${apiURL}/sectionG/${id}`
