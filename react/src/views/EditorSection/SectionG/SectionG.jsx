@@ -11,6 +11,7 @@ import SectionGBlock from "./SectionGBlock"
 import { handleSplitSectionG } from "../Database/HandleActionSectionG"
 import NavIcon from "./NavIcon"
 import { postData, resetPage } from "../Database/HandleUpdateDatabase"
+import { DragDropContext } from "react-beautiful-dnd"
 
 function SectionG() {
 
@@ -150,7 +151,7 @@ function SectionG() {
             <EditHeader
                 currentSection={5}
             />
-            <div id="section-D" className="section">
+            <div id="section-G" className="section">
                 <div className="section-header wrapper">
                     <h1>G. KHUNG CHƯƠNG TRÌNH ĐÀO TẠO</h1>
                 </div>
@@ -172,6 +173,7 @@ function SectionG() {
                                 <th colSpan={6}>Phân bố giờ</th>
                                 <th colSpan={3}>Quan hệ với các học phần</th>
                                 <th style={{minWidth: '50px'}} rowSpan={2}>Học<br/>kỳ</th>
+                                <th style={{minWidth: '50px'}} rowSpan={2}>Thao<br/>tác</th>
                             </tr>
                             <tr>
                                 <th style={{minWidth: '50px'}}>LT</th>
@@ -186,18 +188,20 @@ function SectionG() {
                             </tr>
                         </thead>
                         <tbody>
-                            <SectionGBlock
-                                title={'KIẾN THỨC GIÁO DỤC ĐẠI CƯƠNG'}
-                                index={'I.'}
-                                data={sectionGValue.DAI_CUONG}
-                                setState={setSectionGValue}
-                            />  
-                            <SectionGBlock
-                                title={'KIẾN THỨC GIÁO DỤC CHUYÊN NGHIỆP'}
-                                index={"II."}
-                                data={sectionGValue.CHUYEN_NGHIEP}
-                                setState={setSectionGValue}
-                            />   
+                            <DragDropContext>
+                                <SectionGBlock
+                                    title={'KIẾN THỨC GIÁO DỤC ĐẠI CƯƠNG'}
+                                    index={'I.'}
+                                    data={sectionGValue.DAI_CUONG}
+                                    setState={setSectionGValue}
+                                />  
+                                <SectionGBlock
+                                    title={'KIẾN THỨC GIÁO DỤC CHUYÊN NGHIỆP'}
+                                    index={"II."}
+                                    data={sectionGValue.CHUYEN_NGHIEP}
+                                    setState={setSectionGValue}
+                                />   
+                            </DragDropContext>
                         </tbody>
                     </table>
                 </div>

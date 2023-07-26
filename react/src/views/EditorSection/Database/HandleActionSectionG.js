@@ -135,8 +135,6 @@ const resetOrder = (data) => {
         }
     })
 
-    console.log(data)
-
     return data
 }
 
@@ -168,6 +166,7 @@ const createSubject = async (id, apiURL, data, setState) => {
         khoiKienThuc: data.khoiKienThuc,
         chiTietKhoiKienThuc: data.chiTietKhoiKienThuc,
         idChuyenNganh: data.idChuyenNganh ? data.idChuyenNganh : '',
+        stt: data.stt
     }
 
     const payload = {
@@ -175,12 +174,11 @@ const createSubject = async (id, apiURL, data, setState) => {
         data: [createValues]
     }
     const createResult = await getData()
-    console.log(createResult)
     handleSplitSectionG(createResult.data.data, setState, apiURL, id)
 }
 
 const updateSubject = async (id, apiURL, data, setState) => {
-    const createValues = {
+    const updateValues = {
         idDeCuongHocPhan: data.idDeCuongHocPhan,
         thayTheKhoaLuan: data.thayTheKhoaLuan,
         batBuoc: data.batBuoc,
@@ -197,10 +195,10 @@ const updateSubject = async (id, apiURL, data, setState) => {
 
     const payload = {
         idCTDT: id,
-        data: [createValues]
+        data: [updateValues]
     }
-    const createResult = await postData(apiURL, '/update_sectionG', payload, 'UPDATE_SUBJECT')
-    handleSplitSectionG(createResult.data.data, setState, apiURL, id)
+    const updateResult = await postData(apiURL, '/update_sectionG', payload, 'UPDATE_SUBJECT')
+    handleSplitSectionG(updateResult.data.data, setState, apiURL, id)
 }
 
 const deleteSubject = async (id, apiURL, data, setState) => {
@@ -210,7 +208,6 @@ const deleteSubject = async (id, apiURL, data, setState) => {
     }
 
     const deleteResult = await deleteData(apiURL, '/delete_sectionG', payload, 'DELETE_SUBJECT')
-    console.log(deleteResult)
 
     handleSplitSectionG(deleteResult.data.data, setState, apiURL, id)
 
