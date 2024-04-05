@@ -112,6 +112,7 @@ class ChuongTrinhChiTietController extends Controller
             $ctct->chiTietKhoiKienThuc=$val['chiTietKhoiKienThuc'];
             $ctct->idChuyenNganh=$val['idChuyenNganh'];
             $ctct->idChuongTrinh= $idChuongTrinh;
+            $ctct->stt=$val['stt'];
             $ctct->save();
          }
          $listItem = $CTCTService->getList($idChuongTrinh);

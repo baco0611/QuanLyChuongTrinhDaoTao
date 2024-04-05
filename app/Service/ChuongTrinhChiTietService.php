@@ -14,7 +14,7 @@ class ChuongTrinhChiTietService
         "MaHocPhan","TenHocPhan","batBuoc","SoTinChi","LyThuyet","BaiTap",
         "ThaoLuan","ThucHanh","ThucTap","KiemTraGiuaKi","tienQuyet","hocTruoc",
         "songHanh","hocKy","khoiKienThuc","chiTietKhoiKienThuc","ChuongTrinhChiTiet.idChuyenNganh",
-        "tenChuyenNganh",DB::raw('ROW_NUMBER() OVER(ORDER BY ChuongTrinhChiTiet.idChuongTrinh) AS stt'))
+        "tenChuyenNganh","stt")
         ->join('DeCuongHocPhan as dc','dc.Id','=', 'ChuongTrinhChiTiet.DeCuongHocPhanId')
         ->join('HocPhan as hp','hp.Id','=', 'dc.HocPhanId')
         ->leftJoin('ChuyenNganhDaoTao as cn','ChuongTrinhChiTiet.idChuyenNganh','=', 'cn.idChuyenNganh')
@@ -36,7 +36,8 @@ class ChuongTrinhChiTietService
             "hocKy"=>$val['hocKy'],
             "khoiKienThuc"=>$val['khoiKienThuc'],
             "chiTietKhoiKienThuc"=>$val['chiTietKhoiKienThuc'],
-            "idChuyenNganh"=>$val['idChuyenNganh']
+            "idChuyenNganh"=>$val['idChuyenNganh'],
+            "stt"=>$val['stt']
         ]);
     }
     public function delete($val)  {
