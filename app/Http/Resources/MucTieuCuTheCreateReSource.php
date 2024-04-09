@@ -17,6 +17,9 @@ class MucTieuCuTheCreateReSource extends JsonResource
         return [
             'id'=>intval($this->idMucTieu),
             'kiHieu'=>$this->kiHieu,
+            'noiDung'=>$this->noiDung,
+            'loaiMucTieu'=>$this->loaiMucTieu,
+            'idCTDT'=>$this->idChuongTrinh
         ];
     }
 }
