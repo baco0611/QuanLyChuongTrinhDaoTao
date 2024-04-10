@@ -17,6 +17,11 @@ class ChuanDauRaCreateResource extends JsonResource
         return [
             'id'=>intval($this->idChuanDauRa),
             'kiHieu'=>$this->kiHieu,
+            'noiDung'=>$this->noiDung,
+            'loaiChuanDauRa'=>$this->loaiChuanDauRa,
+            'loaiChuanDauRaChiTiet'=>$this->loaiChuanDauRaChiTiet,
+            'trinhDoNangLuc'=>intval($this->trinhDoNangLuc),
+            'idCTDT'=>$this->idChuongTrinh
         ];
     }
 }
